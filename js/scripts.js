@@ -4,6 +4,7 @@ var vm = new Vue({
         return {
             uusTeisteKohta: true,
             alaealineLaps: false,
+            valitud: "",
             otherPeopleCount: 1
         }
     }, 

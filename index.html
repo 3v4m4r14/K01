@@ -14,6 +14,7 @@
         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
     <!-- Scripts
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -161,39 +162,59 @@
         <hr>
 
         <div id="kasutamiseOigus">
-            <h3>Ruumi kasutamise õigus</h3>
+            <p>
+            <h3 style="display: inline-block; padding-right: 10px">Ruumi kasutamise õigus</h3>
+            <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample"
+                    aria-expanded="false" aria-controls="collapseExample">
+                <b>Info</b> <i class="fas fa-info-circle"></i>
+            </button>
+            </p>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    <p class="form-text text-muted">- Ruumi kasutusõigust tõendava dokumendi olemasolul (nt üürileping)
+                        ei pea elukohateatele
+                        täiendavalt lisama ruumi omaniku nõusolekut.<br>
+                        - Kui isik ei ole ise kaasomanik, on kaasomandis oleva ruumi andmete esitamisel vajalik kõigi
+                        kaasomanike või nende esindajate nõusolek. Kaasomanike vahel sõlmitud ruumi kasutamise
+                        kokkuleppe
+                        korral võib nõusolekute asemel lisada vastavat kokkulepet tõendava dokumendi.<br>
+                        - Ruumi omaniku nõusolekut või ruumi kasutamise õigust tõendavat dokumenti ei ole vaja, kui
+                        esitatakse perekonnaliikmele (nt abikaasa, alaealine laps) kuuluva ruumi või välisriigi elukoha
+                        aadress.<br>
+                        - Ruumi kasutamise muuks aluseks võib olla näiteks isiklik kasutusõigus või ruumi kasutamine
+                        perekonnaliikmena.</p>
+                </div>
+            </div>
 
             <div class="form-check">
-                <input id="olenOmanik" class="form-check-input" type="checkbox">
+                <input id="olenOmanik" name="kasutamiseOigusRadio" class="form-check-input" value="olenOmanik" v-model="valitud" type="radio">
                 <label class="form-check-label" for="olenOmanik">Olen ruumi (kaas)omanik</label>
             </div>
 
             <div class="form-check">
-                <input id="lisanLepingu" class="form-check-input" type="checkbox">
+                <input id="lisanLepingu" name="kasutamiseOigusRadio" class="form-check-input" value="lisanLepingu" v-model="valitud" type="radio">
                 <label class="form-check-label" for="lisanLepingu">Lisan üürilepingu</label>
             </div>
 
             <div class="form-check">
-                <input id="omanikAnnabNousoleku" class="form-check-input" type="checkbox">
+                <input id="omanikAnnabNousoleku" name="kasutamiseOigusRadio" class="form-check-input" value="omanikAnnabNousoleku" v-model="valitud" type="radio">
                 <label class="form-check-label" for="omanikAnnabNousoleku">Ruumi omanik annab elukohateatele
                     nõusoleku</label>
             </div>
 
             <div class="form-check">
-                <input id="nousolekPaberil" class="form-check-input" type="checkbox">
+                <input id="nousolekPaberil" name="kasutamiseOigusRadio" class="form-check-input" value="nousolekPaberil" v-model="valitud" type="radio">
                 <label class="form-check-label" for="nousolekPaberil">Lisan omaniku nõusoleku eraldi paberil</label>
             </div>
 
             <div class="form-check">
-                <input id="muuAlus" class="form-check-input" type="checkbox">
+                <input id="muuAlus" name="kasutamiseOigusRadio" class="form-check-input" v-model="valitud" value="muuAlus" type="radio">
                 <label class="form-check-label" for="muuAlus">Ruumi kasutamise muu alus</label>
             </div>
-
         </div>
 
-        <hr>
-
-        <div id="omanikuNousolek">
+        <div id="omanikuNousolek" v-if="valitud === 'omanikAnnabNousoleku'">
+            <hr>
             <h3>Ruumi omaniku nõusolek</h3>
             <p>Kinnitan, et olen nõus ülalnimetatud isikute elukoha andmete kandmisega rahvastikuregistrisse.</p>
 
@@ -216,7 +237,15 @@
                 <label for="omanikuAllkiri">Allkiri:</label>
                 <input id="omanikuAllkiri" class="form-control" type="text">
             </div>
+        </div>
 
+        <div id="dokumendid" v-if="valitud === 'lisanLepingu' || valitud === 'nousolekPaberil' || valitud === 'muuAlus'">
+            <hr>
+            <h3>Lisatavad dokumendid:</h3>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
         </div>
 
         <hr>
@@ -269,16 +298,6 @@
 
         <hr>
 
-        <div id="dokumendid">
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile">
-                <label class="custom-file-label" for="customFile">Choose file</label>
-            </div>
-
-        </div>
-
-        <hr>
-
         <div id="kinnitus">
             <p>Kinnitan elukohateatel esitatud andmete õigsust ja olen teadlik, et esitatud andmed kantakse
                 rahvastikuregistrisse. Olen teadlik, et vastavalt karistusseadustikule on ametiasutusele valeandmete
@@ -313,8 +332,10 @@
             </div>
 
             <div class="form-group">
-                <label for="taiendavEelmineElukoht">Eelmine elukoht välismaal (riik ja haldusüksus) ja Eestist sinna lahkumise aeg:</label>
-                <input id="taiendavEelmineElukoht" class="form-control" aria-describedby="taiendavEelmineElukohtHelp" type="number">
+                <label for="taiendavEelmineElukoht">Eelmine elukoht välismaal (riik ja haldusüksus) ja Eestist sinna
+                    lahkumise aeg:</label>
+                <input id="taiendavEelmineElukoht" class="form-control" aria-describedby="taiendavEelmineElukohtHelp"
+                       type="text">
                 <small id="taiendavEelmineElukohtHelp" class="form-text text-muted">
                     Täita saabumisel välismaalt
                 </small>
@@ -322,7 +343,8 @@
 
             <div class="form-group">
                 <label for="taiendavValisriigiIsikukood">Isikukoodi väljastanud riik ja isikukood:</label>
-                <input id="taiendavValisriigiIsikukood" class="form-control" aria-describedby="taiendavValisriigiIsikukoodHelp" type="number">
+                <input id="taiendavValisriigiIsikukood" class="form-control"
+                       aria-describedby="taiendavValisriigiIsikukoodHelp" type="text">
                 <small id="taiendavValisriigiIsikukoodHelp" class="form-text text-muted">
                     Täita välisriigi isikukoodi olemasolul
                 </small>
@@ -341,7 +363,8 @@
 
             <div class="form-group">
                 <label for="vabatahtlikEmakeel">Emakeel:</label>
-                <input id="vabatahtlikEmakeel" class="form-control" aria-describedby="vabatahtlikEmakeelHelp" type="text">
+                <input id="vabatahtlikEmakeel" class="form-control" aria-describedby="vabatahtlikEmakeelHelp"
+                       type="text">
                 <small id="vabatahtlikEmakeelHelp" class="form-text text-muted">
                     Omandatud varases lapsepõlves esimese keelena ja mida kõige paremini valdab
                 </small>
@@ -350,14 +373,37 @@
             <div class="form-group">
                 <label for="vabatahtlikHaridustase">Omandatud kõrgeim haridustase:</label>
                 <select id="vabatahtlikHaridustase" class="form-control">
-                    <option selected>Choose...</option>
-                    <option value=""
+                    <option selected>Vali...</option>
+                    <option value="0">Alusharidus (koolieelne haridus) või alghariduseta</option>
+                    <option value="1">Põhiharidus (põhikooli 1.-6. klass), varasem algharidus</option>
+                    <option value="2">Põhiharidus (põhikooli 7.-9. klass)</option>
+                    <option value="35">Kutsekeskharidus või kutseõpe (sh keskeri- või tehnikumiharidus) põhihariduse
+                        baasil
+                    </option>
+                    <option value="3">Keskharidus</option>
+                    <option value="4">Kutsekeskharidus või kutseõpe keskhariduse baasil</option>
+                    <option value="5">Keskeri- ja tehnikumiharidus keskhariduse baasil</option>
+                    <option value="6">Bakalaureus või sellega võrdsustatud haridus (rakendus- ja kutsekõrgharidus,
+                        diplomiõpe)
+                    </option>
+                    <option value="7">Magister või sellega võrdsustatud haridus</option>
+                    <option value="8">Doktor või sellega võrdsustatud haridus</option>
                 </select>
             </div>
 
-            <div class="form-check">
-                <input id="alaealineLaps" class="form-check-input" v-model="alaealineLaps" type="checkbox">
-                <label class="form-check-label" for="alaealineLaps">Tegemist on alaealise lapsega.</label>
+            <div class="form-group">
+                <label for="vabatahtlikSotsiaalMajanduslikSeisund">Sotsiaal-majanduslik seisund:</label>
+                <select id="vabatahtlikSotsiaalMajanduslikSeisund" class="form-control">
+                    <option selected>Vali...</option>
+                    <option value="A">töötav</option>
+                    <option value="B">kodune</option>
+                    <option value="C">töötu/tööd otsiv</option>
+                    <option value="D">ajateenija</option>
+                    <option value="E">(üli)õpilane</option>
+                    <option value="F">pensionär</option>
+                    <option value="G">lapsehoolduspuhkusel</option>
+                    <option value="H">muu mittetöötav</option>
+                </select>
             </div>
 
         </div>
