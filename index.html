@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <!-- Basic Page Needs
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Elukohateatis</title>
+    <meta name="description" content="Kasutajaliidesed, kodutöö 1">
+    <meta name="author" content="Eva Maria Veitmaa, 155408IAPB">
+
+    <!-- Style
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Scripts
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="js/vue.js"></script>
+
+
+</head>
+<body>
+<div id="app" class="container">
+    <h1>ELUKOHATEADE</h1>
+    <form>
+        <div id="esitaja">
+            <h3>Esitaja</h3>
+
+            <div class="form-group">
+                <label for="esitajaEesnimi">Eesnimi:</label>
+                <input id="esitajaEesnimi" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="esitajaPerenimi">Perekonnanimi:</label>
+                <input id="esitajaPerenimi" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="esitajaIsikukood">Isikukood:</label>
+                <input id="esitajaIsikukood" class="form-control" type="number">
+            </div>
+
+            <div class="form-group">
+                <label for="esitajaEpost">E-post:</label>
+                <input id="esitajaEpost" class="form-control" type="email">
+            </div>
+
+            <div class="form-group">
+                <label for="esitajaTel">Telefon:</label>
+                <input id="esitajaTel" class="form-control" type="tel">
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div id="uusElukoht">
+            <h3>Uue elukoha aadress</h3>
+
+            <div class="form-group">
+                <label for="uusRiik">Riik:</label>
+                <input id="uusRiik" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="uusMaakond">Maakond:</label>
+                <input id="uusMaakond" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="uusLinn">Vald/linn, alevik, küla:</label>
+                <input id="uusLinn" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="uusTanav">Tänav/talu, maja nr, korteri nr:</label>
+                <input id="uusTanav" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="uusIndeks">Postiindeks:</label>
+                <input id="uusIndeks" class="form-control" type="text">
+            </div>
+
+            <div class="form-check">
+                <input id="uusEndaKohta" class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="uusEndaKohta">Esitan uue elukoha enda kohta.</label>
+            </div>
+
+            <div class="form-check">
+                <input id="uusTeisteKohta" class="form-check-input" v-model="uusTeisteKohta" type="checkbox">
+                <label class="form-check-label" for="uusTeisteKohta">Esitan uue elukoha teis(t)e kohta.</label>
+            </div>
+
+        </div>
+
+        <div id="teisedIsikud" v-if="uusTeisteKohta">
+            <hr>
+            <h3>Teised isikud, kelle elukoha aadressi muudetakse</h3>
+            <p>Elukohateate esitaja ei pea oma andmeid uuesti kirjutama.</p>
+
+            <div class="form-group">
+                <label for="teiseEesnimi">Eesnimi:</label>
+                <input id="teiseEesnimi" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="teisePerenimi">Perekonnanimi:</label>
+                <input id="teisePerenimi" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="teiseIsikukood">Isikukood:</label>
+                <input id="teiseIsikukood" class="form-control" type="number">
+            </div>
+
+            <div class="form-group">
+                <label for="teiseAllkiri">Täisealise allkiri:</label>
+                <input id="teiseAllkiri" class="form-control" type="text">
+            </div>
+
+            <div class="form-check">
+                <input id="alaealineLaps" class="form-check-input" v-model="alaealineLaps" type="checkbox">
+                <label class="form-check-label" for="alaealineLaps">Tegemist on alaealise lapsega.</label>
+            </div>
+
+        </div>
+
+
+        <div id="vanemaNousolek" v-if="alaealineLaps">
+            <hr>
+            <h3>Alaealise lapse (laste) teise hooldusõigusliku vanema nõusolek</h3>
+
+            <div class="form-group">
+                <label for="vanemaEesnimi">Eesnimi:</label>
+                <input id="vanemaEesnimi" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="vanemaPerenimi">Perekonnanimi:</label>
+                <input id="vanemaPerenimi" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="vanemaIsikukood">Isikukood:</label>
+                <input id="vanemaIsikukood" class="form-control" type="number">
+            </div>
+
+            <div class="form-group">
+                <label for="vanemaAllkiri">Allkiri:</label>
+                <input id="vanemaAllkiri" class="form-control" type="text">
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div id="kasutamiseOigus">
+            <h3>Ruumi kasutamise õigus</h3>
+
+            <div class="form-check">
+                <input id="olenOmanik" class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="olenOmanik">Olen ruumi (kaas)omanik</label>
+            </div>
+
+            <div class="form-check">
+                <input id="lisanLepingu" class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="lisanLepingu">Lisan üürilepingu</label>
+            </div>
+
+            <div class="form-check">
+                <input id="omanikAnnabNousoleku" class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="omanikAnnabNousoleku">Ruumi omanik annab elukohateatele
+                    nõusoleku</label>
+            </div>
+
+            <div class="form-check">
+                <input id="nousolekPaberil" class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="nousolekPaberil">Lisan omaniku nõusoleku eraldi paberil</label>
+            </div>
+
+            <div class="form-check">
+                <input id="muuAlus" class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="muuAlus">Ruumi kasutamise muu alus</label>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div id="omanikuNousolek">
+            <h3>Ruumi omaniku nõusolek</h3>
+            <p>Kinnitan, et olen nõus ülalnimetatud isikute elukoha andmete kandmisega rahvastikuregistrisse.</p>
+
+            <div class="form-group">
+                <label for="omanikuEesnimi">Eesnimi:</label>
+                <input id="omanikuEesnimi" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="omanikuPerenimi">Perekonnanimi:</label>
+                <input id="omanikuPerenimi" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="omanikuIsikukood">Isikukood:</label>
+                <input id="omanikuIsikukood" class="form-control" type="number">
+            </div>
+
+            <div class="form-group">
+                <label for="omanikuAllkiri">Allkiri:</label>
+                <input id="omanikuAllkiri" class="form-control" type="text">
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div id="sideaadress">
+            <h3>Kui elate ka mujal kui punktis 2 nimetatud elukohas, nimetage see sideaadressina</h3>
+
+            <div class="form-group">
+                <label for="sideRiik">Riik:</label>
+                <input id="sideRiik" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="sideMaakond">Maakond:</label>
+                <input id="sideMaakond" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="sideLinn">Vald/linn, alevik, küla:</label>
+                <input id="sideLinn" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="sideTanav">Tänav/talu, maja nr, korteri nr:</label>
+                <input id="sideTanav" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="sideIndeks">Postiindeks:</label>
+                <input id="sideIndeks" class="form-control" type="text">
+            </div>
+
+
+            <div class="form-group">
+                <label>
+                    <span>Kehtib alates: </span>
+                    <input class="form-control" type="date">
+                </label>
+
+                <label>
+                    <span>Kehtib kuni: </span>
+                    <input class="form-control" type="date">
+                </label>
+
+                <p>Täita juhul, kui aadressi kehtivuse alguse kuupäev on tulevikus või kui on teada, millal kehtivus
+                    lõpeb.</p>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div id="dokumendid">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div id="kinnitus">
+            <p>Kinnitan elukohateatel esitatud andmete õigsust ja olen teadlik, et esitatud andmed kantakse
+                rahvastikuregistrisse. Olen teadlik, et vastavalt karistusseadustikule on ametiasutusele valeandmete
+                esitamine
+                kriminaalkorras karistatav.</p>
+
+            <label>
+                <span>Kuupäev: </span>
+                <input class="form-control" type="date">
+            </label>
+
+            <div class="form-group">
+                <label for="kinnitusAllkiri">Elukohateate esitaja allkiri:</label>
+                <input id="kinnitusAllkiri" class="form-control" type="text">
+            </div>
+        </div>
+
+        <hr>
+
+        <div id="taiendavadAndmed">
+            <hr>
+            <h3>Täiendavad andmed</h3>
+
+            <div class="form-group">
+                <label for="taiendavEpost">E-post:</label>
+                <input id="taiendavEpost" class="form-control" type="email">
+            </div>
+
+            <div class="form-group">
+                <label for="taiendavTelefon">Telefon:</label>
+                <input id="taiendavTelefon" class="form-control" type="tel">
+            </div>
+
+            <div class="form-group">
+                <label for="taiendavEelmineElukoht">Eelmine elukoht välismaal (riik ja haldusüksus) ja Eestist sinna lahkumise aeg:</label>
+                <input id="taiendavEelmineElukoht" class="form-control" aria-describedby="taiendavEelmineElukohtHelp" type="number">
+                <small id="taiendavEelmineElukohtHelp" class="form-text text-muted">
+                    Täita saabumisel välismaalt
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="taiendavValisriigiIsikukood">Isikukoodi väljastanud riik ja isikukood:</label>
+                <input id="taiendavValisriigiIsikukood" class="form-control" aria-describedby="taiendavValisriigiIsikukoodHelp" type="number">
+                <small id="taiendavValisriigiIsikukoodHelp" class="form-text text-muted">
+                    Täita välisriigi isikukoodi olemasolul
+                </small>
+            </div>
+        </div>
+
+        <div id="vabatahtlikudAndmed">
+
+            <div class="form-group">
+                <label for="vabatahtlikRahvus">Rahvus:</label>
+                <input id="vabatahtlikRahvus" class="form-control" aria-describedby="vabatahtlikRahvusHelp" type="text">
+                <small id="vabatahtlikRahvusHelp" class="form-text text-muted">
+                    Rahvus, millega isik end kõige tihedamalt etniliselt ja kultuuriliselt tunneb seotud olevat
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="vabatahtlikEmakeel">Emakeel:</label>
+                <input id="vabatahtlikEmakeel" class="form-control" aria-describedby="vabatahtlikEmakeelHelp" type="text">
+                <small id="vabatahtlikEmakeelHelp" class="form-text text-muted">
+                    Omandatud varases lapsepõlves esimese keelena ja mida kõige paremini valdab
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="vabatahtlikHaridustase">Omandatud kõrgeim haridustase:</label>
+                <select id="vabatahtlikHaridustase" class="form-control">
+                    <option selected>Choose...</option>
+                    <option value=""
+                </select>
+            </div>
+
+            <div class="form-check">
+                <input id="alaealineLaps" class="form-check-input" v-model="alaealineLaps" type="checkbox">
+                <label class="form-check-label" for="alaealineLaps">Tegemist on alaealise lapsega.</label>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+<script src="js/scripts.js"></script>
+
+</body>
+</html>
