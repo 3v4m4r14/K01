@@ -102,34 +102,34 @@
             <hr>
             <h3>Teised isikud, kelle elukoha aadressi muudetakse</h3>
             <p>Elukohateate esitaja ei pea oma andmeid uuesti kirjutama.</p>
-            <input id="increaseCount" @click="increaseCount()" type="button" value="Lisa"/>
-            <div v-for="n in otherPeopleCount">
+            <div v-for="(person, index) in otherPeople">
                 <div class="form-group">
                     <label for="teiseEesnimi">Eesnimi:</label>
-                    <input id="teiseEesnimi" class="form-control" type="text">
+                    <input id="teiseEesnimi" class="form-control" type="text" v-model="person.name">
                 </div>
-
+                
                 <div class="form-group">
                     <label for="teisePerenimi">Perekonnanimi:</label>
-                    <input id="teisePerenimi" class="form-control" type="text">
+                    <input id="teisePerenimi" class="form-control" type="text" v-model="person.surname">
                 </div>
-
+                
                 <div class="form-group">
                     <label for="teiseIsikukood">Isikukood:</label>
-                    <input id="teiseIsikukood" class="form-control" type="number">
+                    <input id="teiseIsikukood" class="form-control" type="number" v-model="person.code">
                 </div>
-
+                
                 <div class="form-group">
                     <label for="teiseAllkiri">Täisealise allkiri:</label>
                     <input id="teiseAllkiri" class="form-control" type="text">
                 </div>
-
+                
                 <div class="form-check">
                     <input id="alaealineLaps" class="form-check-input" v-model="alaealineLaps" type="checkbox">
                     <label class="form-check-label" for="alaealineLaps">Tegemist on alaealise lapsega.</label>
                 </div>
-                <input id="decreaseCount" @click="decreaseCount()" type="button" value="Eemalda"/>
+                <input id="removeElement" @click="removeElement(index)" type="button" value="Eemalda"/>
             </div>
+            <input id="addElement" @click="addElement()" type="button" value="Lisa"/>
         </div>
 
 

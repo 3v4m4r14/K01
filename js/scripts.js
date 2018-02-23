@@ -5,15 +5,27 @@ var vm = new Vue({
             uusTeisteKohta: true,
             alaealineLaps: false,
             valitud: "",
-            otherPeopleCount: 1
+            otherPeople: [{
+                name: 'Aa',
+                surname: 'Aa aaaaa',
+                code: 12
+            }, {
+                name: 'Bb',
+                surname: 'Bb aaaaa',
+                code: 13
+            }]
         }
     }, 
     methods: {
-        increaseCount: function() {
-            this.otherPeopleCount++;
-        }, 
-        decreaseCount: function() {
-            this.otherPeopleCount--;
+        addElement: function() {
+            this.otherPeople.push({
+                name: 'Rr',
+                surname: 'Rr aaaaa',
+                code: 555
+            });
+        },  
+        removeElement: function(index) {
+            this.otherPeople.splice(index, 1);
         }
     }
 });
