@@ -159,7 +159,24 @@
         <hr>
 
         <div id="kasutamiseOigus">
-            <h3>Ruumi kasutamise õigus</h3>
+            <p>
+            <h3 style="display: inline-block; padding-right: 10px" >Ruumi kasutamise õigus</h3>
+            <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample"
+                    aria-expanded="false" aria-controls="collapseExample">
+                Info
+            </button>
+            </p>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    - Ruumi kasutusõigust tõendava dokumendi olemasolul (nt üürileping) ei pea elukohateatele
+                    täiendavalt lisama ruumi omaniku nõusolekut.<br>
+                    - Kui isik ei ole ise kaasomanik, on kaasomandis oleva ruumi andmete esitamisel vajalik kõigi
+                    kaasomanike või nende esindajate nõusolek. Kaasomanike vahel sõlmitud ruumi kasutamise kokkuleppe
+                    korral võib nõusolekute asemel lisada vastavat kokkulepet tõendava dokumendi.<br>
+                    - Ruumi omaniku nõusolekut või ruumi kasutamise õigust tõendavat dokumenti ei ole vaja, kui esitatakse perekonnaliikmele (nt abikaasa, alaealine laps) kuuluva ruumi või välisriigi elukoha aadress.<br>
+                    - Ruumi kasutamise muuks aluseks võib olla näiteks isiklik kasutusõigus või ruumi kasutamine perekonnaliikmena.
+                </div>
+            </div>
 
             <div class="form-check">
                 <input id="olenOmanik" class="form-check-input" type="checkbox">
@@ -311,8 +328,10 @@
             </div>
 
             <div class="form-group">
-                <label for="taiendavEelmineElukoht">Eelmine elukoht välismaal (riik ja haldusüksus) ja Eestist sinna lahkumise aeg:</label>
-                <input id="taiendavEelmineElukoht" class="form-control" aria-describedby="taiendavEelmineElukohtHelp" type="text">
+                <label for="taiendavEelmineElukoht">Eelmine elukoht välismaal (riik ja haldusüksus) ja Eestist sinna
+                    lahkumise aeg:</label>
+                <input id="taiendavEelmineElukoht" class="form-control" aria-describedby="taiendavEelmineElukohtHelp"
+                       type="text">
                 <small id="taiendavEelmineElukohtHelp" class="form-text text-muted">
                     Täita saabumisel välismaalt
                 </small>
@@ -320,7 +339,8 @@
 
             <div class="form-group">
                 <label for="taiendavValisriigiIsikukood">Isikukoodi väljastanud riik ja isikukood:</label>
-                <input id="taiendavValisriigiIsikukood" class="form-control" aria-describedby="taiendavValisriigiIsikukoodHelp" type="text">
+                <input id="taiendavValisriigiIsikukood" class="form-control"
+                       aria-describedby="taiendavValisriigiIsikukoodHelp" type="text">
                 <small id="taiendavValisriigiIsikukoodHelp" class="form-text text-muted">
                     Täita välisriigi isikukoodi olemasolul
                 </small>
@@ -339,7 +359,8 @@
 
             <div class="form-group">
                 <label for="vabatahtlikEmakeel">Emakeel:</label>
-                <input id="vabatahtlikEmakeel" class="form-control" aria-describedby="vabatahtlikEmakeelHelp" type="text">
+                <input id="vabatahtlikEmakeel" class="form-control" aria-describedby="vabatahtlikEmakeelHelp"
+                       type="text">
                 <small id="vabatahtlikEmakeelHelp" class="form-text text-muted">
                     Omandatud varases lapsepõlves esimese keelena ja mida kõige paremini valdab
                 </small>
@@ -352,11 +373,15 @@
                     <option value="0">Alusharidus (koolieelne haridus) või alghariduseta</option>
                     <option value="1">Põhiharidus (põhikooli 1.-6. klass), varasem algharidus</option>
                     <option value="2">Põhiharidus (põhikooli 7.-9. klass)</option>
-                    <option value="35">Kutsekeskharidus või kutseõpe (sh keskeri- või tehnikumiharidus) põhihariduse baasil</option>
+                    <option value="35">Kutsekeskharidus või kutseõpe (sh keskeri- või tehnikumiharidus) põhihariduse
+                        baasil
+                    </option>
                     <option value="3">Keskharidus</option>
                     <option value="4">Kutsekeskharidus või kutseõpe keskhariduse baasil</option>
                     <option value="5">Keskeri- ja tehnikumiharidus keskhariduse baasil</option>
-                    <option value="6">Bakalaureus või sellega võrdsustatud haridus (rakendus- ja kutsekõrgharidus, diplomiõpe)</option>
+                    <option value="6">Bakalaureus või sellega võrdsustatud haridus (rakendus- ja kutsekõrgharidus,
+                        diplomiõpe)
+                    </option>
                     <option value="7">Magister või sellega võrdsustatud haridus</option>
                     <option value="8">Doktor või sellega võrdsustatud haridus</option>
                 </select>
