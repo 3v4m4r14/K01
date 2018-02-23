@@ -352,19 +352,29 @@
                     <option value="0">Alusharidus (koolieelne haridus) või alghariduseta</option>
                     <option value="1">Põhiharidus (põhikooli 1.-6. klass), varasem algharidus</option>
                     <option value="2">Põhiharidus (põhikooli 7.-9. klass)</option>
-                    <option value="35">Kutsekeskharidus või kutseõpe (sh keskeri- või tehnikumiharidus) <b>põhihariduse</b> baasil</option>
+                    <option value="35">Kutsekeskharidus või kutseõpe (sh keskeri- või tehnikumiharidus) põhihariduse baasil</option>
                     <option value="3">Keskharidus</option>
-                    <option value="4">Kutsekeskharidus või kutseõpe <b>keskhariduse</b> baasil</option>
-                    <option value="5">Keskeri- ja tehnikumiharidus <b>keskhariduse</b> baasil</option>
+                    <option value="4">Kutsekeskharidus või kutseõpe keskhariduse baasil</option>
+                    <option value="5">Keskeri- ja tehnikumiharidus keskhariduse baasil</option>
                     <option value="6">Bakalaureus või sellega võrdsustatud haridus (rakendus- ja kutsekõrgharidus, diplomiõpe)</option>
                     <option value="7">Magister või sellega võrdsustatud haridus</option>
                     <option value="8">Doktor või sellega võrdsustatud haridus</option>
                 </select>
             </div>
 
-            <div class="form-check">
-                <input id="alaealineLaps" class="form-check-input" v-model="alaealineLaps" type="checkbox">
-                <label class="form-check-label" for="alaealineLaps">Tegemist on alaealise lapsega.</label>
+            <div class="form-group">
+                <label for="vabatahtlikSotsiaalMajanduslikSeisund">Sotsiaal-majanduslik seisund:</label>
+                <select id="vabatahtlikSotsiaalMajanduslikSeisund" class="form-control">
+                    <option selected>Vali...</option>
+                    <option value="A">töötav</option>
+                    <option value="B">kodune</option>
+                    <option value="C">töötu/tööd otsiv</option>
+                    <option value="D">ajateenija</option>
+                    <option value="E">(üli)õpilane</option>
+                    <option value="F">pensionär</option>
+                    <option value="G">lapsehoolduspuhkusel</option>
+                    <option value="H">muu mittetöötav</option>
+                </select>
             </div>
 
         </div>
