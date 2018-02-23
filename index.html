@@ -185,36 +185,34 @@
             </div>
 
             <div class="form-check">
-                <input id="olenOmanik" class="form-check-input" type="checkbox">
+                <input id="olenOmanik" name="kasutamiseOigusRadio" class="form-check-input" value="olenOmanik" v-model="valitud" type="radio">
                 <label class="form-check-label" for="olenOmanik">Olen ruumi (kaas)omanik</label>
             </div>
 
             <div class="form-check">
-                <input id="lisanLepingu" class="form-check-input" type="checkbox">
+                <input id="lisanLepingu" name="kasutamiseOigusRadio" class="form-check-input" value="lisanLepingu" v-model="valitud" type="radio">
                 <label class="form-check-label" for="lisanLepingu">Lisan üürilepingu</label>
             </div>
 
             <div class="form-check">
-                <input id="omanikAnnabNousoleku" class="form-check-input" type="checkbox">
+                <input id="omanikAnnabNousoleku" name="kasutamiseOigusRadio" class="form-check-input" value="omanikAnnabNousoleku" v-model="valitud" type="radio">
                 <label class="form-check-label" for="omanikAnnabNousoleku">Ruumi omanik annab elukohateatele
                     nõusoleku</label>
             </div>
 
             <div class="form-check">
-                <input id="nousolekPaberil" class="form-check-input" type="checkbox">
+                <input id="nousolekPaberil" name="kasutamiseOigusRadio" class="form-check-input" value="nousolekPaberil" v-model="valitud" type="radio">
                 <label class="form-check-label" for="nousolekPaberil">Lisan omaniku nõusoleku eraldi paberil</label>
             </div>
 
             <div class="form-check">
-                <input id="muuAlus" class="form-check-input" type="checkbox">
+                <input id="muuAlus" name="kasutamiseOigusRadio" class="form-check-input" v-model="valitud" value="muuAlus" type="radio">
                 <label class="form-check-label" for="muuAlus">Ruumi kasutamise muu alus</label>
             </div>
-
         </div>
 
-        <hr>
-
-        <div id="omanikuNousolek">
+        <div id="omanikuNousolek" v-if="valitud === 'omanikAnnabNousoleku'">
+            <hr>
             <h3>Ruumi omaniku nõusolek</h3>
             <p>Kinnitan, et olen nõus ülalnimetatud isikute elukoha andmete kandmisega rahvastikuregistrisse.</p>
 
@@ -237,7 +235,15 @@
                 <label for="omanikuAllkiri">Allkiri:</label>
                 <input id="omanikuAllkiri" class="form-control" type="text">
             </div>
+        </div>
 
+        <div id="dokumendid" v-if="valitud === 'lisanLepingu' || valitud === 'nousolekPaberil' || valitud === 'muuAlus'">
+            <hr>
+            <h3>Lisatavad dokumendid:</h3>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
         </div>
 
         <hr>
@@ -284,16 +290,6 @@
 
                 <p>Täita juhul, kui aadressi kehtivuse alguse kuupäev on tulevikus või kui on teada, millal kehtivus
                     lõpeb.</p>
-            </div>
-
-        </div>
-
-        <hr>
-
-        <div id="dokumendid">
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile">
-                <label class="custom-file-label" for="customFile">Choose file</label>
             </div>
 
         </div>

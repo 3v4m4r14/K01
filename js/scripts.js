@@ -3,7 +3,8 @@ var vm = new Vue({
     data: function () {
         return {
             uusTeisteKohta: false,
-            alaealineLaps: false
+            alaealineLaps: false,
+            valitud: ""
         }
     }
 });
