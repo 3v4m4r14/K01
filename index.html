@@ -312,7 +312,7 @@
 
             <div class="form-group">
                 <label for="taiendavEelmineElukoht">Eelmine elukoht välismaal (riik ja haldusüksus) ja Eestist sinna lahkumise aeg:</label>
-                <input id="taiendavEelmineElukoht" class="form-control" aria-describedby="taiendavEelmineElukohtHelp" type="number">
+                <input id="taiendavEelmineElukoht" class="form-control" aria-describedby="taiendavEelmineElukohtHelp" type="text">
                 <small id="taiendavEelmineElukohtHelp" class="form-text text-muted">
                     Täita saabumisel välismaalt
                 </small>
@@ -320,7 +320,7 @@
 
             <div class="form-group">
                 <label for="taiendavValisriigiIsikukood">Isikukoodi väljastanud riik ja isikukood:</label>
-                <input id="taiendavValisriigiIsikukood" class="form-control" aria-describedby="taiendavValisriigiIsikukoodHelp" type="number">
+                <input id="taiendavValisriigiIsikukood" class="form-control" aria-describedby="taiendavValisriigiIsikukoodHelp" type="text">
                 <small id="taiendavValisriigiIsikukoodHelp" class="form-text text-muted">
                     Täita välisriigi isikukoodi olemasolul
                 </small>
@@ -348,8 +348,17 @@
             <div class="form-group">
                 <label for="vabatahtlikHaridustase">Omandatud kõrgeim haridustase:</label>
                 <select id="vabatahtlikHaridustase" class="form-control">
-                    <option selected>Choose...</option>
-                    <option value=""
+                    <option selected>Vali...</option>
+                    <option value="0">Alusharidus (koolieelne haridus) või alghariduseta</option>
+                    <option value="1">Põhiharidus (põhikooli 1.-6. klass), varasem algharidus</option>
+                    <option value="2">Põhiharidus (põhikooli 7.-9. klass)</option>
+                    <option value="35">Kutsekeskharidus või kutseõpe (sh keskeri- või tehnikumiharidus) <b>põhihariduse</b> baasil</option>
+                    <option value="3">Keskharidus</option>
+                    <option value="4">Kutsekeskharidus või kutseõpe <b>keskhariduse</b> baasil</option>
+                    <option value="5">Keskeri- ja tehnikumiharidus <b>keskhariduse</b> baasil</option>
+                    <option value="6">Bakalaureus või sellega võrdsustatud haridus (rakendus- ja kutsekõrgharidus, diplomiõpe)</option>
+                    <option value="7">Magister või sellega võrdsustatud haridus</option>
+                    <option value="8">Doktor või sellega võrdsustatud haridus</option>
                 </select>
             </div>
 
