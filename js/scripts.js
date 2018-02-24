@@ -2,7 +2,8 @@ var vm = new Vue({
     el: "#app",
     data: function () {
         return {
-            uusTeisteKohta: true,
+            pageIdx: 0,
+            uusTeisteKohta: false,
             alaealineLaps: false,
             valitud: "",
             otherPeople: [{
@@ -25,9 +26,9 @@ var vm = new Vue({
                 socialStatus: ""
             }]
         }
-    }, 
+    },
     methods: {
-        addElement: function() {
+        addElement: function () {
             this.otherPeople.push({
                 name: "",
                 surname: "",
@@ -47,9 +48,19 @@ var vm = new Vue({
                 education: "",
                 socialStatus: ""
             });
-        },  
-        removeElement: function(index) {
+        },
+        removeElement: function (index) {
             this.otherPeople.splice(index, 1);
+        },
+        nextPage: function () {
+            if (this.pageIdx < 5) {
+                this.pageIdx += 1;
+            }
+        },
+        previousPage: function () {
+            if (this.pageIdx > 0) {
+                this.pageIdx -= 1;
+            }
         }
     }
 });
