@@ -116,6 +116,7 @@
                         </div>
                     </div>
 
+                    <br>
                     <div id="vanemaNousolek" v-if="person.isUnderaged">
                         <h4>Alaealise lapse (laste) teise hooldusõigusliku vanema nõusolek</h4>
                         <div class="row">
@@ -326,24 +327,28 @@
             <p>Kinnitan, et olen nõus ülalnimetatud isikute elukoha andmete kandmisega
                 rahvastikuregistrisse.</p>
 
-            <div class="form-group">
-                <label for="omanikuEesnimi">Eesnimi:</label>
-                <input id="omanikuEesnimi" class="form-control" type="text">
+            <div class="row">
+                <div class="form-group col-sm col-lg-4">
+                    <label for="omanikuEesnimi">Eesnimi:</label>
+                    <input id="omanikuEesnimi" class="form-control" type="text">
+                </div>
+
+                <div class="form-group col-sm col-lg-4">
+                    <label for="omanikuPerenimi">Perekonnanimi:</label>
+                    <input id="omanikuPerenimi" class="form-control" type="text">
+                </div>
+
+                <div class="form-group col-sm col-lg-4">
+                    <label for="omanikuIsikukood">Isikukood:</label>
+                    <input id="omanikuIsikukood" class="form-control" type="number">
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="omanikuPerenimi">Perekonnanimi:</label>
-                <input id="omanikuPerenimi" class="form-control" type="text">
-            </div>
-
-            <div class="form-group">
-                <label for="omanikuIsikukood">Isikukood:</label>
-                <input id="omanikuIsikukood" class="form-control" type="number">
-            </div>
-
-            <div class="form-group">
-                <label for="omanikuAllkiri">Allkiri:</label>
-                <input id="omanikuAllkiri" class="form-control" type="text">
+            <div class="row">
+                <div class="form-group col-sm col-lg-4">
+                    <label for="omanikuAllkiri">Allkiri:</label>
+                    <input id="omanikuAllkiri" class="form-control" type="text">
+                </div>
             </div>
         </div>
 
