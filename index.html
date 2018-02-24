@@ -127,9 +127,10 @@
                     <input id="alaealineLaps" class="form-check-input" v-model="alaealineLaps" type="checkbox">
                     <label class="form-check-label" for="alaealineLaps">Tegemist on alaealise lapsega.</label>
                 </div>
-                <input id="removeElement" @click="removeElement(index)" type="button" value="Eemalda"/>
+                <input id="removeElement" class="btn btn-primary" @click="removeElement(index)" type="button" value="Eemalda"/>
             </div>
-            <input id="addElement" @click="addElement()" type="button" value="Lisa"/>
+
+            <input id="addElement" class="btn btn-primary" @click="addElement()" type="button" value="Lisa"/>
         </div>
 
 
@@ -166,7 +167,7 @@
             <h3 style="display: inline-block; padding-right: 10px">Ruumi kasutamise õigus</h3>
             <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample"
                     aria-expanded="false" aria-controls="collapseExample">
-                <b>Info</b> <i class="fas fa-info-circle"></i>
+                <i class="fas fa-info-circle"></i>
             </button>
             </p>
             <div class="collapse" id="collapseExample">
