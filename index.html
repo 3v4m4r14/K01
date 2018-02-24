@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="form-group col-sm">
                     <label for="esitajaEpost">E-post:</label>
                     <input id="esitajaEpost" class="form-control" type="email">
@@ -94,35 +94,72 @@
                     </div>
                 </div>
 
-                <div class="row align-items-end">
-                    <div class="form-group col-sm">
+                <div class="row align-items-center">
+                    <div class="form-group col-sm col-lg-4">
                         <label for="taiendavEpost">E-post:</label>
                         <input id="taiendavEpost" class="form-control" type="email" v-model="person.email">
                     </div>
 
-                    <div class="form-group col-sm">
+                    <div class="form-group col-sm col-lg-4">
                         <label for="taiendavTelefon">Telefon:</label>
                         <input id="taiendavTelefon" class="form-control" type="tel" v-model="person.phoneNumber">
                     </div>
 
-                    <div class="form-group col-sm d-flex justify-content-sm-center justify-content-lg-end">
-                        <button id="removeElement" class="btn btn-danger" @click="removeElement(index)"
-                                type="button">
-                            <span class="fas fa-minus-circle"></span> Eemalda
-                        </button>
-                        <!--<input id="removeElement" class="btn btn-danger" @click="removeElement(index)" type="button"-->
-                        <!--value="Eemalda isik"/>-->
+                    <div class="col-sm col-lg-4">
+                        <div class="form-check">
+                            <input id="alaealineLaps" class="form-check-input" v-model="alaealineLaps" type="checkbox">
+                            <label class="form-check-label" for="alaealineLaps">Tegemist on alaealise lapsega.</label>
+                        </div>
                     </div>
                 </div>
+
+                <div class="text-center">
+                    <button id="removeElement" class="btn btn-danger" @click="removeElement(index)"
+                            type="button">
+                        <span class="fas fa-minus-circle"></span> Eemalda
+                    </button>
+                    <!--<input id="removeElement" class="btn btn-danger" @click="removeElement(index)" type="button"-->
+                    <!--value="Eemalda isik"/>-->
+
+                </div>
+
+
                 <hr class="half-divider">
             </div>
-            <button id="addElement" class="btn btn-primary" @click="addElement()" type="button"><i
-                    class="fas fa-plus-circle"></i> Lisa
-            </button>
+            <div class="text-center">
+                <button id="addElement" class="btn btn-primary" @click="addElement()" type="button"><i
+                        class="fas fa-plus-circle"></i> Lisa
+                </button>
+            </div>
             <!--<input id="addElement" class="btn btn-primary" @click="addElement()" type="button" value="Lisa isik"/>-->
         </div>
 
         <hr>
+
+        <div id="vanemaNousolek" v-if="alaealineLaps">
+            <hr>
+            <h3>Alaealise lapse (laste) teise hooldusõigusliku vanema nõusolek</h3>
+
+            <div class="form-group">
+                <label for="vanemaEesnimi">Eesnimi:</label>
+                <input id="vanemaEesnimi" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="vanemaPerenimi">Perekonnanimi:</label>
+                <input id="vanemaPerenimi" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="vanemaIsikukood">Isikukood:</label>
+                <input id="vanemaIsikukood" class="form-control" type="number">
+            </div>
+
+            <div class="form-group">
+                <label for="vanemaAllkiri">Allkiri:</label>
+                <input id="vanemaAllkiri" class="form-control" type="text">
+            </div>
+        </div>
 
         <div id="uusElukoht">
             <h3>Uue elukoha aadress</h3>
@@ -217,31 +254,6 @@
             </div>
         </div>
 
-        <div id="vanemaNousolek" v-if="alaealineLaps">
-            <hr>
-            <h3>Alaealise lapse (laste) teise hooldusõigusliku vanema nõusolek</h3>
-
-            <div class="form-group">
-                <label for="vanemaEesnimi">Eesnimi:</label>
-                <input id="vanemaEesnimi" class="form-control" type="text">
-            </div>
-
-            <div class="form-group">
-                <label for="vanemaPerenimi">Perekonnanimi:</label>
-                <input id="vanemaPerenimi" class="form-control" type="text">
-            </div>
-
-            <div class="form-group">
-                <label for="vanemaIsikukood">Isikukood:</label>
-                <input id="vanemaIsikukood" class="form-control" type="number">
-            </div>
-
-            <div class="form-group">
-                <label for="vanemaAllkiri">Allkiri:</label>
-                <input id="vanemaAllkiri" class="form-control" type="text">
-            </div>
-        </div>
-
         <hr>
 
         <div id="kasutamiseOigus">
@@ -264,11 +276,13 @@
                         kaasomanike või nende esindajate nõusolek. Kaasomanike vahel sõlmitud ruumi kasutamise
                         kokkuleppe
                         korral võib nõusolekute asemel lisada vastavat kokkulepet tõendava dokumendi.<br>
-                        - Ruumi omaniku nõusolekut või ruumi kasutamise õigust tõendavat dokumenti ei ole vaja, kui
+                        - Ruumi omaniku nõusolekut või ruumi kasutamise õigust tõendavat dokumenti ei ole vaja,
+                        kui
                         esitatakse perekonnaliikmele (nt abikaasa, alaealine laps) kuuluva ruumi või välisriigi
                         elukoha
                         aadress.<br>
-                        - Ruumi kasutamise muuks aluseks võib olla näiteks isiklik kasutusõigus või ruumi kasutamine
+                        - Ruumi kasutamise muuks aluseks võib olla näiteks isiklik kasutusõigus või ruumi
+                        kasutamine
                         perekonnaliikmena.</p>
                 </div>
             </div>
@@ -280,7 +294,8 @@
             </div>
 
             <div class="form-check">
-                <input id="lisanLepingu" name="kasutamiseOigusRadio" class="form-check-input" value="lisanLepingu"
+                <input id="lisanLepingu" name="kasutamiseOigusRadio" class="form-check-input"
+                       value="lisanLepingu"
                        v-model="valitud" type="radio">
                 <label class="form-check-label" for="lisanLepingu">Lisan üürilepingu</label>
             </div>
@@ -296,7 +311,8 @@
                 <input id="nousolekPaberil" name="kasutamiseOigusRadio" class="form-check-input"
                        value="nousolekPaberil"
                        v-model="valitud" type="radio">
-                <label class="form-check-label" for="nousolekPaberil">Lisan omaniku nõusoleku eraldi paberil</label>
+                <label class="form-check-label" for="nousolekPaberil">Lisan omaniku nõusoleku eraldi
+                    paberil</label>
             </div>
 
             <div class="form-check">
@@ -310,7 +326,8 @@
         <div id="omanikuNousolek" v-if="valitud === 'omanikAnnabNousoleku'">
             <hr>
             <h3>Ruumi omaniku nõusolek</h3>
-            <p>Kinnitan, et olen nõus ülalnimetatud isikute elukoha andmete kandmisega rahvastikuregistrisse.</p>
+            <p>Kinnitan, et olen nõus ülalnimetatud isikute elukoha andmete kandmisega
+                rahvastikuregistrisse.</p>
 
             <div class="form-group">
                 <label for="omanikuEesnimi">Eesnimi:</label>
@@ -347,7 +364,8 @@
 
         <div id="kinnitus">
             <p>Kinnitan elukohateatel esitatud andmete õigsust ja olen teadlik, et esitatud andmed kantakse
-                rahvastikuregistrisse. Olen teadlik, et vastavalt karistusseadustikule on ametiasutusele valeandmete
+                rahvastikuregistrisse. Olen teadlik, et vastavalt karistusseadustikule on ametiasutusele
+                valeandmete
                 esitamine
                 kriminaalkorras karistatav.</p>
 
@@ -382,7 +400,8 @@
                     </div>
 
                     <div class="form-group col-sm col-lg-6">
-                        <label for="taiendavValisriigiIsikukood">Isikukoodi väljastanud riik ja isikukood:</label>
+                        <label for="taiendavValisriigiIsikukood">Isikukoodi väljastanud riik ja
+                            isikukood:</label>
                         <input id="taiendavValisriigiIsikukood" class="form-control"
                                aria-describedby="taiendavValisriigiIsikukoodHelp" type="text"
                                v-model="person.foreignCode">
@@ -397,7 +416,8 @@
                 <div class="row">
                     <div class="form-group col-sm col-lg-6">
                         <label for="vabatahtlikRahvus">Rahvus:</label>
-                        <input id="vabatahtlikRahvus" class="form-control" aria-describedby="vabatahtlikRahvusHelp"
+                        <input id="vabatahtlikRahvus" class="form-control"
+                               aria-describedby="vabatahtlikRahvusHelp"
                                type="text" v-model="person.nationality">
                         <small id="vabatahtlikRahvusHelp" class="form-text text-muted">
                             Rahvus, millega isik end kõige tihedamalt etniliselt ja kultuuriliselt tunneb seotud
