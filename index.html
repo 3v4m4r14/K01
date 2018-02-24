@@ -484,7 +484,20 @@
                 <hr class="half-divider">
             </div>
         </div>
+
+        <div id="navigation">
+            <div class="row d-flex justify-content-around">
+                <button id="previousPage" class="btn btn-primary" @click="previousPage()" type="button">
+                    <span class="fas fa-angle-double-left"></span> Eelmine
+                </button>
+
+                <button id="nextPage" class="btn btn-primary" @click="nextPage()" type="button">
+                    Järgmine <span class="fas fa-angle-double-right"></span>
+                </button>
+            </div>
+        </div>
     </form>
+    <br>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
