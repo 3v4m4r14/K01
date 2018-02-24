@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Elukohateatis</title>
+    <title>Elukohateade</title>
     <meta name="description" content="Kasutajaliidesed, kodutöö 1">
     <meta name="author" content="Eva Maria Veitmaa, 155408IAPB">
 
@@ -23,11 +23,46 @@
 
 
 </head>
-<body>
-<div id="app" class="container">
-    <h1>ELUKOHATEADE</h1>
+<body data-gr-c-s-loaded="true">
 
-    <div id="landingPage" v-if="pageIdx === 0"></div>
+<main id="app" class="container" role="main">
+    <h1 id="pageTitle">ELUKOHATEADE</h1>
+
+    <div id="landingPage" v-if="pageIdx === 0">
+        <div class="row justified-text">
+            <div class="col-sm">
+                <img src="img/sisemin.png" class="img-fluid mx-auto d-block image" alt="Siseministeerium">
+
+                <button id="idLogin" class="btn btn-primary btn-lg btn-block" @click="nextPage()" type="button">
+                    <span class="fas fa-id-card"></span> Sisene ID-kaardiga
+                </button>
+                <br>
+                <button id="simpleLogin" class="btn btn-primary btn-lg btn-block" @click="nextPage()" type="button">
+                    <span class="fas fa-pencil-alt"></span> Sisesta isikuandmed käsitsi
+                </button>
+                <br>
+                <div class="d-flex justify-content-center">
+                    <a href="https://www.siseministeerium.ee/et/tegevusvaldkonnad/rahvastikutoimingud/elukohatoimingud"
+                       target="_blank" class="btn btn-info btn-sm" type="button">
+                        Siseministeeriumi kodulehele <span class="fas fa-external-link-alt"></span>
+                    </a>
+                </div>
+                &nbsp;
+            </div>
+
+            <div class="col-sm">
+                <p><b>Kui inimene muudab oma elukohta Eestis, asub elama välisriiki või välisriigist Eestisse, peab ta
+                    esitama elukohateate.</b></p>
+                <p>Elukoha andmete kandmiseks rahvastikuregistrisse tuleb esitada teade elukohajärgsele linna- või
+                    vallavalitsusele ja Tallinnas linna-osavalitsusele <b>30 päeva jooksul</b>.</p>
+                <p><b>Elukoha registreerimine on vajalik</b>, et riigi ja kohaliku omavalitsuse asutused saaksid osutada
+                    oma
+                    territooriumil elavatele elanikele avalikke teenuseid ning tõhustada teabevahetust ja koostööd.</p>
+                <p><b>Rahvastikuregistrisse kantud elukoha aadressi muutmise aluseks ei ole inimese asumine või
+                    paigutamine haiglasse, hoolekande- või kinnipidamisasutusse või kaitseväeteenistusse.</b></p>
+            </div>
+        </div>
+    </div>
 
     <form>
 
@@ -274,7 +309,7 @@
                 <button class="btn btn-info btn-sm" type="button" data-toggle="collapse"
                         data-target="#collapseExample"
                         aria-expanded="false" aria-controls="collapseExample">
-                    <i class="fas fa-info-circle"></i>
+                    <span class="fas fa-info-circle"></span>
                 </button>
                 </p>
                 <div class="collapse" id="collapseExample">
@@ -510,26 +545,30 @@
             </div>
         </div>
 
-        <hr>
-        <div id="navigation">
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" v-bind:style="{width: progress + '%'}">{{progress}} %</div>
-            </div>
-            <br>
+    </form>
 
-            <div class="row d-flex justify-content-around">
-                <button id="previousPage" class="btn btn-primary" @click="previousPage()" type="button">
-                    <span class="fas fa-angle-double-left"></span> Eelmine
-                </button>
-
-                <button id="nextPage" class="btn btn-primary" @click="nextPage()" type="button">
-                    Järgmine <span class="fas fa-angle-double-right"></span>
-                </button>
+    <hr>
+    <div id="navigation" v-if="progress > 0">
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                 v-bind:style="{width: progress + '%'}">{{progress}} %
             </div>
         </div>
-    </form>
+        <br>
+
+        <div class="row d-flex justify-content-around">
+            <button id="previousPage" class="btn btn-primary" @click="previousPage()" type="button">
+                <span class="fas fa-angle-double-left"></span> Tagasi
+            </button>
+
+            <button id="nextPage" class="btn btn-primary" @click="nextPage()" type="button">
+                Edasi <span class="fas fa-angle-double-right"></span>
+            </button>
+        </div>
+    </div>
+
     <br>
-</div>
+</main>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -544,4 +583,6 @@
 <script src="js/scripts.js"></script>
 
 </body>
+
+
 </html>

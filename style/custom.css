@@ -1,3 +1,16 @@
 .half-divider {
     width: 50%;
 }
+
+.justified-text {
+    text-align: justify;
+}
+
+.image {
+    padding-top: 1.2em;
+    padding-bottom: 2em;
+}
+
+#pageTitle {
+    padding: 30px 0;
+}
