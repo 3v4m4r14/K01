@@ -8,7 +8,15 @@ var vm = new Vue({
             otherPeople: [{
                 name: "",
                 surname: "",
-                code: ""
+                code: "",
+                email: "",
+                phoneNumber: "",
+                lastForeignHome: "",
+                foreignCode: "",
+                nationality: "",
+                nativeLanguage: "",
+                education: "",
+                socialStatus: ""
             }]
         }
     }, 
@@ -17,7 +25,15 @@ var vm = new Vue({
             this.otherPeople.push({
                 name: "",
                 surname: "",
-                code: ""
+                code: "",
+                email: "",
+                phoneNumber: "",
+                lastForeignHome: "",
+                foreignCode: "",
+                nationality: "",
+                nativeLanguage: "",
+                education: "",
+                socialStatus: ""
             });
         },  
         removeElement: function(index) {

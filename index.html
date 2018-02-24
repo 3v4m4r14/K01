@@ -175,8 +175,92 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="teiseAllkiri">Täisealise allkiri:</label>
-                    <input id="teiseAllkiri" class="form-control" type="text">
+                    <label for="taiendavEpost">E-post:</label>
+                    <input id="taiendavEpost" class="form-control" type="email" v-model="person.email">
+                </div>
+
+                <div class="form-group">
+                    <label for="taiendavTelefon">Telefon:</label>
+                    <input id="taiendavTelefon" class="form-control" type="tel" v-model="person.phoneNumber">
+                </div>
+
+                <div id="taiendavadAndmed">
+                    <hr>
+                    <h4>Täiendavad andmed</h4>
+        
+                    <div class="form-group">
+                        <label for="taiendavEelmineElukoht">Eelmine elukoht välismaal (riik ja haldusüksus) ja Eestist sinna
+                            lahkumise aeg:</label>
+                        <input id="taiendavEelmineElukoht" class="form-control" aria-describedby="taiendavEelmineElukohtHelp"
+                               type="text" v-model="person.lastForeignHome">
+                        <small id="taiendavEelmineElukohtHelp" class="form-text text-muted">
+                            Täita saabumisel välismaalt
+                        </small>
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="taiendavValisriigiIsikukood">Isikukoodi väljastanud riik ja isikukood:</label>
+                        <input id="taiendavValisriigiIsikukood" class="form-control"
+                               aria-describedby="taiendavValisriigiIsikukoodHelp" type="text" v-model="person.foreignCode">
+                        <small id="taiendavValisriigiIsikukoodHelp" class="form-text text-muted">
+                            Täita välisriigi isikukoodi olemasolul
+                        </small>
+                    </div>
+                </div>
+
+                <div id="vabatahtlikudAndmed">
+                    <div class="form-group">
+                        <label for="vabatahtlikRahvus">Rahvus:</label>
+                        <input id="vabatahtlikRahvus" class="form-control" aria-describedby="vabatahtlikRahvusHelp" type="text" v-model="person.nationality">
+                        <small id="vabatahtlikRahvusHelp" class="form-text text-muted">
+                            Rahvus, millega isik end kõige tihedamalt etniliselt ja kultuuriliselt tunneb seotud olevat
+                        </small>
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="vabatahtlikEmakeel">Emakeel:</label>
+                        <input id="vabatahtlikEmakeel" class="form-control" aria-describedby="vabatahtlikEmakeelHelp"
+                                type="text" v-model="person.nativeLanguage">
+                        <small id="vabatahtlikEmakeelHelp" class="form-text text-muted">
+                            Omandatud varases lapsepõlves esimese keelena ja mida kõige paremini valdab
+                        </small>
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="vabatahtlikHaridustase">Omandatud kõrgeim haridustase:</label>
+                        <select id="vabatahtlikHaridustase" class="form-control" v-model="person.education">
+                            <option selected>Vali...</option>
+                            <option value="0">Alusharidus (koolieelne haridus) või alghariduseta</option>
+                            <option value="1">Põhiharidus (põhikooli 1.-6. klass), varasem algharidus</option>
+                            <option value="2">Põhiharidus (põhikooli 7.-9. klass)</option>
+                            <option value="35">Kutsekeskharidus või kutseõpe (sh keskeri- või tehnikumiharidus) põhihariduse
+                                baasil
+                            </option>
+                            <option value="3">Keskharidus</option>
+                            <option value="4">Kutsekeskharidus või kutseõpe keskhariduse baasil</option>
+                            <option value="5">Keskeri- ja tehnikumiharidus keskhariduse baasil</option>
+                            <option value="6">Bakalaureus või sellega võrdsustatud haridus (rakendus- ja kutsekõrgharidus,
+                                diplomiõpe)
+                            </option>
+                            <option value="7">Magister või sellega võrdsustatud haridus</option>
+                            <option value="8">Doktor või sellega võrdsustatud haridus</option>
+                        </select>
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="vabatahtlikSotsiaalMajanduslikSeisund">Sotsiaal-majanduslik seisund:</label>
+                        <select id="vabatahtlikSotsiaalMajanduslikSeisund" class="form-control" v-model="person.socialStatus">
+                            <option selected>Vali...</option>
+                            <option value="A">töötav</option>
+                            <option value="B">kodune</option>
+                            <option value="C">töötu/tööd otsiv</option>
+                            <option value="D">ajateenija</option>
+                            <option value="E">(üli)õpilane</option>
+                            <option value="F">pensionär</option>
+                            <option value="G">lapsehoolduspuhkusel</option>
+                            <option value="H">muu mittetöötav</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-check">
@@ -215,7 +299,6 @@
                 <label for="vanemaAllkiri">Allkiri:</label>
                 <input id="vanemaAllkiri" class="form-control" type="text">
             </div>
-
         </div>
 
         <hr>
@@ -330,97 +413,6 @@
                 <label for="kinnitusAllkiri">Elukohateate esitaja allkiri:</label>
                 <input id="kinnitusAllkiri" class="form-control" type="text">
             </div>
-        </div>
-
-        <div id="taiendavadAndmed">
-            <hr>
-            <h3>Täiendavad andmed</h3>
-
-            <div class="form-group">
-                <label for="taiendavEpost">E-post:</label>
-                <input id="taiendavEpost" class="form-control" type="email">
-            </div>
-
-            <div class="form-group">
-                <label for="taiendavTelefon">Telefon:</label>
-                <input id="taiendavTelefon" class="form-control" type="tel">
-            </div>
-
-            <div class="form-group">
-                <label for="taiendavEelmineElukoht">Eelmine elukoht välismaal (riik ja haldusüksus) ja Eestist sinna
-                    lahkumise aeg:</label>
-                <input id="taiendavEelmineElukoht" class="form-control" aria-describedby="taiendavEelmineElukohtHelp"
-                       type="text">
-                <small id="taiendavEelmineElukohtHelp" class="form-text text-muted">
-                    Täita saabumisel välismaalt
-                </small>
-            </div>
-
-            <div class="form-group">
-                <label for="taiendavValisriigiIsikukood">Isikukoodi väljastanud riik ja isikukood:</label>
-                <input id="taiendavValisriigiIsikukood" class="form-control"
-                       aria-describedby="taiendavValisriigiIsikukoodHelp" type="text">
-                <small id="taiendavValisriigiIsikukoodHelp" class="form-text text-muted">
-                    Täita välisriigi isikukoodi olemasolul
-                </small>
-            </div>
-        </div>
-
-        <div id="vabatahtlikudAndmed">
-
-            <div class="form-group">
-                <label for="vabatahtlikRahvus">Rahvus:</label>
-                <input id="vabatahtlikRahvus" class="form-control" aria-describedby="vabatahtlikRahvusHelp" type="text">
-                <small id="vabatahtlikRahvusHelp" class="form-text text-muted">
-                    Rahvus, millega isik end kõige tihedamalt etniliselt ja kultuuriliselt tunneb seotud olevat
-                </small>
-            </div>
-
-            <div class="form-group">
-                <label for="vabatahtlikEmakeel">Emakeel:</label>
-                <input id="vabatahtlikEmakeel" class="form-control" aria-describedby="vabatahtlikEmakeelHelp"
-                       type="text">
-                <small id="vabatahtlikEmakeelHelp" class="form-text text-muted">
-                    Omandatud varases lapsepõlves esimese keelena ja mida kõige paremini valdab
-                </small>
-            </div>
-
-            <div class="form-group">
-                <label for="vabatahtlikHaridustase">Omandatud kõrgeim haridustase:</label>
-                <select id="vabatahtlikHaridustase" class="form-control">
-                    <option selected>Vali...</option>
-                    <option value="0">Alusharidus (koolieelne haridus) või alghariduseta</option>
-                    <option value="1">Põhiharidus (põhikooli 1.-6. klass), varasem algharidus</option>
-                    <option value="2">Põhiharidus (põhikooli 7.-9. klass)</option>
-                    <option value="35">Kutsekeskharidus või kutseõpe (sh keskeri- või tehnikumiharidus) põhihariduse
-                        baasil
-                    </option>
-                    <option value="3">Keskharidus</option>
-                    <option value="4">Kutsekeskharidus või kutseõpe keskhariduse baasil</option>
-                    <option value="5">Keskeri- ja tehnikumiharidus keskhariduse baasil</option>
-                    <option value="6">Bakalaureus või sellega võrdsustatud haridus (rakendus- ja kutsekõrgharidus,
-                        diplomiõpe)
-                    </option>
-                    <option value="7">Magister või sellega võrdsustatud haridus</option>
-                    <option value="8">Doktor või sellega võrdsustatud haridus</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="vabatahtlikSotsiaalMajanduslikSeisund">Sotsiaal-majanduslik seisund:</label>
-                <select id="vabatahtlikSotsiaalMajanduslikSeisund" class="form-control">
-                    <option selected>Vali...</option>
-                    <option value="A">töötav</option>
-                    <option value="B">kodune</option>
-                    <option value="C">töötu/tööd otsiv</option>
-                    <option value="D">ajateenija</option>
-                    <option value="E">(üli)õpilane</option>
-                    <option value="F">pensionär</option>
-                    <option value="G">lapsehoolduspuhkusel</option>
-                    <option value="H">muu mittetöötav</option>
-                </select>
-            </div>
-
         </div>
     </form>
 </div>
