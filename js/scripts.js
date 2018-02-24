@@ -3,6 +3,7 @@ var vm = new Vue({
     data: function () {
         return {
             pageIdx: 0,
+            progress: 0,
             uusTeisteKohta: false,
             alaealineLaps: false,
             valitud: "",
@@ -55,11 +56,13 @@ var vm = new Vue({
         nextPage: function () {
             if (this.pageIdx < 5) {
                 this.pageIdx += 1;
+                this.progress = this.pageIdx / 5 * 100;
             }
         },
         previousPage: function () {
             if (this.pageIdx > 0) {
                 this.pageIdx -= 1;
+                this.progress = this.pageIdx / 5 * 100;
             }
         }
     }

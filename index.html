@@ -512,6 +512,11 @@
 
         <hr>
         <div id="navigation">
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" v-bind:style="{width: progress + '%'}">{{progress}} %</div>
+            </div>
+            <br>
+
             <div class="row d-flex justify-content-around">
                 <button id="previousPage" class="btn btn-primary" @click="previousPage()" type="button">
                     <span class="fas fa-angle-double-left"></span> Eelmine
