@@ -29,31 +29,34 @@
         <div id="esitaja">
             <h3>Esitaja</h3>
 
-            <div class="form-group">
-                <label for="esitajaEesnimi">Eesnimi:</label>
-                <input id="esitajaEesnimi" class="form-control" type="text">
+            <div class="row">
+                <div class="form-group col-sm col-lg-4">
+                    <label for="esitajaEesnimi">Eesnimi:</label>
+                    <input id="esitajaEesnimi" class="form-control" type="text">
+                </div>
+
+                <div class="form-group col-sm col-lg-4">
+                    <label for="esitajaPerenimi">Perekonnanimi:</label>
+                    <input id="esitajaPerenimi" class="form-control" type="text">
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="esitajaPerenimi">Perekonnanimi:</label>
-                <input id="esitajaPerenimi" class="form-control" type="text">
-            </div>
+            <div class="row">
+                <div class="form-group col-sm">
+                    <label for="esitajaIsikukood">Isikukood:</label>
+                    <input id="esitajaIsikukood" class="form-control" type="number">
+                </div>
 
-            <div class="form-group">
-                <label for="esitajaIsikukood">Isikukood:</label>
-                <input id="esitajaIsikukood" class="form-control" type="number">
-            </div>
+                <div class="form-group col-sm">
+                    <label for="esitajaEpost">E-post:</label>
+                    <input id="esitajaEpost" class="form-control" type="email">
+                </div>
 
-            <div class="form-group">
-                <label for="esitajaEpost">E-post:</label>
-                <input id="esitajaEpost" class="form-control" type="email">
+                <div class="form-group col-sm">
+                    <label for="esitajaTel">Telefon:</label>
+                    <input id="esitajaTel" class="form-control" type="tel">
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="esitajaTel">Telefon:</label>
-                <input id="esitajaTel" class="form-control" type="tel">
-            </div>
-
         </div>
 
         <hr>
@@ -61,39 +64,45 @@
         <div id="uusElukoht">
             <h3>Uue elukoha aadress</h3>
 
-            <div class="form-group">
-                <label for="uusRiik">Riik:</label>
-                <input id="uusRiik" class="form-control" type="text">
+            <div class="row">
+                <div class="form-group col-sm col-lg">
+                    <label for="uusRiik">Riik:</label>
+                    <input id="uusRiik" class="form-control" type="text">
+                </div>
+
+                <div class="form-group col-sm col-lg">
+                    <label for="uusMaakond">Maakond:</label>
+                    <input id="uusMaakond" class="form-control" type="text">
+                </div>
+
+                <div class="form-group col-sm col-lg">
+                    <label for="uusLinn">Vald/linn, alevik, küla:</label>
+                    <input id="uusLinn" class="form-control" type="text">
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="uusMaakond">Maakond:</label>
-                <input id="uusMaakond" class="form-control" type="text">
-            </div>
+            <div class="row">
+                <div class="form-group col-sm">
+                    <label for="uusTanav">Tänav/talu, maja nr, korteri nr:</label>
+                    <input id="uusTanav" class="form-control" type="text">
+                </div>
 
-            <div class="form-group">
-                <label for="uusLinn">Vald/linn, alevik, küla:</label>
-                <input id="uusLinn" class="form-control" type="text">
-            </div>
+                <div class="form-group col-sm">
+                    <label for="uusIndeks">Postiindeks:</label>
+                    <input id="uusIndeks" class="form-control" type="text">
+                </div>
 
-            <div class="form-group">
-                <label for="uusTanav">Tänav/talu, maja nr, korteri nr:</label>
-                <input id="uusTanav" class="form-control" type="text">
-            </div>
+                <div class="col-sm">
+                    <div class="form-check">
+                        <input id="uusEndaKohta" class="form-check-input" type="checkbox">
+                        <label class="form-check-label" for="uusEndaKohta">Esitan uue elukoha enda kohta.</label>
+                    </div>
 
-            <div class="form-group">
-                <label for="uusIndeks">Postiindeks:</label>
-                <input id="uusIndeks" class="form-control" type="text">
-            </div>
-
-            <div class="form-check">
-                <input id="uusEndaKohta" class="form-check-input" type="checkbox">
-                <label class="form-check-label" for="uusEndaKohta">Esitan uue elukoha enda kohta.</label>
-            </div>
-
-            <div class="form-check">
-                <input id="uusTeisteKohta" class="form-check-input" v-model="uusTeisteKohta" type="checkbox">
-                <label class="form-check-label" for="uusTeisteKohta">Esitan uue elukoha teis(t)e kohta.</label>
+                    <div class="form-check">
+                        <input id="uusTeisteKohta" class="form-check-input" v-model="uusTeisteKohta" type="checkbox">
+                        <label class="form-check-label" for="uusTeisteKohta">Esitan uue elukoha teis(t)e kohta.</label>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -154,27 +163,28 @@
                     <label for="teiseEesnimi">Eesnimi:</label>
                     <input id="teiseEesnimi" class="form-control" type="text" v-model="person.name">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="teisePerenimi">Perekonnanimi:</label>
                     <input id="teisePerenimi" class="form-control" type="text" v-model="person.surname">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="teiseIsikukood">Isikukood:</label>
                     <input id="teiseIsikukood" class="form-control" type="number" v-model="person.code">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="teiseAllkiri">Täisealise allkiri:</label>
                     <input id="teiseAllkiri" class="form-control" type="text">
                 </div>
-                
+
                 <div class="form-check">
                     <input id="alaealineLaps" class="form-check-input" v-model="alaealineLaps" type="checkbox">
                     <label class="form-check-label" for="alaealineLaps">Tegemist on alaealise lapsega.</label>
                 </div>
-                <input id="removeElement" class="btn btn-primary" @click="removeElement(index)" type="button" value="Eemalda isik"/>
+                <input id="removeElement" class="btn btn-primary" @click="removeElement(index)" type="button"
+                       value="Eemalda isik"/>
                 <hr>
             </div>
 
@@ -236,28 +246,33 @@
             </div>
 
             <div class="form-check">
-                <input id="olenOmanik" name="kasutamiseOigusRadio" class="form-check-input" value="olenOmanik" v-model="valitud" type="radio">
+                <input id="olenOmanik" name="kasutamiseOigusRadio" class="form-check-input" value="olenOmanik"
+                       v-model="valitud" type="radio">
                 <label class="form-check-label" for="olenOmanik">Olen ruumi (kaas)omanik</label>
             </div>
 
             <div class="form-check">
-                <input id="lisanLepingu" name="kasutamiseOigusRadio" class="form-check-input" value="lisanLepingu" v-model="valitud" type="radio">
+                <input id="lisanLepingu" name="kasutamiseOigusRadio" class="form-check-input" value="lisanLepingu"
+                       v-model="valitud" type="radio">
                 <label class="form-check-label" for="lisanLepingu">Lisan üürilepingu</label>
             </div>
 
             <div class="form-check">
-                <input id="omanikAnnabNousoleku" name="kasutamiseOigusRadio" class="form-check-input" value="omanikAnnabNousoleku" v-model="valitud" type="radio">
+                <input id="omanikAnnabNousoleku" name="kasutamiseOigusRadio" class="form-check-input"
+                       value="omanikAnnabNousoleku" v-model="valitud" type="radio">
                 <label class="form-check-label" for="omanikAnnabNousoleku">Ruumi omanik annab elukohateatele
                     nõusoleku</label>
             </div>
 
             <div class="form-check">
-                <input id="nousolekPaberil" name="kasutamiseOigusRadio" class="form-check-input" value="nousolekPaberil" v-model="valitud" type="radio">
+                <input id="nousolekPaberil" name="kasutamiseOigusRadio" class="form-check-input" value="nousolekPaberil"
+                       v-model="valitud" type="radio">
                 <label class="form-check-label" for="nousolekPaberil">Lisan omaniku nõusoleku eraldi paberil</label>
             </div>
 
             <div class="form-check">
-                <input id="muuAlus" name="kasutamiseOigusRadio" class="form-check-input" v-model="valitud" value="muuAlus" type="radio">
+                <input id="muuAlus" name="kasutamiseOigusRadio" class="form-check-input" v-model="valitud"
+                       value="muuAlus" type="radio">
                 <label class="form-check-label" for="muuAlus">Ruumi kasutamise muu alus</label>
             </div>
         </div>
@@ -288,7 +303,8 @@
             </div>
         </div>
 
-        <div id="dokumendid" v-if="valitud === 'lisanLepingu' || valitud === 'nousolekPaberil' || valitud === 'muuAlus'">
+        <div id="dokumendid"
+             v-if="valitud === 'lisanLepingu' || valitud === 'nousolekPaberil' || valitud === 'muuAlus'">
             <hr>
             <h3>Lisatavad dokumendid:</h3>
             <div class="custom-file">
