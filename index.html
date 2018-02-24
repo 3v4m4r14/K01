@@ -227,76 +227,75 @@
                 </button>
                 <!--<input id="addElement" class="btn btn-primary" @click="addElement()" type="button" value="Lisa isik"/>-->
             </div>
+        </div>
+        <hr>
 
-            <hr>
+        <div id="uusElukoht">
+            <h3>Uue elukoha aadress</h3>
 
-            <div id="uusElukoht">
-                <h3>Uue elukoha aadress</h3>
-
-                <div class="row">
-                    <div class="form-group col-sm col-lg">
-                        <label for="uusRiik">Riik:</label>
-                        <input id="uusRiik" class="form-control" type="text">
-                    </div>
-
-                    <div class="form-group col-sm col-lg">
-                        <label for="uusMaakond">Maakond:</label>
-                        <input id="uusMaakond" class="form-control" type="text">
-                    </div>
-
-                    <div class="form-group col-sm col-lg">
-                        <label for="uusLinn">Vald/linn, alevik, küla:</label>
-                        <input id="uusLinn" class="form-control" type="text">
-                    </div>
+            <div class="row">
+                <div class="form-group col-sm col-lg">
+                    <label for="uusRiik">Riik:</label>
+                    <input id="uusRiik" class="form-control" type="text">
                 </div>
 
-                <div class="row">
-                    <div class="form-group col-sm col-lg-4">
-                        <label for="uusTanav">Tänav/talu, maja nr, korteri nr:</label>
-                        <input id="uusTanav" class="form-control" type="text">
-                    </div>
-
-                    <div class="form-group col-sm col-lg-4">
-                        <label for="uusIndeks">Postiindeks:</label>
-                        <input id="uusIndeks" class="form-control" type="text">
-                    </div>
-
-
+                <div class="form-group col-sm col-lg">
+                    <label for="uusMaakond">Maakond:</label>
+                    <input id="uusMaakond" class="form-control" type="text">
                 </div>
+
+                <div class="form-group col-sm col-lg">
+                    <label for="uusLinn">Vald/linn, alevik, küla:</label>
+                    <input id="uusLinn" class="form-control" type="text">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm col-lg-4">
+                    <label for="uusTanav">Tänav/talu, maja nr, korteri nr:</label>
+                    <input id="uusTanav" class="form-control" type="text">
+                </div>
+
+                <div class="form-group col-sm col-lg-4">
+                    <label for="uusIndeks">Postiindeks:</label>
+                    <input id="uusIndeks" class="form-control" type="text">
+                </div>
+
 
             </div>
 
-            <hr>
+        </div>
 
-            <div id="sideaadress">
-                <h3>Sideaadress (kui erineb uue elukoha aadressist)</h3>
+        <hr>
 
-                <div class="row">
-                    <div class="form-group col-sm">
-                        <label for="sideRiik">Riik:</label>
-                        <input id="sideRiik" class="form-control" type="text">
-                    </div>
+        <div id="sideaadress">
+            <h3>Sideaadress (kui erineb uue elukoha aadressist)</h3>
 
-                    <div class="form-group col-sm">
-                        <label for="sideMaakond">Maakond:</label>
-                        <input id="sideMaakond" class="form-control" type="text">
-                    </div>
-
-                    <div class="form-group col-sm">
-                        <label for="sideLinn">Vald/linn, alevik, küla:</label>
-                        <input id="sideLinn" class="form-control" type="text">
-                    </div>
+            <div class="row">
+                <div class="form-group col-sm">
+                    <label for="sideRiik">Riik:</label>
+                    <input id="sideRiik" class="form-control" type="text">
                 </div>
 
-                <div class="row">
-                    <div class="form-group col-sm col-lg-4">
-                        <label for="sideTanav">Tänav/talu, maja nr, korteri nr:</label>
-                        <input id="sideTanav" class="form-control" type="text">
-                    </div>
-
+                <div class="form-group col-sm">
+                    <label for="sideMaakond">Maakond:</label>
+                    <input id="sideMaakond" class="form-control" type="text">
                 </div>
 
+                <div class="form-group col-sm">
+                    <label for="sideLinn">Vald/linn, alevik, küla:</label>
+                    <input id="sideLinn" class="form-control" type="text">
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="form-group col-sm col-lg-4">
+                    <label for="sideTanav">Tänav/talu, maja nr, korteri nr:</label>
+                    <input id="sideTanav" class="form-control" type="text">
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="form-group col-sm col-lg-4">
                     <!-- TODO: fix layout -->
                     <label for="sideKehtibAlates">Kehtib alates:</label>
@@ -390,7 +389,8 @@
             </div>
 
             <div class="form-check">
-                <input id="nousolekPaberil" name="kasutamiseOigusRadio" class="form-check-input" value="nousolekPaberil"
+                <input id="nousolekPaberil" name="kasutamiseOigusRadio" class="form-check-input"
+                       value="nousolekPaberil"
                        v-model="valitud" type="radio">
                 <label class="form-check-label" for="nousolekPaberil">Lisan omaniku nõusoleku eraldi paberil</label>
             </div>
@@ -401,6 +401,7 @@
                 <label class="form-check-label" for="muuAlus">Ruumi kasutamise muu alus</label>
             </div>
         </div>
+
 
         <div id="omanikuNousolek" v-if="valitud === 'omanikAnnabNousoleku'">
             <hr>
