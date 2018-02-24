@@ -108,27 +108,31 @@
 
                         <div class="col-sm col-lg-4">
                             <div class="form-check">
-                                <input id="alaealineLaps" class="form-check-input" v-model="person.isUnderaged" type="checkbox">
-                                <label class="form-check-label" for="alaealineLaps">Tegemist on alaealise lapsega.</label>
+                                <input id="alaealineLaps" class="form-check-input" v-model="person.isUnderaged"
+                                       type="checkbox">
+                                <label class="form-check-label" for="alaealineLaps">Tegemist on alaealise
+                                    lapsega.</label>
                             </div>
                         </div>
                     </div>
                     <h4>Alaealise lapse (laste) teise hooldusõigusliku vanema nõusolek</h4>
                     <div class="row" id="vanemaNousolek" v-if="person.isUnderaged">
-        
+
                         <div class="form-group col-sm">
                             <label for="vanemaEesnimi">Eesnimi:</label>
                             <input id="vanemaEesnimi" class="form-control" type="text" v-model="person.guardian.name">
                         </div>
-        
+
                         <div class="form-group col-sm">
                             <label for="vanemaPerenimi">Perekonnanimi:</label>
-                            <input id="vanemaPerenimi" class="form-control" type="text" v-model="person.guardian.surname">
+                            <input id="vanemaPerenimi" class="form-control" type="text"
+                                   v-model="person.guardian.surname">
                         </div>
-        
+
                         <div class="form-group col-sm">
                             <label for="vanemaIsikukood">Isikukood:</label>
-                            <input id="vanemaIsikukood" class="form-control" type="number" v-model="person.guardian.code">
+                            <input id="vanemaIsikukood" class="form-control" type="number"
+                                   v-model="person.guardian.code">
                         </div>
                     </div>
 
@@ -141,15 +145,16 @@
                     <hr class="half-divider">
                 </div>
             </div>
-            
+
             <div class="text-center">
-                <button id="addElement" class="btn btn-primary" @click="addElement()" type="button"><i
-                        class="fas fa-plus-circle"></i> Lisa
+                <button id="addElement" class="btn btn-primary" @click="addElement()" type="button">
+                    <span class="fas fa-plus-circle"></span> Lisa
                 </button>
             </div>
-
-            <hr>
         </div>
+
+        <hr>
+
         <div id="uusElukoht">
             <h3>Uue elukoha aadress</h3>
 
@@ -382,8 +387,8 @@
                                 Eestist
                                 sinna lahkumise aeg:</label>
                             <input id="taiendavEelmineElukoht" class="form-control"
-                                aria-describedby="taiendavEelmineElukohtHelp"
-                                type="text" v-model="person.lastForeignHome">
+                                   aria-describedby="taiendavEelmineElukohtHelp"
+                                   type="text" v-model="person.lastForeignHome">
                             <small id="taiendavEelmineElukohtHelp" class="form-text text-muted">
                                 Täita saabumisel välismaalt
                             </small>
@@ -393,8 +398,8 @@
                             <label for="taiendavValisriigiIsikukood">Isikukoodi väljastanud riik ja
                                 isikukood:</label>
                             <input id="taiendavValisriigiIsikukood" class="form-control"
-                                aria-describedby="taiendavValisriigiIsikukoodHelp" type="text"
-                                v-model="person.foreignCode">
+                                   aria-describedby="taiendavValisriigiIsikukoodHelp" type="text"
+                                   v-model="person.foreignCode">
                             <small id="taiendavValisriigiIsikukoodHelp" class="form-text text-muted">
                                 Täita välisriigi isikukoodi olemasolul
                             </small>
@@ -407,8 +412,8 @@
                         <div class="form-group col-sm col-lg-6">
                             <label for="vabatahtlikRahvus">Rahvus:</label>
                             <input id="vabatahtlikRahvus" class="form-control"
-                                aria-describedby="vabatahtlikRahvusHelp"
-                                type="text" v-model="person.nationality">
+                                   aria-describedby="vabatahtlikRahvusHelp"
+                                   type="text" v-model="person.nationality">
                             <small id="vabatahtlikRahvusHelp" class="form-text text-muted">
                                 Rahvus, millega isik end kõige tihedamalt etniliselt ja kultuuriliselt tunneb seotud
                                 olevat
@@ -418,8 +423,8 @@
                         <div class="form-group col-sm col-lg-6">
                             <label for="vabatahtlikEmakeel">Emakeel:</label>
                             <input id="vabatahtlikEmakeel" class="form-control"
-                                aria-describedby="vabatahtlikEmakeelHelp"
-                                type="text" v-model="person.nativeLanguage">
+                                   aria-describedby="vabatahtlikEmakeelHelp"
+                                   type="text" v-model="person.nativeLanguage">
                             <small id="vabatahtlikEmakeelHelp" class="form-text text-muted">
                                 Omandatud varases lapsepõlves esimese keelena ja mida kõige paremini valdab
                             </small>
