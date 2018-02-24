@@ -6,22 +6,18 @@ var vm = new Vue({
             alaealineLaps: false,
             valitud: "",
             otherPeople: [{
-                name: 'Aa',
-                surname: 'Aa aaaaa',
-                code: 12
-            }, {
-                name: 'Bb',
-                surname: 'Bb aaaaa',
-                code: 13
+                name: "",
+                surname: "",
+                code: ""
             }]
         }
     }, 
     methods: {
         addElement: function() {
             this.otherPeople.push({
-                name: 'Rr',
-                surname: 'Rr aaaaa',
-                code: 555
+                name: "",
+                surname: "",
+                code: ""
             });
         },  
         removeElement: function(index) {
