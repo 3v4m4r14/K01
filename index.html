@@ -115,24 +115,27 @@
                             </div>
                         </div>
                     </div>
-                    <h4>Alaealise lapse (laste) teise hooldusõigusliku vanema nõusolek</h4>
-                    <div class="row" id="vanemaNousolek" v-if="person.isUnderaged">
 
-                        <div class="form-group col-sm">
-                            <label for="vanemaEesnimi">Eesnimi:</label>
-                            <input id="vanemaEesnimi" class="form-control" type="text" v-model="person.guardian.name">
-                        </div>
+                    <div id="vanemaNousolek" v-if="person.isUnderaged">
+                        <h4>Alaealise lapse (laste) teise hooldusõigusliku vanema nõusolek</h4>
+                        <div class="row">
+                            <div class="form-group col-sm">
+                                <label for="vanemaEesnimi">Eesnimi:</label>
+                                <input id="vanemaEesnimi" class="form-control" type="text"
+                                       v-model="person.guardian.name">
+                            </div>
 
-                        <div class="form-group col-sm">
-                            <label for="vanemaPerenimi">Perekonnanimi:</label>
-                            <input id="vanemaPerenimi" class="form-control" type="text"
-                                   v-model="person.guardian.surname">
-                        </div>
+                            <div class="form-group col-sm">
+                                <label for="vanemaPerenimi">Perekonnanimi:</label>
+                                <input id="vanemaPerenimi" class="form-control" type="text"
+                                       v-model="person.guardian.surname">
+                            </div>
 
-                        <div class="form-group col-sm">
-                            <label for="vanemaIsikukood">Isikukood:</label>
-                            <input id="vanemaIsikukood" class="form-control" type="number"
-                                   v-model="person.guardian.code">
+                            <div class="form-group col-sm">
+                                <label for="vanemaIsikukood">Isikukood:</label>
+                                <input id="vanemaIsikukood" class="form-control" type="number"
+                                       v-model="person.guardian.code">
+                            </div>
                         </div>
                     </div>
 
