@@ -11,6 +11,12 @@ var vm = new Vue({
                 code: "",
                 email: "",
                 phoneNumber: "",
+                isUnderaged: false,
+                guardian: {
+                    name: "",
+                    surname: "",
+                    code: ""
+                },
                 lastForeignHome: "",
                 foreignCode: "",
                 nationality: "",
@@ -28,6 +34,12 @@ var vm = new Vue({
                 code: "",
                 email: "",
                 phoneNumber: "",
+                isUnderaged: false,
+                guardian: {
+                    name: "",
+                    surname: "",
+                    code: ""
+                },
                 lastForeignHome: "",
                 foreignCode: "",
                 nationality: "",
