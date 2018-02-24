@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link href="style/custom.css" rel="stylesheet">
 
     <!-- Scripts
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -93,32 +94,34 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="form-group col-sm col-lg-4">
+                <div class="row align-items-end">
+                    <div class="form-group col-sm">
                         <label for="taiendavEpost">E-post:</label>
                         <input id="taiendavEpost" class="form-control" type="email" v-model="person.email">
                     </div>
 
-                    <div class="form-group col-sm col-lg-4">
+                    <div class="form-group col-sm">
                         <label for="taiendavTelefon">Telefon:</label>
                         <input id="taiendavTelefon" class="form-control" type="tel" v-model="person.phoneNumber">
                     </div>
-                </div>
 
-                <div class="col-sm">
-                    <button id="removeElement" class="btn btn-danger" @click="removeElement(index)"
-                            type="button">
-                        <span class="fas fa-minus-circle"></span> Eemalda
-                    </button>
-                    <!--<input id="removeElement" class="btn btn-danger" @click="removeElement(index)" type="button"-->
-                    <!--value="Eemalda isik"/>-->
+                    <div class="form-group col-sm d-flex justify-content-sm-center justify-content-lg-end">
+                        <button id="removeElement" class="btn btn-danger" @click="removeElement(index)"
+                                type="button">
+                            <span class="fas fa-minus-circle"></span> Eemalda
+                        </button>
+                        <!--<input id="removeElement" class="btn btn-danger" @click="removeElement(index)" type="button"-->
+                        <!--value="Eemalda isik"/>-->
+                    </div>
                 </div>
+                <hr class="half-divider">
             </div>
+            <button id="addElement" class="btn btn-primary" @click="addElement()" type="button"><i
+                    class="fas fa-plus-circle"></i> Lisa
+            </button>
+            <!--<input id="addElement" class="btn btn-primary" @click="addElement()" type="button" value="Lisa isik"/>-->
         </div>
-        <button id="addElement" class="btn btn-primary" @click="addElement()" type="button"><i
-            class="fas fa-plus-circle"></i> Lisa
-        </button>
-        <!--<input id="addElement" class="btn btn-primary" @click="addElement()" type="button" value="Lisa isik"/>-->
+
         <hr>
 
         <div id="uusElukoht">
@@ -192,22 +195,23 @@
             </div>
 
             <div class="row">
-                <div class="form-group col-sm col-lg-4">
+                <div class="form-group col-sm">
                     <!-- TODO: fix layout -->
-                    <label for="sideKehtibAlates">Kehtib alates:</label>
-                    <input id="sideKehtibAlates" class="form-control" type="date">
-                    <!--<label>-->
-                    <!--<span>Kehtib alates: </span>-->
-                    <!--<input class="form-control" type="date">-->
-                    <!--</label>-->
-                    <label for="sideKehtibKuni">Kehtib kuni:</label>
-                    <input id="sideKehtibKuni" class="form-control" type="date">
-                    <!--<label>-->
-                    <!--<span>Kehtib kuni: </span>-->
-                    <!--<input class="form-control" type="date">-->
-                    <!--</label>-->
+                    <!--<label for="sideKehtibAlates">Kehtib alates:</label>-->
+                    <!--<input id="sideKehtibAlates" class="form-control" type="date">-->
+                    <label>
+                        <span>Kehtib alates: </span>
+                        <input class="form-control" type="date">
+                    </label>
+                    <!--<label for="sideKehtibKuni">Kehtib kuni:</label>-->
+                    <!--<input id="sideKehtibKuni" class="form-control" type="date">-->
+                    <label>
+                        <span>Kehtib kuni: </span>
+                        <input class="form-control" type="date">
+                    </label>
 
-                    <p>Täita juhul, kui aadressi kehtivuse alguse kuupäev on tulevikus või kui on teada, millal kehtivus
+                    <p>Täita juhul, kui aadressi kehtivuse alguse kuupäev on tulevikus või kui on teada, millal
+                        kehtivus
                         lõpeb.</p>
                 </div>
             </div>
@@ -243,22 +247,26 @@
         <div id="kasutamiseOigus">
             <p>
             <h3 style="display: inline-block; padding-right: 10px">Ruumi kasutamise õigus</h3>
-            <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample"
+            <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse"
+                    data-target="#collapseExample"
                     aria-expanded="false" aria-controls="collapseExample">
                 <i class="fas fa-info-circle"></i>
             </button>
             </p>
             <div class="collapse" id="collapseExample">
                 <div class="card card-body">
-                    <p class="form-text text-muted">- Ruumi kasutusõigust tõendava dokumendi olemasolul (nt üürileping)
+                    <p class="form-text text-muted">- Ruumi kasutusõigust tõendava dokumendi olemasolul (nt
+                        üürileping)
                         ei pea elukohateatele
                         täiendavalt lisama ruumi omaniku nõusolekut.<br>
-                        - Kui isik ei ole ise kaasomanik, on kaasomandis oleva ruumi andmete esitamisel vajalik kõigi
+                        - Kui isik ei ole ise kaasomanik, on kaasomandis oleva ruumi andmete esitamisel vajalik
+                        kõigi
                         kaasomanike või nende esindajate nõusolek. Kaasomanike vahel sõlmitud ruumi kasutamise
                         kokkuleppe
                         korral võib nõusolekute asemel lisada vastavat kokkulepet tõendava dokumendi.<br>
                         - Ruumi omaniku nõusolekut või ruumi kasutamise õigust tõendavat dokumenti ei ole vaja, kui
-                        esitatakse perekonnaliikmele (nt abikaasa, alaealine laps) kuuluva ruumi või välisriigi elukoha
+                        esitatakse perekonnaliikmele (nt abikaasa, alaealine laps) kuuluva ruumi või välisriigi
+                        elukoha
                         aadress.<br>
                         - Ruumi kasutamise muuks aluseks võib olla näiteks isiklik kasutusõigus või ruumi kasutamine
                         perekonnaliikmena.</p>
@@ -357,91 +365,100 @@
         <hr>
         <h3>Täiendavad andmed</h3>
         <div v-for="(person, index) in otherPeople">
+            <h4>Isik: {{person.name}} {{person.surname}}</h4>
+
             <div id="taiendavadAndmed">
-                <hr>
-                <h4>{{person.name}} {{person.surname}}</h4>
+                <div class="row">
+                    <div class="form-group col-sm col-lg-6">
+                        <label for="taiendavEelmineElukoht">Eelmine elukoht välismaal (riik ja haldusüksus) ja
+                            Eestist
+                            sinna lahkumise aeg:</label>
+                        <input id="taiendavEelmineElukoht" class="form-control"
+                               aria-describedby="taiendavEelmineElukohtHelp"
+                               type="text" v-model="person.lastForeignHome">
+                        <small id="taiendavEelmineElukohtHelp" class="form-text text-muted">
+                            Täita saabumisel välismaalt
+                        </small>
+                    </div>
 
-                <div class="form-group">
-                    <label for="taiendavEelmineElukoht">Eelmine elukoht välismaal (riik ja haldusüksus) ja Eestist
-                        sinna
-                        lahkumise aeg:</label>
-                    <input id="taiendavEelmineElukoht" class="form-control"
-                            aria-describedby="taiendavEelmineElukohtHelp"
-                            type="text" v-model="person.lastForeignHome">
-                    <small id="taiendavEelmineElukohtHelp" class="form-text text-muted">
-                        Täita saabumisel välismaalt
-                    </small>
-                </div>
-
-                <div class="form-group">
-                    <label for="taiendavValisriigiIsikukood">Isikukoodi väljastanud riik ja isikukood:</label>
-                    <input id="taiendavValisriigiIsikukood" class="form-control"
-                            aria-describedby="taiendavValisriigiIsikukoodHelp" type="text"
-                            v-model="person.foreignCode">
-                    <small id="taiendavValisriigiIsikukoodHelp" class="form-text text-muted">
-                        Täita välisriigi isikukoodi olemasolul
-                    </small>
+                    <div class="form-group col-sm col-lg-6">
+                        <label for="taiendavValisriigiIsikukood">Isikukoodi väljastanud riik ja isikukood:</label>
+                        <input id="taiendavValisriigiIsikukood" class="form-control"
+                               aria-describedby="taiendavValisriigiIsikukoodHelp" type="text"
+                               v-model="person.foreignCode">
+                        <small id="taiendavValisriigiIsikukoodHelp" class="form-text text-muted">
+                            Täita välisriigi isikukoodi olemasolul
+                        </small>
+                    </div>
                 </div>
             </div>
 
             <div id="vabatahtlikudAndmed">
-                <div class="form-group">
-                    <label for="vabatahtlikRahvus">Rahvus:</label>
-                    <input id="vabatahtlikRahvus" class="form-control" aria-describedby="vabatahtlikRahvusHelp"
-                            type="text" v-model="person.nationality">
-                    <small id="vabatahtlikRahvusHelp" class="form-text text-muted">
-                        Rahvus, millega isik end kõige tihedamalt etniliselt ja kultuuriliselt tunneb seotud olevat
-                    </small>
+                <div class="row">
+                    <div class="form-group col-sm col-lg-6">
+                        <label for="vabatahtlikRahvus">Rahvus:</label>
+                        <input id="vabatahtlikRahvus" class="form-control" aria-describedby="vabatahtlikRahvusHelp"
+                               type="text" v-model="person.nationality">
+                        <small id="vabatahtlikRahvusHelp" class="form-text text-muted">
+                            Rahvus, millega isik end kõige tihedamalt etniliselt ja kultuuriliselt tunneb seotud
+                            olevat
+                        </small>
+                    </div>
+
+                    <div class="form-group col-sm col-lg-6">
+                        <label for="vabatahtlikEmakeel">Emakeel:</label>
+                        <input id="vabatahtlikEmakeel" class="form-control"
+                               aria-describedby="vabatahtlikEmakeelHelp"
+                               type="text" v-model="person.nativeLanguage">
+                        <small id="vabatahtlikEmakeelHelp" class="form-text text-muted">
+                            Omandatud varases lapsepõlves esimese keelena ja mida kõige paremini valdab
+                        </small>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="vabatahtlikEmakeel">Emakeel:</label>
-                    <input id="vabatahtlikEmakeel" class="form-control" aria-describedby="vabatahtlikEmakeelHelp"
-                            type="text" v-model="person.nativeLanguage">
-                    <small id="vabatahtlikEmakeelHelp" class="form-text text-muted">
-                        Omandatud varases lapsepõlves esimese keelena ja mida kõige paremini valdab
-                    </small>
-                </div>
+                <div class="row">
+                    <div class="form-group col-sm col-lg-6">
+                        <label for="vabatahtlikHaridustase">Omandatud kõrgeim haridustase:</label>
+                        <select id="vabatahtlikHaridustase" class="form-control" v-model="person.education">
+                            <option selected>Vali...</option>
+                            <option value="0">Alusharidus (koolieelne haridus) või alghariduseta</option>
+                            <option value="1">Põhiharidus (põhikooli 1.-6. klass), varasem algharidus</option>
+                            <option value="2">Põhiharidus (põhikooli 7.-9. klass)</option>
+                            <option value="35">Kutsekeskharidus või kutseõpe (sh keskeri- või tehnikumiharidus)
+                                põhihariduse
+                                baasil
+                            </option>
+                            <option value="3">Keskharidus</option>
+                            <option value="4">Kutsekeskharidus või kutseõpe keskhariduse baasil</option>
+                            <option value="5">Keskeri- ja tehnikumiharidus keskhariduse baasil</option>
+                            <option value="6">Bakalaureus või sellega võrdsustatud haridus (rakendus- ja
+                                kutsekõrgharidus,
+                                diplomiõpe)
+                            </option>
+                            <option value="7">Magister või sellega võrdsustatud haridus</option>
+                            <option value="8">Doktor või sellega võrdsustatud haridus</option>
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    <label for="vabatahtlikHaridustase">Omandatud kõrgeim haridustase:</label>
-                    <select id="vabatahtlikHaridustase" class="form-control" v-model="person.education">
-                        <option selected>Vali...</option>
-                        <option value="0">Alusharidus (koolieelne haridus) või alghariduseta</option>
-                        <option value="1">Põhiharidus (põhikooli 1.-6. klass), varasem algharidus</option>
-                        <option value="2">Põhiharidus (põhikooli 7.-9. klass)</option>
-                        <option value="35">Kutsekeskharidus või kutseõpe (sh keskeri- või tehnikumiharidus)
-                            põhihariduse
-                            baasil
-                        </option>
-                        <option value="3">Keskharidus</option>
-                        <option value="4">Kutsekeskharidus või kutseõpe keskhariduse baasil</option>
-                        <option value="5">Keskeri- ja tehnikumiharidus keskhariduse baasil</option>
-                        <option value="6">Bakalaureus või sellega võrdsustatud haridus (rakendus- ja
-                            kutsekõrgharidus,
-                            diplomiõpe)
-                        </option>
-                        <option value="7">Magister või sellega võrdsustatud haridus</option>
-                        <option value="8">Doktor või sellega võrdsustatud haridus</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="vabatahtlikSotsiaalMajanduslikSeisund">Sotsiaal-majanduslik seisund:</label>
-                    <select id="vabatahtlikSotsiaalMajanduslikSeisund" class="form-control"
-                            v-model="person.socialStatus">
-                        <option selected>Vali...</option>
-                        <option value="A">töötav</option>
-                        <option value="B">kodune</option>
-                        <option value="C">töötu/tööd otsiv</option>
-                        <option value="D">ajateenija</option>
-                        <option value="E">(üli)õpilane</option>
-                        <option value="F">pensionär</option>
-                        <option value="G">lapsehoolduspuhkusel</option>
-                        <option value="H">muu mittetöötav</option>
-                    </select>
+                    <div class="form-group col-sm col-lg-6">
+                        <label for="vabatahtlikSotsiaalMajanduslikSeisund">Sotsiaal-majanduslik seisund:</label>
+                        <select id="vabatahtlikSotsiaalMajanduslikSeisund" class="form-control"
+                                v-model="person.socialStatus">
+                            <option selected>Vali...</option>
+                            <option value="A">töötav</option>
+                            <option value="B">kodune</option>
+                            <option value="C">töötu/tööd otsiv</option>
+                            <option value="D">ajateenija</option>
+                            <option value="E">(üli)õpilane</option>
+                            <option value="F">pensionär</option>
+                            <option value="G">lapsehoolduspuhkusel</option>
+                            <option value="H">muu mittetöötav</option>
+                        </select>
+                    </div>
                 </div>
             </div>
+
+            <hr class="half-divider">
         </div>
     </form>
 </div>
