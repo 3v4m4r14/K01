@@ -68,54 +68,54 @@
 
         <div id="isikuLeht" v-if="pageIdx === 1">
 
-            <div id="esitaja">
+            <div id="applicant">
                 <h3>Esitaja</h3>
 
                 <div class="row">
                     <div class="form-group col-sm">
-                        <label for="esitajaEesnimi">Eesnimi:</label>
-                        <input id="esitajaEesnimi" class="form-control" type="text" v-model="otherPeople[0].name">
+                        <label for="applicantName">Eesnimi:</label>
+                        <input id="applicantName" class="form-control" type="text" v-model="otherPeople[0].name">
                     </div>
 
                     <div class="form-group col-sm">
-                        <label for="esitajaPerenimi">Perekonnanimi:</label>
-                        <input id="esitajaPerenimi" class="form-control" type="text" v-model="otherPeople[0].surname">
+                        <label for="applicantSurname">Perekonnanimi:</label>
+                        <input id="applicantSurname" class="form-control" type="text" v-model="otherPeople[0].surname">
                     </div>
 
                     <div class="form-group col-sm">
-                        <label for="esitajaIsikukood">Isikukood:</label>
-                        <input id="esitajaIsikukood" class="form-control" type="number" v-model="otherPeople[0].code">
+                        <label for="applicantCode">Isikukood:</label>
+                        <input id="applicantCode" class="form-control" type="number" v-model="otherPeople[0].code">
                     </div>
                 </div>
 
                 <div class="row align-items-center">
                     <div class="form-group col-sm">
-                        <label for="esitajaEpost">E-post:</label>
-                        <input id="esitajaEpost" class="form-control" type="email" v-model="otherPeople[0].email">
+                        <label for="applicantEmail">E-post:</label>
+                        <input id="applicantEmail" class="form-control" type="email" v-model="otherPeople[0].email">
                     </div>
 
                     <div class="form-group col-sm">
-                        <label for="esitajaTel">Telefon:</label>
-                        <input id="esitajaTel" class="form-control" type="tel" v-model="otherPeople[0].phoneNumber">
+                        <label for="applicantPhoneNumber">Telefon:</label>
+                        <input id="applicantPhoneNumber" class="form-control" type="tel" v-model="otherPeople[0].phoneNumber">
                     </div>
 
                     <div class="col-sm">
                         <div class="form-check">
-                            <input id="uusEndaKohta" class="form-check-input" type="checkbox">
-                            <label class="form-check-label" for="uusEndaKohta">Esitan uue elukoha enda kohta.</label>
+                            <input id="applicantChangesHome" class="form-check-input" type="checkbox">
+                            <label class="form-check-label" for="applicantChangesHome">Esitan uue elukoha enda kohta.</label>
                         </div>
 
                         <div class="form-check">
-                            <input id="uusTeisteKohta" class="form-check-input" v-model="uusTeisteKohta"
+                            <input id="containsOtherPeople" class="form-check-input" v-model="containsOtherPeople"
                                    type="checkbox">
-                            <label class="form-check-label" for="uusTeisteKohta">Esitan uue elukoha teis(t)e
+                            <label class="form-check-label" for="containsOtherPeople">Esitan uue elukoha teis(t)e
                                 kohta.</label>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="teisedIsikud" v-if="uusTeisteKohta">
+            <div id="otherPeople" v-if="containsOtherPeople">
                 <hr>
                 <h3>Teised isikud, kelle elukoha aadressi muudetakse</h3>
                 <p>Elukohateate esitaja ei pea oma andmeid uuesti kirjutama.</p>
@@ -123,62 +123,62 @@
                     <div v-if="index > 0">
                         <div class="row">
                             <div class="form-group col-sm">
-                                <label for="teiseEesnimi">Eesnimi:</label>
-                                <input id="teiseEesnimi" class="form-control" type="text" v-model="person.name">
+                                <label for="personName">Eesnimi:</label>
+                                <input id="personName" class="form-control" type="text" v-model="person.name">
                             </div>
 
                             <div class="form-group col-sm">
-                                <label for="teisePerenimi">Perekonnanimi:</label>
-                                <input id="teisePerenimi" class="form-control" type="text" v-model="person.surname">
+                                <label for="personSurname">Perekonnanimi:</label>
+                                <input id="personSurname" class="form-control" type="text" v-model="person.surname">
                             </div>
 
                             <div class="form-group col-sm">
-                                <label for="teiseIsikukood">Isikukood:</label>
-                                <input id="teiseIsikukood" class="form-control" type="number" v-model="person.code">
+                                <label for="personCode">Isikukood:</label>
+                                <input id="personCode" class="form-control" type="number" v-model="person.code">
                             </div>
                         </div>
 
                         <div class="row align-items-center">
                             <div class="form-group col-sm col-lg-4">
-                                <label for="taiendavEpost">E-post:</label>
-                                <input id="taiendavEpost" class="form-control" type="email" v-model="person.email">
+                                <label for="personEmail">E-post:</label>
+                                <input id="personEmail" class="form-control" type="email" v-model="person.email">
                             </div>
 
                             <div class="form-group col-sm col-lg-4">
-                                <label for="taiendavTelefon">Telefon:</label>
-                                <input id="taiendavTelefon" class="form-control" type="tel"
+                                <label for="personPhoneNumber">Telefon:</label>
+                                <input id="personPhoneNumber" class="form-control" type="tel"
                                        v-model="person.phoneNumber">
                             </div>
 
                             <div class="col-sm col-lg-4">
                                 <div class="form-check">
-                                    <input id="alaealineLaps" class="form-check-input" v-model="person.isUnderaged"
+                                    <input id="isUnderaged" class="form-check-input" v-model="person.isUnderaged"
                                            type="checkbox">
-                                    <label class="form-check-label" for="alaealineLaps">Tegemist on alaealise
+                                    <label class="form-check-label" for="isUnderaged">Tegemist on alaealise
                                         lapsega.</label>
                                 </div>
                             </div>
                         </div>
 
                         <br>
-                        <div id="vanemaNousolek" v-if="person.isUnderaged">
+                        <div id="guardianConsent" v-if="person.isUnderaged">
                             <h4>Alaealise lapse (laste) teise hooldusõigusliku vanema nõusolek</h4>
                             <div class="row">
                                 <div class="form-group col-sm">
-                                    <label for="vanemaEesnimi">Eesnimi:</label>
-                                    <input id="vanemaEesnimi" class="form-control" type="text"
+                                    <label for="guardianName">Eesnimi:</label>
+                                    <input id="guardianName" class="form-control" type="text"
                                            v-model="person.guardian.name">
                                 </div>
 
                                 <div class="form-group col-sm">
-                                    <label for="vanemaPerenimi">Perekonnanimi:</label>
-                                    <input id="vanemaPerenimi" class="form-control" type="text"
+                                    <label for="guardianSurname">Perekonnanimi:</label>
+                                    <input id="guardianSurname" class="form-control" type="text"
                                            v-model="person.guardian.surname">
                                 </div>
 
                                 <div class="form-group col-sm">
-                                    <label for="vanemaIsikukood">Isikukood:</label>
-                                    <input id="vanemaIsikukood" class="form-control" type="number"
+                                    <label for="guardianCode">Isikukood:</label>
+                                    <input id="guardianCode" class="form-control" type="number"
                                            v-model="person.guardian.code">
                                 </div>
                             </div>
@@ -204,37 +204,37 @@
         </div>
 
 
-        <div id="aadressiLeht" v-if="pageIdx === 2">
+        <div id="addressPage" v-if="pageIdx === 2">
 
-            <div id="uusElukoht">
+            <div id="newHome">
                 <h3>Uue elukoha aadress</h3>
 
                 <div class="row">
                     <div class="form-group col-sm col-lg">
-                        <label for="uusRiik">Riik:</label>
-                        <input id="uusRiik" class="form-control" type="text">
+                        <label for="newCountry">Riik:</label>
+                        <input id="newCountry" class="form-control" type="text">
                     </div>
 
                     <div class="form-group col-sm col-lg">
-                        <label for="uusMaakond">Maakond:</label>
-                        <input id="uusMaakond" class="form-control" type="text">
+                        <label for="newCounty">Maakond:</label>
+                        <input id="newCounty" class="form-control" type="text">
                     </div>
 
                     <div class="form-group col-sm col-lg">
-                        <label for="uusLinn">Vald/linn, alevik, küla:</label>
-                        <input id="uusLinn" class="form-control" type="text">
+                        <label for="newTown">Vald/linn, alevik, küla:</label>
+                        <input id="newTown" class="form-control" type="text">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group col-sm col-lg-4">
-                        <label for="uusTanav">Tänav/talu, maja nr, korteri nr:</label>
-                        <input id="uusTanav" class="form-control" type="text">
+                        <label for="newStreet">Tänav/talu, maja nr, korteri nr:</label>
+                        <input id="newStreet" class="form-control" type="text">
                     </div>
 
                     <div class="form-group col-sm col-lg-4">
-                        <label for="uusIndeks">Postiindeks:</label>
-                        <input id="uusIndeks" class="form-control" type="text">
+                        <label for="newZipCode">Postiindeks:</label>
+                        <input id="newZipCode" class="form-control" type="text">
                     </div>
 
 
@@ -244,51 +244,51 @@
 
             <hr>
 
-            <div id="sideaadress">
+            <div id="contactAddress">
                 <h3>Sideaadress (kui erineb uue elukoha aadressist)</h3>
 
                 <div class="row">
                     <div class="form-group col-sm">
-                        <label for="sideRiik">Riik:</label>
-                        <input id="sideRiik" class="form-control" type="text">
+                        <label for="countactContry">Riik:</label>
+                        <input id="countactContry" class="form-control" type="text">
                     </div>
 
                     <div class="form-group col-sm">
-                        <label for="sideMaakond">Maakond:</label>
-                        <input id="sideMaakond" class="form-control" type="text">
+                        <label for="contactCounty">Maakond:</label>
+                        <input id="contactCounty" class="form-control" type="text">
                     </div>
 
                     <div class="form-group col-sm">
-                        <label for="sideLinn">Vald/linn, alevik, küla:</label>
-                        <input id="sideLinn" class="form-control" type="text">
+                        <label for="contactTown">Vald/linn, alevik, küla:</label>
+                        <input id="contactTown" class="form-control" type="text">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group col-sm col-lg-4">
-                        <label for="sideTanav">Tänav/talu, maja nr, korteri nr:</label>
-                        <input id="sideTanav" class="form-control" type="text">
+                        <label for="contactStreet">Tänav/talu, maja nr, korteri nr:</label>
+                        <input id="contactStreet" class="form-control" type="text">
                     </div>
 
                     <div class="form-group col-sm col-lg-4">
-                        <label for="sideIndeks">Postiindeks:</label>
-                        <input id="sideIndeks" class="form-control" type="text">
+                        <label for="contactZipCode">Postiindeks:</label>
+                        <input id="contactZipCode" class="form-control" type="text">
                     </div>
                 </div>
 
                 <div class="row align-items-center">
                     <div class="form-group col-sm col-lg-2">
                         <!-- TODO: fix layout -->
-                        <label for="sideKehtibAlates">Kehtib alates:</label>
-                        <input id="sideKehtibAlates" class="form-control" type="date">
+                        <label for="contactAddressFromDate">Kehtib alates:</label>
+                        <input id="contactAddressFromDate" class="form-control" type="date">
                         <!--<label>-->
                         <!--<span>Kehtib alates: </span>-->
                         <!--<input class="form-control" type="date">-->
                         <!--</label>-->
                     </div>
                     <div class="form-group col-sm col-lg-2">
-                        <label for="sideKehtibKuni">Kehtib kuni:</label>
-                        <input id="sideKehtibKuni" class="form-control" type="date">
+                        <label for="contactAddressToDate">Kehtib kuni:</label>
+                        <input id="contactAddressToDate" class="form-control" type="date">
                         <!--<label>-->
                         <!--<span>Kehtib kuni: </span>-->
                         <!--<input class="form-control" type="date">-->
@@ -309,8 +309,8 @@
         </div>
 
 
-        <div id="oiguseLeht" v-if="pageIdx === 3">
-            <div id="kasutamiseOigus">
+        <div id="approvalPage" v-if="pageIdx === 3">
+            <div id="usageApproval">
                 <p>
                 <h3 style="display: inline-block; padding-right: 10px">Ruumi kasutamise õigus</h3>
                 <button class="btn btn-info btn-sm" type="button" data-toggle="collapse"
@@ -342,41 +342,41 @@
                 </div>
 
                 <div class="form-check">
-                    <input id="olenOmanik" name="kasutamiseOigusRadio" class="form-check-input" value="olenOmanik"
-                           v-model="valitud" type="radio">
-                    <label class="form-check-label" for="olenOmanik">Olen ruumi (kaas)omanik</label>
+                    <input id="ownership" name="kasutamiseOigusRadio" class="form-check-input" value="ownership"
+                           v-model="ownershipSelection" type="radio">
+                    <label class="form-check-label" for="ownership">Olen ruumi (kaas)omanik</label>
                 </div>
 
                 <div class="form-check">
-                    <input id="lisanLepingu" name="kasutamiseOigusRadio" class="form-check-input"
-                           value="lisanLepingu"
-                           v-model="valitud" type="radio">
-                    <label class="form-check-label" for="lisanLepingu">Lisan üürilepingu</label>
+                    <input id="contract" name="kasutamiseOigusRadio" class="form-check-input"
+                           value="contract"
+                           v-model="ownershipSelection" type="radio">
+                    <label class="form-check-label" for="contract">Lisan üürilepingu</label>
                 </div>
 
                 <div class="form-check">
-                    <input id="omanikAnnabNousoleku" name="kasutamiseOigusRadio" class="form-check-input"
-                           value="omanikAnnabNousoleku" v-model="valitud" type="radio">
-                    <label class="form-check-label" for="omanikAnnabNousoleku">Ruumi omanik annab elukohateatele
+                    <input id="ownerApproval" name="kasutamiseOigusRadio" class="form-check-input"
+                           value="ownerApproval" v-model="ownershipSelection" type="radio">
+                    <label class="form-check-label" for="ownerApproval">Ruumi omanik annab elukohateatele
                         nõusoleku</label>
                 </div>
 
                 <div class="form-check">
-                    <input id="nousolekPaberil" name="kasutamiseOigusRadio" class="form-check-input"
-                           value="nousolekPaberil"
-                           v-model="valitud" type="radio">
-                    <label class="form-check-label" for="nousolekPaberil">Lisan omaniku nõusoleku eraldi
+                    <input id="ownerApprovalOnPaper" name="kasutamiseOigusRadio" class="form-check-input"
+                           value="ownerApprovalOnPaper"
+                           v-model="ownershipSelection" type="radio">
+                    <label class="form-check-label" for="ownerApprovalOnPaper">Lisan omaniku nõusoleku eraldi
                         paberil</label>
                 </div>
 
                 <div class="form-check">
-                    <input id="muuAlus" name="kasutamiseOigusRadio" class="form-check-input" v-model="valitud"
-                           value="muuAlus" type="radio">
-                    <label class="form-check-label" for="muuAlus">Ruumi kasutamise muu alus</label>
+                    <input id="otherCause" name="kasutamiseOigusRadio" class="form-check-input" v-model="ownershipSelection"
+                           value="otherCause" type="radio">
+                    <label class="form-check-label" for="otherCause">Ruumi kasutamise muu alus</label>
                 </div>
             </div>
 
-            <div id="omanikuNousolek" v-if="valitud === 'omanikAnnabNousoleku'">
+            <div id="ownerApproval-2" v-if="ownershipSelection === 'omanikAnnabNousoleku'">
                 <hr>
                 <h3>Ruumi omaniku nõusolek</h3>
                 <p>Kinnitan, et olen nõus ülalnimetatud isikute elukoha andmete kandmisega
@@ -384,31 +384,24 @@
 
                 <div class="row">
                     <div class="form-group col-sm col-lg-4">
-                        <label for="omanikuEesnimi">Eesnimi:</label>
-                        <input id="omanikuEesnimi" class="form-control" type="text">
+                        <label for="ownerName">Eesnimi:</label>
+                        <input id="ownerName" class="form-control" type="text">
                     </div>
 
                     <div class="form-group col-sm col-lg-4">
-                        <label for="omanikuPerenimi">Perekonnanimi:</label>
-                        <input id="omanikuPerenimi" class="form-control" type="text">
+                        <label for="ownerSurname">Perekonnanimi:</label>
+                        <input id="ownerSurname" class="form-control" type="text">
                     </div>
 
                     <div class="form-group col-sm col-lg-4">
-                        <label for="omanikuIsikukood">Isikukood:</label>
-                        <input id="omanikuIsikukood" class="form-control" type="number">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group col-sm col-lg-4">
-                        <label for="omanikuAllkiri">Allkiri:</label>
-                        <input id="omanikuAllkiri" class="form-control" type="text">
+                        <label for="ownerCode">Isikukood:</label>
+                        <input id="ownerCode" class="form-control" type="number">
                     </div>
                 </div>
             </div>
 
-            <div id="dokumendid"
-                 v-if="valitud === 'lisanLepingu' || valitud === 'nousolekPaberil' || valitud === 'muuAlus'">
+            <div id="additionalDocuments"
+                 v-if="ownershipSelection === 'lisanLepingu' || ownershipSelection === 'nousolekPaberil' || ownershipSelection === 'muuAlus'">
                 <hr>
                 <h3>Lisatavad dokumendid:</h3>
                 <div class="custom-file">
@@ -419,51 +412,51 @@
         </div>
 
 
-        <div id="lisaandmeteLeht" v-if="pageIdx === 4">
+        <div id="additionalDetailsPage" v-if="pageIdx === 4">
 
-            <div id="lisaandmed">
+            <div id="additionalDetails">
                 <h3>Täiendavad andmed</h3>
                 <div v-for="(person, index) in otherPeople">
-                    <div v-if="uusTeisteKohta === true || index === 0">
+                    <div v-if="containsOtherPeople === true || index === 0">
                         <hr>
                         <h4>Isik: {{person.name}} {{person.surname}}</h4>
 
-                        <div id="taiendavadAndmed">
+                        <div id="additionalDetails-2">
                             <div class="row">
                                 <div class="form-group col-sm col-lg-6">
-                                    <label for="taiendavEelmineElukoht">Eelmine elukoht välismaal (riik ja haldusüksus)
+                                    <label for="lastHome">Eelmine elukoht välismaal (riik ja haldusüksus)
                                         ja
                                         Eestist
                                         sinna lahkumise aeg:</label>
-                                    <input id="taiendavEelmineElukoht" class="form-control"
-                                           aria-describedby="taiendavEelmineElukohtHelp"
+                                    <input id="lastHome" class="form-control"
+                                           aria-describedby="lastHomeHelp"
                                            type="text" v-model="person.lastForeignHome">
-                                    <small id="taiendavEelmineElukohtHelp" class="form-text text-muted">
+                                    <small id="lastHomeHelp" class="form-text text-muted">
                                         Täita saabumisel välismaalt
                                     </small>
                                 </div>
 
                                 <div class="form-group col-sm col-lg-6">
-                                    <label for="taiendavValisriigiIsikukood">Isikukoodi väljastanud riik ja
+                                    <label for="foreignCode">Isikukoodi väljastanud riik ja
                                         isikukood:</label>
-                                    <input id="taiendavValisriigiIsikukood" class="form-control"
-                                           aria-describedby="taiendavValisriigiIsikukoodHelp" type="text"
+                                    <input id="foreignCode" class="form-control"
+                                           aria-describedby="foreignCodeHelp" type="text"
                                            v-model="person.foreignCode">
-                                    <small id="taiendavValisriigiIsikukoodHelp" class="form-text text-muted">
+                                    <small id="foreignCodeHelp" class="form-text text-muted">
                                         Täita välisriigi isikukoodi olemasolul
                                     </small>
                                 </div>
                             </div>
                         </div>
 
-                        <div id="vabatahtlikudAndmed">
+                        <div id="optionalDetails">
                             <div class="row">
                                 <div class="form-group col-sm col-lg-6">
-                                    <label for="vabatahtlikRahvus">Rahvus:</label>
-                                    <input id="vabatahtlikRahvus" class="form-control"
-                                           aria-describedby="vabatahtlikRahvusHelp"
+                                    <label for="nationality">Rahvus:</label>
+                                    <input id="nationality" class="form-control"
+                                           aria-describedby="nationalityHelp"
                                            type="text" v-model="person.nationality">
-                                    <small id="vabatahtlikRahvusHelp" class="form-text text-muted">
+                                    <small id="nationalityHelp" class="form-text text-muted">
                                         Rahvus, millega isik end kõige tihedamalt etniliselt ja kultuuriliselt tunneb
                                         seotud
                                         olevat
@@ -471,11 +464,11 @@
                                 </div>
 
                                 <div class="form-group col-sm col-lg-6">
-                                    <label for="vabatahtlikEmakeel">Emakeel:</label>
-                                    <input id="vabatahtlikEmakeel" class="form-control"
-                                           aria-describedby="vabatahtlikEmakeelHelp"
+                                    <label for="nativeLanguage">Emakeel:</label>
+                                    <input id="nativeLanguage" class="form-control"
+                                           aria-describedby="nativeLanguageHelp"
                                            type="text" v-model="person.nativeLanguage">
-                                    <small id="vabatahtlikEmakeelHelp" class="form-text text-muted">
+                                    <small id="nativeLanguageHelp" class="form-text text-muted">
                                         Omandatud varases lapsepõlves esimese keelena ja mida kõige paremini valdab
                                     </small>
                                 </div>
@@ -483,8 +476,8 @@
 
                             <div class="row">
                                 <div class="form-group col-sm col-lg-6">
-                                    <label for="vabatahtlikHaridustase">Omandatud kõrgeim haridustase:</label>
-                                    <select id="vabatahtlikHaridustase" class="form-control" v-model="person.education">
+                                    <label for="education">Omandatud kõrgeim haridustase:</label>
+                                    <select id="education" class="form-control" v-model="person.education">
                                         <option selected>Vali...</option>
                                         <option value="0">Alusharidus (koolieelne haridus) või alghariduseta</option>
                                         <option value="1">Põhiharidus (põhikooli 1.-6. klass), varasem algharidus
@@ -508,9 +501,9 @@
                                 </div>
 
                                 <div class="form-group col-sm col-lg-6">
-                                    <label for="vabatahtlikSotsiaalMajanduslikSeisund">Sotsiaal-majanduslik
+                                    <label for="socialStatus">Sotsiaal-majanduslik
                                         seisund:</label>
-                                    <select id="vabatahtlikSotsiaalMajanduslikSeisund" class="form-control"
+                                    <select id="socialStatus" class="form-control"
                                             v-model="person.socialStatus">
                                         <option selected>Vali...</option>
                                         <option value="A">töötav</option>
@@ -532,8 +525,8 @@
         </div>
 
 
-        <div id="kinnituseLeht" v-if="pageIdx === 5">
-            <div id="kinnitus">
+        <div id="confirmationPage" v-if="pageIdx === 5">
+            <div id="confirmation">
                 <p>Kinnitan elukohateatel esitatud andmete õigsust ja olen teadlik, et esitatud andmed kantakse
                     rahvastikuregistrisse. Olen teadlik, et vastavalt karistusseadustikule on ametiasutusele
                     valeandmete
@@ -544,11 +537,6 @@
                     <span>Kuupäev: </span>
                     <input class="form-control" type="date">
                 </label>
-
-                <div class="form-group">
-                    <label for="kinnitusAllkiri">Elukohateate esitaja allkiri:</label>
-                    <input id="kinnitusAllkiri" class="form-control" type="text">
-                </div>
             </div>
         </div>
 
