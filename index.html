@@ -374,7 +374,7 @@
                 </div>
             </div>
 
-            <div id="ownerApproval-2" v-if="ownershipSelection === 'omanikAnnabNousoleku'">
+            <div id="ownerApproval-2" v-if="ownershipSelection === 'ownerApproval'">
                 <hr>
                 <h3>Ruumi omaniku nõusolek</h3>
                 <p>Kinnitan, et olen nõus ülalnimetatud isikute elukoha andmete kandmisega
@@ -399,7 +399,7 @@
             </div>
 
             <div id="additionalDocuments"
-                 v-if="ownershipSelection === 'lisanLepingu' || ownershipSelection === 'nousolekPaberil' || ownershipSelection === 'muuAlus'">
+                 v-if="ownershipSelection === 'contract' || ownershipSelection === 'ownerApprovalOnPaper' || ownershipSelection === 'otherCause'">
                 <hr>
                 <h3>Lisatavad dokumendid:</h3>
                 <div class="custom-file">
@@ -413,7 +413,19 @@
         <div id="additionalDetailsPage" v-if="pageIdx === 4">
 
             <div id="additionalDetails">
-                <h3>Täiendavad andmed</h3>
+                <p>
+                <h3 style="display: inline-block; padding-right: 10px">Täiendavad andmed</h3>
+                <button class="btn btn-info btn-sm" type="button" data-toggle="collapse"
+                        data-target="#additionalDetailsInfo"
+                        aria-expanded="false" aria-controls="additionalDetailsInfo">
+                    <span class="fas fa-info-circle"></span>
+                </button>
+                <div class="collapse" id="additionalDetailsInfo">
+                    <div class="card card-body">
+                        <p class="form-text text-muted">Vastavalt riikliku statistika seadusele esitab füüsiline isik andmed enda kohta vabatahtlikkuse alusel.</p>
+                    </div>
+                </div>
+                </p>
                 <div v-for="(person, index) in otherPeople">
                     <div v-if="containsOtherPeople === true || index === 0">
                         <hr>
