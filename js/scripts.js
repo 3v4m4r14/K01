@@ -1,6 +1,12 @@
 SuccessfulValidationMessage = Vue.component('successful-validation-message', (
     {
-        template: '<div class="valid-feedback">Korras nagu Norras!</div>'
+        template: '<div class="valid-tooltip">Korras nagu Norras!</div>'
+    }
+));
+
+UnsuccessfulValidationMessage = Vue.component('unsuccessful-validation-message', (
+    {
+        template: '<div class="invalid-tooltip">Jama lugu.</div>'
     }
 ));
 
@@ -50,22 +56,23 @@ var vm = new Vue({
             this.sentForSigning = true;
         },
         sign: function () {
-          //TODO:
-          alert("ASENDA MIND");
-          this.signed = true;
+            //TODO:
+            alert("ASENDA MIND");
+            this.signed = true;
         },
         checkValidityFor: function (formId) {
             var form = document.getElementById(formId);
             if (form.checkValidity() !== false) {
                 this.canChange = true;
+                return;
             }
             form.classList.add('was-validated');
         },
         nextPage: function () {
-            if(this.pageIdx === 1) {
+            if (this.pageIdx === 1) {
                 this.checkValidityFor('applicantForm');
             }
-            else if(this.pageIdx === 2) {
+            else if (this.pageIdx === 2) {
                 this.checkValidityFor('addressForm');
             }
             else {
@@ -131,19 +138,19 @@ var vm = new Vue({
         validEmail: function (email) {
             var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(email);
-        }, 
-        idCardLogin: function() {
+        },
+        idCardLogin: function () {
             this.otherPeople = [];
             this.containsOtherPeople = true;
             this.addMockupData();
             this.nextPage();
-        }, 
-        blankLogin: function() {
+        },
+        blankLogin: function () {
             this.otherPeople = [];
             this.addElement();
             this.nextPage();
-        }, 
-        addMockupData: function() {
+        },
+        addMockupData: function () {
             this.otherPeople.push({
                 name: "Kana",
                 surname: "Snitsel",
