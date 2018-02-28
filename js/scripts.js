@@ -10,6 +10,8 @@ var vm = new Vue({
         return {
             pageIdx: 0,
             canChange: true,
+            sentForSigning: false,
+            signed: false,
             progress: 0,
             containsOtherPeople: false,
             ownershipSelection: "",
@@ -42,48 +44,58 @@ var vm = new Vue({
         removeElement: function (index) {
             this.otherPeople.splice(index, 1);
         },
+        sendForSigning: function () {
+            //TODO:
+            alert("ASENDA MIND ILUSA TEATEGA!");
+            this.sentForSigning = true;
+        },
+        sign: function () {
+          //TODO:
+          alert("ASENDA MIND");
+          this.signed = true;
+        },
         nextPage: function () {
             // TODO: rename
             // TODO: show errors in UI by adding classes and showing feedback text
             this.errors = [];
-            if (this.pageIdx === 1) {
-                if (!(this.otherPeople[0].name || this.otherPeople[0].surname)) {
-                    // TODO: add empty string check
-                    this.errors.push({applicantName: "Palun lisa nimi."});
-                }
-                if (!this.otherPeople[0].code) {
-                    this.errors.push({applicantCode: "Palun sisesta isikukood."});
-                }
-                if (!this.otherPeople[0].email) {
-                    this.errors.push({email: "Palun sisesta e-posti aadress."});
-                } else if (!this.validEmail(this.otherPeople[0].email)) {
-                    this.errors.push({email: "Palun sisesta korrektne e-posti aadress."});
-                }
-                if (!this.otherPeople[0].phoneNumber) {
-                    this.errors.push({phoneNumber: "Palun sisesta telefoninumber."});
-                }
-
-                if (this.containsOtherPeople) {
-                    // TODO: checks according to number of people added
-                }
-            }
-            if (this.pageIdx === 2) {
-                if (!this.newCountry) {
-                    this.errors.push({newCountry: "Palun sisestage riik."});
-                }
-                if (!this.newCounty) {
-                    this.errors.push({newCounty: "Palun sisestage maakond."});
-                }
-                if (!this.newTown) {
-                    this.errors.push({newTown: "Palun sisestage vald/linn, alevik, küla."});
-                }
-                if (!this.newStreet) {
-                    this.errors.push({newStreet: "Palun sisestage tänav/talu, maja nr, korteri nr."});
-                }
-                if (!this.newZipCode) {
-                    this.errors.push({newZipCode: "Palun sisestage postiindeks."});
-                }
-            }
+            // if (this.pageIdx === 1) {
+            //     if (!(this.otherPeople[0].name || this.otherPeople[0].surname)) {
+            //         // TODO: add empty string check
+            //         this.errors.push({applicantName: "Palun lisa nimi."});
+            //     }
+            //     if (!this.otherPeople[0].code) {
+            //         this.errors.push({applicantCode: "Palun sisesta isikukood."});
+            //     }
+            //     if (!this.otherPeople[0].email) {
+            //         this.errors.push({email: "Palun sisesta e-posti aadress."});
+            //     } else if (!this.validEmail(this.otherPeople[0].email)) {
+            //         this.errors.push({email: "Palun sisesta korrektne e-posti aadress."});
+            //     }
+            //     if (!this.otherPeople[0].phoneNumber) {
+            //         this.errors.push({phoneNumber: "Palun sisesta telefoninumber."});
+            //     }
+            //
+            //     if (this.containsOtherPeople) {
+            //         // TODO: checks according to number of people added
+            //     }
+            // }
+            // if (this.pageIdx === 2) {
+            //     if (!this.newCountry) {
+            //         this.errors.push({newCountry: "Palun sisestage riik."});
+            //     }
+            //     if (!this.newCounty) {
+            //         this.errors.push({newCounty: "Palun sisestage maakond."});
+            //     }
+            //     if (!this.newTown) {
+            //         this.errors.push({newTown: "Palun sisestage vald/linn, alevik, küla."});
+            //     }
+            //     if (!this.newStreet) {
+            //         this.errors.push({newStreet: "Palun sisestage tänav/talu, maja nr, korteri nr."});
+            //     }
+            //     if (!this.newZipCode) {
+            //         this.errors.push({newZipCode: "Palun sisestage postiindeks."});
+            //     }
+            // }
 
             if (this.errors.length === 0) {
                 this.canChange = true;
@@ -91,7 +103,7 @@ var vm = new Vue({
             if (this.canChange && this.pageIdx < 5) {
                 this.pageIdx += 1;
                 this.progress = this.pageIdx / 5 * 100;
-                this.canChange = false;
+                //this.canChange = false;
             }
         },
         previousPage: function () {

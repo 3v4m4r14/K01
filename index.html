@@ -96,13 +96,15 @@
 
                     <div class="form-group col-sm">
                         <label for="applicantPhoneNumber">Telefon:</label>
-                        <input id="applicantPhoneNumber" class="form-control" type="tel" v-model="otherPeople[0].phoneNumber">
+                        <input id="applicantPhoneNumber" class="form-control" type="tel"
+                               v-model="otherPeople[0].phoneNumber">
                     </div>
 
                     <div class="col-sm">
                         <div class="form-check">
                             <input id="applicantChangesHome" class="form-check-input" type="checkbox" checked>
-                            <label class="form-check-label" for="applicantChangesHome">Esitan uue elukoha enda kohta.</label>
+                            <label class="form-check-label" for="applicantChangesHome">Esitan uue elukoha enda
+                                kohta.</label>
                         </div>
 
                         <div class="form-check">
@@ -276,28 +278,19 @@
 
                 <div class="row align-items-center">
                     <div class="form-group col-sm col-lg-2">
-                        <!-- TODO: fix layout -->
                         <label for="contactAddressFromDate">Kehtib alates:</label>
                         <input id="contactAddressFromDate" class="form-control" type="date">
-                        <!--<label>-->
-                        <!--<span>Kehtib alates: </span>-->
-                        <!--<input class="form-control" type="date">-->
-                        <!--</label>-->
                     </div>
                     <div class="form-group col-sm col-lg-2">
                         <label for="contactAddressToDate">Kehtib kuni:</label>
                         <input id="contactAddressToDate" class="form-control" type="date">
-                        <!--<label>-->
-                        <!--<span>Kehtib kuni: </span>-->
-                        <!--<input class="form-control" type="date">-->
-                        <!--</label>-->
                     </div>
-                        <small class="form-text text-muted col-sm col-lg">Täita juhul, kui aadressi kehtivuse alguse
-                            kuupäev on tulevikus
-                            või kui on teada, millal
-                            kehtivus
-                            lõpeb.
-                        </small>
+                    <small class="form-text text-muted col-sm col-lg">Täita juhul, kui aadressi kehtivuse alguse
+                        kuupäev on tulevikus
+                        või kui on teada, millal
+                        kehtivus
+                        lõpeb.
+                    </small>
 
                 </div>
                 <div class="row">
@@ -368,7 +361,8 @@
                 </div>
 
                 <div class="form-check">
-                    <input id="otherCause" name="kasutamiseOigusRadio" class="form-check-input" v-model="ownershipSelection"
+                    <input id="otherCause" name="kasutamiseOigusRadio" class="form-check-input"
+                           v-model="ownershipSelection"
                            value="otherCause" type="radio">
                     <label class="form-check-label" for="otherCause">Ruumi kasutamise muu alus</label>
                 </div>
@@ -422,7 +416,8 @@
                 </button>
                 <div class="collapse" id="additionalDetailsInfo">
                     <div class="card card-body">
-                        <p class="form-text text-muted">Vastavalt riikliku statistika seadusele esitab füüsiline isik andmed enda kohta vabatahtlikkuse alusel.</p>
+                        <p class="form-text text-muted">Vastavalt riikliku statistika seadusele esitab füüsiline isik
+                            andmed enda kohta vabatahtlikkuse alusel.</p>
                     </div>
                 </div>
                 </p>
@@ -531,34 +526,47 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
 
         <div id="confirmationPage" v-if="pageIdx === 5">
+            <div id="signatures">
+                Allkirju on vaja järgnevatelt isikutelt:
+                <ul>
+                    <div class="col-sm col-lg" v-for="(person, index) in otherPeople">
+                        <div v-if="containsOtherPeople === true || index === 0">
+                            <!--Täisealiste allkirjad siin-->
+                            <li>{{person.name}} {{person.surname}}</li>
+                            <div v-if="person.isUnderaged === true">
+                                <!-- Alaealise eestkostja allkirjad siin-->
+                                <li>{{person.guardian.name}} {{person.guardian.surname}}</li>
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+
+                <button id="sendForSigning" class="btn btn-primary" @click="sendForSigning()" type="button"
+                        :disabled="sentForSigning">
+                    <span class="fas fa-envelope"></span> Saada allkirjastamisele
+                </button>
+            </div>
+
+            <hr>
+
             <div id="confirmation">
                 <p>Kinnitan elukohateatel esitatud andmete õigsust ja olen teadlik, et esitatud andmed kantakse
                     rahvastikuregistrisse. Olen teadlik, et vastavalt karistusseadustikule on ametiasutusele
                     valeandmete
                     esitamine
                     kriminaalkorras karistatav.</p>
-
-                <label>
-                    <span>Kuupäev: </span>
-                    <input class="form-control" type="date">
-                </label>
-                <div>
-                    Allkirju on vaja järgnevatelt isikutelt: 
-                </div>
-                <div v-for="(person, index) in otherPeople">
-                    <div v-if="containsOtherPeople === true || index === 0">
-                        {{person.name}} {{person.surname}}
-                        <div v-if="person.isUnderaged === true">
-                            {{person.guardian.name}} {{person.guardian.surname}}
-                        </div>
-                    </div>
+                <div class="form-group col-sm col-lg-2">
+                    <label for="confirmationDate">Kuupäev:</label>
+                    <input id="confirmationDate" class="form-control" type="date">
                 </div>
             </div>
+            <button class="btn btn-primary" @click="sign()" type="button" :disabled="signed">
+                <span class="fas fa-pencil-alt"></span> Allkirjasta digitaalselt
+            </button>
         </div>
 
     </form>
