@@ -14,3 +14,33 @@
 #pageTitle {
     padding: 30px 0;
 }
+
+.valid-feedback-text {
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #28a745;
+}
+
+.valid-text-input {
+    border-color: #28a745;
+}
+
+.valid-choice-input {
+    color: #28a745;
+}
+
+.invalid-feedback-text {
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+
+.invalid-text-input {
+    border-color: #dc3545;
+}
+
+.invalid-choice-input {
+    color: #dc3545;
+}
