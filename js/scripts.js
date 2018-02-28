@@ -13,25 +13,7 @@ var vm = new Vue({
             progress: 0,
             containsOtherPeople: false,
             ownershipSelection: "",
-            otherPeople: [{
-                name: "",
-                surname: "",
-                code: "",
-                email: "",
-                phoneNumber: "",
-                isUnderaged: false,
-                guardian: {
-                    name: "",
-                    surname: "",
-                    code: ""
-                },
-                lastForeignHome: "",
-                foreignCode: "",
-                nationality: "",
-                nativeLanguage: "",
-                education: "",
-                socialStatus: ""
-            }],
+            otherPeople: [],
             errors: []
         }
     },
@@ -121,6 +103,76 @@ var vm = new Vue({
         validEmail: function (email) {
             var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(email);
+        }, 
+        idCardLogin: function() {
+            this.otherPeople = [];
+            this.containsOtherPeople = true;
+            this.addMockupData();
+            this.nextPage();
+        }, 
+        blankLogin: function() {
+            this.otherPeople = [];
+            this.addElement();
+            this.nextPage();
+        }, 
+        addMockupData: function() {
+            this.otherPeople.push({
+                name: "Kana",
+                surname: "Snitsel",
+                code: "33303031234",
+                email: "kana.snitsel@gmail.ee",
+                phoneNumber: "5555123564",
+                isUnderaged: false,
+                guardian: {
+                    name: "",
+                    surname: "",
+                    code: ""
+                },
+                lastForeignHome: "",
+                foreignCode: "",
+                nationality: "eestlane",
+                nativeLanguage: "eesti keel",
+                education: "2",
+                socialStatus: "F"
+            });
+            this.otherPeople.push({
+                name: "Arvuti",
+                surname: "Hiir",
+                code: "50505051234",
+                email: "lolololol@lmao.rofl",
+                phoneNumber: "123456789",
+                isUnderaged: true,
+                guardian: {
+                    name: "Päris",
+                    surname: "Hiir",
+                    code: "37010151234"
+                },
+                lastForeignHome: "",
+                foreignCode: "",
+                nationality: "eestlane",
+                nativeLanguage: "eesti hiirte keel",
+                education: "2",
+                socialStatus: "E"
+            });
+            this.otherPeople.push({
+                name: "UFO",
+                surname: "Alien",
+                code: "00000001234",
+                email: "ufo.alien@solar.system",
+                phoneNumber: "45454355342",
+                isUnderaged: false,
+                guardian: {
+                    name: "",
+                    surname: "",
+                    code: ""
+                },
+                lastForeignHome: "Mars",
+                foreignCode: "12402242101564655054647753412154541534031231",
+                nationality: "marslane",
+                nativeLanguage: "marsi keel",
+                education: "9",
+                socialStatus: "H"
+            });
         }
     }
 });
