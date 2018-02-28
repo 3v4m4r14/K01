@@ -64,7 +64,7 @@
         </div>
     </div>
 
-    <form class="needs-validation">
+    <form id='yksk6ik' class="needs-validation" novalidate>
 
         <div id="isikuLeht" v-if="pageIdx === 1">
 
@@ -74,12 +74,15 @@
                 <div class="row">
                     <div class="form-group col-sm">
                         <label for="applicantName">Eesnimi:</label>
-                        <input id="applicantName" class="form-control" type="text" v-model="otherPeople[0].name">
+                        <input id="applicantName" class="form-control" type="text" v-model="otherPeople[0].name" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>                    
                     </div>
 
                     <div class="form-group col-sm">
                         <label for="applicantSurname">Perekonnanimi:</label>
-                        <input id="applicantSurname" class="form-control" type="text" v-model="otherPeople[0].surname">
+                        <input id="applicantSurname" class="form-control" type="text" v-model="otherPeople[0].surname" required>
                     </div>
 
                     <div class="form-group col-sm">
@@ -594,6 +597,7 @@
     <br>
 </main>
 
+    
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
