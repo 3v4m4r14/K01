@@ -537,6 +537,17 @@
                     <span>Kuupäev: </span>
                     <input class="form-control" type="date">
                 </label>
+                <div>
+                    Allkirju on vaja järgnevatelt isikutelt: 
+                </div>
+                <div v-for="(person, index) in otherPeople">
+                    <div v-if="containsOtherPeople === true || index === 0">
+                        {{person.name}} {{person.surname}}
+                        <div v-if="person.isUnderaged === true">
+                            {{person.guardian.name}} {{person.guardian.surname}}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
