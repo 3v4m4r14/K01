@@ -55,11 +55,11 @@ var vm = new Vue({
           this.signed = true;
         },
         checkValidityFor: function (formId) {
-            var applicantForm = document.getElementById(formId);
-            if (applicantForm.checkValidity() !== false) {
+            var form = document.getElementById(formId);
+            if (form.checkValidity() !== false) {
                 this.canChange = true;
             }
-            //applicantForm.classList.add('was-validated');
+            form.classList.add('was-validated');
         },
         nextPage: function () {
             if(this.pageIdx === 1) {
