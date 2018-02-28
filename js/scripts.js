@@ -43,6 +43,18 @@ var vm = new Vue({
             this.otherPeople.splice(index, 1);
         },
         nextPage: function () {
+            if(this.pageIdx >= 1) {
+                console.log('Wow');
+                var yks = document.getElementById('yksk6ik');
+                if (yks.checkValidity() === true) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    return;
+                }
+                yks.classList.add('was-validated');
+                console.log("Olen siin");
+            }
+            console.log("Hello");
             // TODO: rename
             // TODO: show errors in UI by adding classes and showing feedback text
             this.errors = [];
