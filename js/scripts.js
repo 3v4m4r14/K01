@@ -4,9 +4,8 @@ var vm = new Vue({
         return {
             pageIdx: 0,
             progress: 0,
-            uusTeisteKohta: false,
-            alaealineLaps: false,
-            valitud: "",
+            containsOtherPeople: false,
+            ownershipSelection: "",
             otherPeople: [{
                 name: "",
                 surname: "",
