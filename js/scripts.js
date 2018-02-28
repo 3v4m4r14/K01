@@ -1,6 +1,6 @@
 SuccessfulValidationMessage = Vue.component('successful-validation-message', (
     {
-        template: '<div class="valid-feedback-text">Korras nagu Norras!</div>'
+        template: '<div class="valid-feedback">Korras nagu Norras!</div>'
     }
 ));
 
@@ -54,22 +54,26 @@ var vm = new Vue({
           alert("ASENDA MIND");
           this.signed = true;
         },
-        nextPage: function () {
-            if(this.pageIdx >= 1) {
-                console.log('Wow');
-                var yks = document.getElementById('yksk6ik');
-                if (yks.checkValidity() === true) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    return;
-                }
-                yks.classList.add('was-validated');
-                console.log("Olen siin");
+        checkValidityFor: function (formId) {
+            var applicantForm = document.getElementById(formId);
+            if (applicantForm.checkValidity() !== false) {
+                this.canChange = true;
             }
-            console.log("Hello");
+            //applicantForm.classList.add('was-validated');
+        },
+        nextPage: function () {
+            if(this.pageIdx === 1) {
+                this.checkValidityFor('applicantForm');
+            }
+            else if(this.pageIdx === 2) {
+                this.checkValidityFor('addressForm');
+            }
+            else {
+                this.canChange = true;
+            }
             // TODO: rename
             // TODO: show errors in UI by adding classes and showing feedback text
-            this.errors = [];
+            // this.errors = [];
             // if (this.pageIdx === 1) {
             //     if (!(this.otherPeople[0].name || this.otherPeople[0].surname)) {
             //         // TODO: add empty string check
@@ -109,13 +113,13 @@ var vm = new Vue({
             //     }
             // }
 
-            if (this.errors.length === 0) {
-                this.canChange = true;
-            }
+            // if (this.errors.length === 0) {
+            //     this.canChange = true;
+            // }
             if (this.canChange && this.pageIdx < 5) {
                 this.pageIdx += 1;
                 this.progress = this.pageIdx / 5 * 100;
-                //this.canChange = false;
+                this.canChange = false;
             }
         },
         previousPage: function () {

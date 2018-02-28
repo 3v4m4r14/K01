@@ -26,6 +26,7 @@
 <body data-gr-c-s-loaded="true">
 
 <main id="app" class="container" role="main">
+
     <h1 id="pageTitle">ELUKOHATEADE</h1>
 
     <div id="landingPage" v-if="pageIdx === 0">
@@ -64,9 +65,8 @@
         </div>
     </div>
 
-    <form id='yksk6ik' class="needs-validation" novalidate>
-
-        <div id="isikuLeht" v-if="pageIdx === 1">
+    <div id="applicantPage" v-if="pageIdx === 1">
+        <form id="applicantForm" class="needs-validation" novalidate>
 
             <div id="applicant">
                 <h3>Esitaja</h3>
@@ -74,15 +74,15 @@
                 <div class="row">
                     <div class="form-group col-sm">
                         <label for="applicantName">Eesnimi:</label>
-                        <input id="applicantName" class="form-control" type="text" v-model="otherPeople[0].name" required>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>                    
+                        <input id="applicantName" class="form-control" type="text" v-model="otherPeople[0].name"
+                               required>
+                        <successful-validation-message></successful-validation-message>
                     </div>
 
                     <div class="form-group col-sm">
                         <label for="applicantSurname">Perekonnanimi:</label>
-                        <input id="applicantSurname" class="form-control" type="text" v-model="otherPeople[0].surname" required>
+                        <input id="applicantSurname" class="form-control" type="text"
+                               v-model="otherPeople[0].surname" required>
                     </div>
 
                     <div class="form-group col-sm">
@@ -205,12 +205,12 @@
                     </button>
                 </div>
             </div>
+        </form>
+    </div>
 
-        </div>
 
-
-        <div id="addressPage" v-if="pageIdx === 2">
-
+    <div id="addressPage" v-if="pageIdx === 2">
+        <form id="addressForm" class="needs-validation" novalidate>
             <div id="newHome">
                 <h3>Uue elukoha aadress</h3>
 
@@ -300,10 +300,12 @@
 
                 </div>
             </div>
-        </div>
+        </form>
+    </div>
 
 
-        <div id="approvalPage" v-if="pageIdx === 3">
+    <div id="approvalPage" v-if="pageIdx === 3">
+        <form id="approvalForm" class="needs-validation" novalidate>
             <div id="usageApproval">
                 <p>
                 <h3 style="display: inline-block; padding-right: 10px">Ruumi kasutamise õigus</h3>
@@ -404,11 +406,12 @@
                     <label class="custom-file-label" for="customFile">Choose file</label>
                 </div>
             </div>
-        </div>
+        </form>
+    </div>
 
 
-        <div id="additionalDetailsPage" v-if="pageIdx === 4">
-
+    <div id="additionalDetailsPage" v-if="pageIdx === 4">
+        <form id="additionalDetailsForm" class="needs-validation" novalidate>
             <div id="additionalDetails">
                 <p>
                 <h3 style="display: inline-block; padding-right: 10px">Täiendavad andmed</h3>
@@ -419,7 +422,8 @@
                 </button>
                 <div class="collapse" id="additionalDetailsInfo">
                     <div class="card card-body">
-                        <p class="form-text text-muted">Vastavalt riikliku statistika seadusele esitab füüsiline isik
+                        <p class="form-text text-muted">Vastavalt riikliku statistika seadusele esitab füüsiline
+                            isik
                             andmed enda kohta vabatahtlikkuse alusel.</p>
                     </div>
                 </div>
@@ -465,7 +469,8 @@
                                            aria-describedby="nationalityHelp"
                                            type="text" v-model="person.nationality">
                                     <small id="nationalityHelp" class="form-text text-muted">
-                                        Rahvus, millega isik end kõige tihedamalt etniliselt ja kultuuriliselt tunneb
+                                        Rahvus, millega isik end kõige tihedamalt etniliselt ja kultuuriliselt
+                                        tunneb
                                         seotud
                                         olevat
                                     </small>
@@ -487,7 +492,8 @@
                                     <label for="education">Omandatud kõrgeim haridustase:</label>
                                     <select id="education" class="form-control" v-model="person.education">
                                         <option selected>Vali...</option>
-                                        <option value="0">Alusharidus (koolieelne haridus) või alghariduseta</option>
+                                        <option value="0">Alusharidus (koolieelne haridus) või alghariduseta
+                                        </option>
                                         <option value="1">Põhiharidus (põhikooli 1.-6. klass), varasem algharidus
                                         </option>
                                         <option value="2">Põhiharidus (põhikooli 7.-9. klass)</option>
@@ -529,52 +535,52 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
+    </div>
 
 
-        <div id="confirmationPage" v-if="pageIdx === 5">
-            <div id="signatures">
-                Allkirju on vaja järgnevatelt isikutelt:
-                <ul>
-                    <div class="col-sm col-lg" v-for="(person, index) in otherPeople">
-                        <div v-if="containsOtherPeople === true || index === 0">
-                            <!--Täisealiste allkirjad siin-->
-                            <li>{{person.name}} {{person.surname}}</li>
-                            <div v-if="person.isUnderaged === true">
-                                <!-- Alaealise eestkostja allkirjad siin-->
-                                <li>{{person.guardian.name}} {{person.guardian.surname}}</li>
-                            </div>
+    <div id="confirmationPage" v-if="pageIdx === 5">
+        <div id="signatures">
+            Allkirju on vaja järgnevatelt isikutelt:
+            <ul>
+                <div class="col-sm col-lg" v-for="(person, index) in otherPeople">
+                    <div v-if="containsOtherPeople === true || index === 0">
+                        <!--Täisealiste allkirjad siin-->
+                        <li>{{person.name}} {{person.surname}}</li>
+                        <div v-if="person.isUnderaged === true">
+                            <!-- Alaealise eestkostja allkirjad siin-->
+                            <li>{{person.guardian.name}} {{person.guardian.surname}}</li>
                         </div>
                     </div>
-                </ul>
-
-                <button id="sendForSigning" class="btn btn-primary" @click="sendForSigning()" type="button"
-                        :disabled="sentForSigning">
-                    <span class="fas fa-envelope"></span> Saada allkirjastamisele
-                </button>
-            </div>
-
-            <hr>
-
-            <div id="confirmation">
-                <p>Kinnitan elukohateatel esitatud andmete õigsust ja olen teadlik, et esitatud andmed kantakse
-                    rahvastikuregistrisse. Olen teadlik, et vastavalt karistusseadustikule on ametiasutusele
-                    valeandmete
-                    esitamine
-                    kriminaalkorras karistatav.</p>
-                <div class="form-group col-sm col-lg-2">
-                    <label for="confirmationDate">Kuupäev:</label>
-                    <input id="confirmationDate" class="form-control" type="date">
                 </div>
-            </div>
-            <button class="btn btn-primary" @click="sign()" type="button" :disabled="signed">
-                <span class="fas fa-pencil-alt"></span> Allkirjasta digitaalselt
+            </ul>
+
+            <button id="sendForSigning" class="btn btn-primary" @click="sendForSigning()" type="button"
+                    :disabled="sentForSigning">
+                <span class="fas fa-envelope"></span> Saada allkirjastamisele
             </button>
         </div>
 
-    </form>
+        <hr>
+
+        <div id="confirmation">
+            <p>Kinnitan elukohateatel esitatud andmete õigsust ja olen teadlik, et esitatud andmed kantakse
+                rahvastikuregistrisse. Olen teadlik, et vastavalt karistusseadustikule on ametiasutusele
+                valeandmete
+                esitamine
+                kriminaalkorras karistatav.</p>
+            <div class="form-group col-sm col-lg-2">
+                <label for="confirmationDate">Kuupäev:</label>
+                <input id="confirmationDate" class="form-control" type="date">
+            </div>
+        </div>
+        <button class="btn btn-primary" @click="sign()" type="button" :disabled="signed">
+            <span class="fas fa-pencil-alt"></span> Allkirjasta digitaalselt
+        </button>
+    </div>
 
     <hr>
+
     <div id="navigation" v-if="progress > 0">
         <div class="progress">
             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
@@ -594,10 +600,9 @@
         </div>
     </div>
 
-    <br>
 </main>
 
-    
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
