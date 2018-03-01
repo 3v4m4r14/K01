@@ -62,6 +62,7 @@ var vm = new Vue({
         },
         checkValidityFor: function (formId) {
             var form = document.getElementById(formId);
+            form.classList.remove('was-validated');
             if (form.checkValidity() !== false) {
                 this.canChange = true;
                 return;
