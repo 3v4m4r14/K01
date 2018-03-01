@@ -552,6 +552,166 @@
 
 
     <div id="confirmationPage" v-if="pageIdx === 5">
+
+        <!-- NICE ... this part doesn't work.
+        <table class="table">
+            <tr><th>Esitaja:</th></tr>
+            <tr><th>Nimi:</th><td>{{otherPeople[0].name}} {{otherPeople[0].surname}}</td></tr>
+            <tr><th>Isikukood:</th><td>{{otherPeople[0].code}}</td></tr>
+            <tr><th>Emeil:</th><td>{{otherPeople[0].email}}</td></tr>
+            <tr><th>Telefoni number:</th><td>{{otherPeople[0].phoneNumber}}</td></tr>
+            <tr><th>Teised isikud:</th></tr>
+            <div v-for="(person, index) in otherPeople">
+                <div v-if="index > 0">
+                    <div v-if="containsOtherPeople">
+                        <tr><th>Nimi:</th><td>{{person.name}} {{person.surname}}</td></tr>
+                        <tr><th>Isikukood:</th><td>{{person.code}}</td></tr>
+                        <tr><th>Emeil:</th><td>{{person.email}}</td></tr>
+                        <tr><th>Telefoni number:</th><td>{{person.phoneNumber}}</td></tr>
+                        <div v-if="person.isUnderaged">
+                            <tr><th>Vanema nim:</th><td>{{person.guardian.name}} {{person.guardian.surname}}</td></tr>
+                            <tr><th>Vanema isikukood:</th><td>{{person.guardian.code}}</td></tr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </table>
+        -->
+
+        <div>
+            <h5>Esitaja:</h5>
+            <div>Nimi: {{otherPeople[0].name}} {{otherPeople[0].surname}}</div>
+            <div>Isikukood: {{otherPeople[0].code}}</div>
+            <div>Emeil: {{otherPeople[0].email}}</div>
+            <div>Telefoni number: {{otherPeople[0].phoneNumber}}</div>
+        </div>
+        <hr>
+        <div>
+            <h5>Teised isikud:</h5>
+            <div v-for="(person, index) in otherPeople">
+                <div v-if="index > 0">
+                    <div v-if="containsOtherPeople">
+                        <div>Nimi: {{person.name}} {{person.surname}}</div>
+                        <div>Isikukood: {{person.code}}</div>
+                        <div>Emeil: {{person.email}}</div>
+                        <div>Telefoni number: {{person.phoneNumber}}</div>
+                        <div v-if="person.isUnderaged">
+                            Vanema nimi: {{person.guardian.name}} {{person.guardian.surname}}<br>
+                            Vanema isikukood: {{person.guardian.code}}
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div v-for="(person, index) in otherPeople">
+            <hr>
+            <div class="box-with-margin" v-if="containsOtherPeople === true || index === 0">
+                <h4>Isik: {{person.name}} {{person.surname}}</h4>
+
+                <div id="additionalDetails-2">
+                    <div class="row">
+                        <div class="form-group col-sm col-lg-6">
+                            <label for="lastHome">Eelmine elukoht välismaal (riik ja haldusüksus)
+                                ja
+                                Eestist
+                                sinna lahkumise aeg</label>
+                            <input id="lastHome" class="form-control"
+                                    aria-describedby="lastHomeHelp"
+                                    type="text" v-model="person.lastForeignHome">
+                            <small id="lastHomeHelp" class="form-text text-muted">
+                                Täita saabumisel välismaalt
+                            </small>
+                        </div>
+
+                        <div class="form-group col-sm col-lg-6">
+                            <label for="foreignCode">Isikukoodi väljastanud riik ja
+                                isikukood</label>
+                            <input id="foreignCode" class="form-control"
+                                    aria-describedby="foreignCodeHelp" type="text"
+                                    v-model="person.foreignCode">
+                            <small id="foreignCodeHelp" class="form-text text-muted">
+                                Täita välisriigi isikukoodi olemasolul
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="optionalDetails">
+                    <div class="row">
+                        <div class="form-group col-sm col-lg-6">
+                            <label for="nationality">Rahvus</label>
+                            <input id="nationality" class="form-control"
+                                    aria-describedby="nationalityHelp"
+                                    type="text" v-model="person.nationality">
+                            <small id="nationalityHelp" class="form-text text-muted">
+                                Rahvus, millega isik end kõige tihedamalt etniliselt ja kultuuriliselt
+                                tunneb
+                                seotud
+                                olevat
+                            </small>
+                        </div>
+
+                        <div class="form-group col-sm col-lg-6">
+                            <label for="nativeLanguage">Emakeel</label>
+                            <input id="nativeLanguage" class="form-control"
+                                    aria-describedby="nativeLanguageHelp"
+                                    type="text" v-model="person.nativeLanguage">
+                            <small id="nativeLanguageHelp" class="form-text text-muted">
+                                Omandatud varases lapsepõlves esimese keelena ja mida kõige paremini valdab
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm col-lg-6">
+                            <label for="education">Omandatud kõrgeim haridustase</label>
+                            <select id="education" class="form-control" v-model="person.education">
+                                <option selected>Vali...</option>
+                                <option value="0">Alusharidus (koolieelne haridus) või alghariduseta
+                                </option>
+                                <option value="1">Põhiharidus (põhikooli 1.-6. klass), varasem algharidus
+                                </option>
+                                <option value="2">Põhiharidus (põhikooli 7.-9. klass)</option>
+                                <option value="35">Kutsekeskharidus või kutseõpe (sh keskeri- või
+                                    tehnikumiharidus)
+                                    põhihariduse
+                                    baasil
+                                </option>
+                                <option value="3">Keskharidus</option>
+                                <option value="4">Kutsekeskharidus või kutseõpe keskhariduse baasil</option>
+                                <option value="5">Keskeri- ja tehnikumiharidus keskhariduse baasil</option>
+                                <option value="6">Bakalaureus või sellega võrdsustatud haridus (rakendus- ja
+                                    kutsekõrgharidus,
+                                    diplomiõpe)
+                                </option>
+                                <option value="7">Magister või sellega võrdsustatud haridus</option>
+                                <option value="8">Doktor või sellega võrdsustatud haridus</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-sm col-lg-6">
+                            <label for="socialStatus">Sotsiaal-majanduslik
+                                seisund</label>
+                            <select id="socialStatus" class="form-control"
+                                    v-model="person.socialStatus">
+                                <option selected>Vali...</option>
+                                <option value="A">töötav</option>
+                                <option value="B">kodune</option>
+                                <option value="C">töötu/tööd otsiv</option>
+                                <option value="D">ajateenija</option>
+                                <option value="E">(üli)õpilane</option>
+                                <option value="F">pensionär</option>
+                                <option value="G">lapsehoolduspuhkusel</option>
+                                <option value="H">muu mittetöötav</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="signatures" class="box-with-margin" v-if="otherPeople.length > 1">
             Allkirju on vaja järgnevatelt isikutelt:
             <ul>
