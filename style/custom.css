@@ -2,12 +2,21 @@
     width: 50%;
 }
 
-hr {
-    margin-top: 4em;
-}
-
 .req {
     color: red;
+}
+
+.box-header {
+    background-color: #e9e9e9;
+    padding: 1em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+.box-with-margin {
+    background-color: #f6f6f6;
+    padding: 1em;
+    margin: 0.5em;
 }
 
 .justified-text {
