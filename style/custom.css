@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    background-color: #ffffff;
+    background-color: #fcfcfc;
 }
 
 .half-divider {
@@ -15,7 +15,7 @@ body {
 }
 
 .box-header {
-    background-color: #fcfcfc;
+    background-color: #fefefe;
     padding: 1em;
     margin: 2em 0.5em 2em 0.5em;
     box-shadow: 0 0 0.5em #e0e0e0;
