@@ -73,32 +73,32 @@
 
                 <div class="row">
                     <div class="form-group col-sm">
-                        <label for="applicantName">Eesnimi:</label>
+                        <label for="applicantName">Eesnimi<span class="req"> *</span></label>
                         <input id="applicantName" class="form-control" type="text" v-model="otherPeople[0].name"
                                required>
                         <successful-validation-message></successful-validation-message>
                     </div>
 
                     <div class="form-group col-sm">
-                        <label for="applicantSurname">Perekonnanimi:</label>
+                        <label for="applicantSurname">Perekonnanimi <span class="req"> *</span></label>
                         <input id="applicantSurname" class="form-control" type="text"
                                v-model="otherPeople[0].surname" required>
                     </div>
 
                     <div class="form-group col-sm">
-                        <label for="applicantCode">Isikukood:</label>
-                        <input id="applicantCode" class="form-control" type="number" v-model="otherPeople[0].code">
+                        <label for="applicantCode">Isikukood <span class="req"> *</span></label>
+                        <input id="applicantCode" class="form-control" type="number" v-model="otherPeople[0].code" required>
                     </div>
                 </div>
                 <br>
                 <div class="row align-items-center">
                     <div class="form-group col-sm">
-                        <label for="applicantEmail">E-post:</label>
+                        <label for="applicantEmail">E-post</label>
                         <input id="applicantEmail" class="form-control" type="email" v-model="otherPeople[0].email">
                     </div>
 
                     <div class="form-group col-sm">
-                        <label for="applicantPhoneNumber">Telefon:</label>
+                        <label for="applicantPhoneNumber">Telefon</label>
                         <input id="applicantPhoneNumber" class="form-control" type="tel"
                                v-model="otherPeople[0].phoneNumber">
                     </div>
@@ -128,29 +128,29 @@
                     <div v-if="index > 0">
                         <div class="row">
                             <div class="form-group col-sm">
-                                <label for="personName">Eesnimi:</label>
-                                <input id="personName" class="form-control" type="text" v-model="person.name">
+                                <label for="personName">Eesnimi <span class="req"> *</span></label>
+                                <input id="personName" class="form-control" type="text" v-model="person.name" required>
                             </div>
 
                             <div class="form-group col-sm">
-                                <label for="personSurname">Perekonnanimi:</label>
-                                <input id="personSurname" class="form-control" type="text" v-model="person.surname">
+                                <label for="personSurname">Perekonnanimi <span class="req"> *</span></label>
+                                <input id="personSurname" class="form-control" type="text" v-model="person.surname" required>
                             </div>
 
                             <div class="form-group col-sm">
-                                <label for="personCode">Isikukood:</label>
-                                <input id="personCode" class="form-control" type="number" v-model="person.code">
+                                <label for="personCode">Isikukood <span class="req"> *</span></label>
+                                <input id="personCode" class="form-control" type="number" v-model="person.code" required>
                             </div>
                         </div>
 
                         <div class="row align-items-center">
                             <div class="form-group col-sm col-lg-4">
-                                <label for="personEmail">E-post:</label>
+                                <label for="personEmail">E-post</label>
                                 <input id="personEmail" class="form-control" type="email" v-model="person.email">
                             </div>
 
                             <div class="form-group col-sm col-lg-4">
-                                <label for="personPhoneNumber">Telefon:</label>
+                                <label for="personPhoneNumber">Telefon</label>
                                 <input id="personPhoneNumber" class="form-control" type="tel"
                                        v-model="person.phoneNumber">
                             </div>
@@ -170,21 +170,21 @@
                             <h4>Alaealise lapse (laste) teise hooldusõigusliku vanema nõusolek</h4>
                             <div class="row">
                                 <div class="form-group col-sm">
-                                    <label for="guardianName">Eesnimi:</label>
+                                    <label for="guardianName">Eesnimi <span class="req"> *</span></label>
                                     <input id="guardianName" class="form-control" type="text"
-                                           v-model="person.guardian.name">
+                                           v-model="person.guardian.name" required>
                                 </div>
 
                                 <div class="form-group col-sm">
-                                    <label for="guardianSurname">Perekonnanimi:</label>
+                                    <label for="guardianSurname">Perekonnanimi <span class="req"> *</span></label>
                                     <input id="guardianSurname" class="form-control" type="text"
-                                           v-model="person.guardian.surname">
+                                           v-model="person.guardian.surname" required>
                                 </div>
 
                                 <div class="form-group col-sm">
-                                    <label for="guardianCode">Isikukood:</label>
+                                    <label for="guardianCode">Isikukood <span class="req"> *</span></label>
                                     <input id="guardianCode" class="form-control" type="number"
-                                           v-model="person.guardian.code">
+                                           v-model="person.guardian.code" required>
                                 </div>
                             </div>
                         </div>
@@ -216,30 +216,30 @@
 
                 <div class="row">
                     <div class="form-group col-sm col-lg">
-                        <label for="newCountry">Riik:</label>
-                        <input id="newCountry" class="form-control" v-model="newCountry" type="text">
+                        <label for="newCountry">Riik<span class="req"> *</span></label>
+                        <input id="newCountry" class="form-control" v-model="newCountry" type="text" required>
                     </div>
 
                     <div class="form-group col-sm col-lg">
-                        <label for="newCounty">Maakond:</label>
-                        <input id="newCounty" class="form-control" v-model="newCounty" type="text">
+                        <label for="newCounty">Maakond<span class="req"> *</span></label>
+                        <input id="newCounty" class="form-control" v-model="newCounty" type="text" required>
                     </div>
 
                     <div class="form-group col-sm col-lg">
-                        <label for="newTown">Vald/linn, alevik, küla:</label>
-                        <input id="newTown" class="form-control" v-model="newTown" type="text">
+                        <label for="newTown">Vald/linn, alevik, küla<span class="req"> *</span></label>
+                        <input id="newTown" class="form-control" v-model="newTown" type="text" required>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group col-sm col-lg-4">
-                        <label for="newStreet">Tänav/talu, maja nr, korteri nr:</label>
-                        <input id="newStreet" class="form-control" v-model="newStreet" type="text">
+                        <label for="newStreet">Tänav/talu, maja nr, korteri nr<span class="req"> *</span></label>
+                        <input id="newStreet" class="form-control" v-model="newStreet" type="text" required>
                     </div>
 
                     <div class="form-group col-sm col-lg-4">
-                        <label for="newZipCode">Postiindeks:</label>
-                        <input id="newZipCode" class="form-control" v-model="newZipCode" type="text">
+                        <label for="newZipCode">Postiindeks<span class="req"> *</span></label>
+                        <input id="newZipCode" class="form-control" v-model="newZipCode" type="text" required>
                     </div>
                 </div>
 
@@ -252,40 +252,40 @@
 
                 <div class="row">
                     <div class="form-group col-sm">
-                        <label for="countactContry">Riik:</label>
+                        <label for="countactContry">Riik</label>
                         <input id="countactContry" class="form-control" type="text">
                     </div>
 
                     <div class="form-group col-sm">
-                        <label for="contactCounty">Maakond:</label>
+                        <label for="contactCounty">Maakond</label>
                         <input id="contactCounty" class="form-control" type="text">
                     </div>
 
                     <div class="form-group col-sm">
-                        <label for="contactTown">Vald/linn, alevik, küla:</label>
+                        <label for="contactTown">Vald/linn, alevik, küla</label>
                         <input id="contactTown" class="form-control" type="text">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group col-sm col-lg-4">
-                        <label for="contactStreet">Tänav/talu, maja nr, korteri nr:</label>
+                        <label for="contactStreet">Tänav/talu, maja nr, korteri nr</label>
                         <input id="contactStreet" class="form-control" type="text">
                     </div>
 
                     <div class="form-group col-sm col-lg-4">
-                        <label for="contactZipCode">Postiindeks:</label>
+                        <label for="contactZipCode">Postiindeks</label>
                         <input id="contactZipCode" class="form-control" type="text">
                     </div>
                 </div>
 
                 <div class="row align-items-center">
                     <div class="form-group col-sm col-lg-2">
-                        <label for="contactAddressFromDate">Kehtib alates:</label>
+                        <label for="contactAddressFromDate">Kehtib alates</label>
                         <input id="contactAddressFromDate" class="form-control" type="date">
                     </div>
                     <div class="form-group col-sm col-lg-2">
-                        <label for="contactAddressToDate">Kehtib kuni:</label>
+                        <label for="contactAddressToDate">Kehtib kuni</label>
                         <input id="contactAddressToDate" class="form-control" type="date">
                     </div>
                     <small class="form-text text-muted col-sm col-lg">Täita juhul, kui aadressi kehtivuse alguse
@@ -294,10 +294,6 @@
                         kehtivus
                         lõpeb.
                     </small>
-
-                </div>
-                <div class="row">
-
                 </div>
             </div>
         </form>
@@ -381,18 +377,18 @@
 
                 <div class="row">
                     <div class="form-group col-sm col-lg-4">
-                        <label for="ownerName">Eesnimi:</label>
-                        <input id="ownerName" class="form-control" type="text">
+                        <label for="ownerName">Eesnimi<span class="req"> *</span></label>
+                        <input id="ownerName" class="form-control" type="text" required>
                     </div>
 
                     <div class="form-group col-sm col-lg-4">
-                        <label for="ownerSurname">Perekonnanimi:</label>
-                        <input id="ownerSurname" class="form-control" type="text">
+                        <label for="ownerSurname">Perekonnanimi<span class="req"> *</span></label>
+                        <input id="ownerSurname" class="form-control" type="text" required>
                     </div>
 
                     <div class="form-group col-sm col-lg-4">
-                        <label for="ownerCode">Isikukood:</label>
-                        <input id="ownerCode" class="form-control" type="number">
+                        <label for="ownerCode">Isikukood<span class="req"> *</span></label>
+                        <input id="ownerCode" class="form-control" type="number" required>
                     </div>
                 </div>
             </div>
@@ -400,10 +396,10 @@
             <div id="additionalDocuments"
                  v-if="ownershipSelection === 'contract' || ownershipSelection === 'ownerApprovalOnPaper' || ownershipSelection === 'otherCause'">
                 <hr>
-                <h3>Lisatavad dokumendid:</h3>
+                <h3>Lisatavad dokumendid</h3>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
+                    <label class="custom-file-label" for="customFile">Vali fail</label>
                 </div>
             </div>
         </form>
@@ -439,7 +435,7 @@
                                     <label for="lastHome">Eelmine elukoht välismaal (riik ja haldusüksus)
                                         ja
                                         Eestist
-                                        sinna lahkumise aeg:</label>
+                                        sinna lahkumise aeg</label>
                                     <input id="lastHome" class="form-control"
                                            aria-describedby="lastHomeHelp"
                                            type="text" v-model="person.lastForeignHome">
@@ -450,7 +446,7 @@
 
                                 <div class="form-group col-sm col-lg-6">
                                     <label for="foreignCode">Isikukoodi väljastanud riik ja
-                                        isikukood:</label>
+                                        isikukood</label>
                                     <input id="foreignCode" class="form-control"
                                            aria-describedby="foreignCodeHelp" type="text"
                                            v-model="person.foreignCode">
@@ -464,7 +460,7 @@
                         <div id="optionalDetails">
                             <div class="row">
                                 <div class="form-group col-sm col-lg-6">
-                                    <label for="nationality">Rahvus:</label>
+                                    <label for="nationality">Rahvus</label>
                                     <input id="nationality" class="form-control"
                                            aria-describedby="nationalityHelp"
                                            type="text" v-model="person.nationality">
@@ -477,7 +473,7 @@
                                 </div>
 
                                 <div class="form-group col-sm col-lg-6">
-                                    <label for="nativeLanguage">Emakeel:</label>
+                                    <label for="nativeLanguage">Emakeel</label>
                                     <input id="nativeLanguage" class="form-control"
                                            aria-describedby="nativeLanguageHelp"
                                            type="text" v-model="person.nativeLanguage">
@@ -489,7 +485,7 @@
 
                             <div class="row">
                                 <div class="form-group col-sm col-lg-6">
-                                    <label for="education">Omandatud kõrgeim haridustase:</label>
+                                    <label for="education">Omandatud kõrgeim haridustase</label>
                                     <select id="education" class="form-control" v-model="person.education">
                                         <option selected>Vali...</option>
                                         <option value="0">Alusharidus (koolieelne haridus) või alghariduseta
@@ -516,7 +512,7 @@
 
                                 <div class="form-group col-sm col-lg-6">
                                     <label for="socialStatus">Sotsiaal-majanduslik
-                                        seisund:</label>
+                                        seisund</label>
                                     <select id="socialStatus" class="form-control"
                                             v-model="person.socialStatus">
                                         <option selected>Vali...</option>
@@ -569,7 +565,7 @@
                 valeandmete
                 esitamine
                 kriminaalkorras karistatav.</p>
-            <div class="form-group col-sm col-lg-2">
+            <div class="form-group col-sm col-lg-2" style="padding-left: 0;">
                 <label for="confirmationDate">Kuupäev:</label>
                 <input id="confirmationDate" class="form-control" type="date">
             </div>
@@ -598,6 +594,7 @@
                 Edasi <span class="fas fa-angle-double-right"></span>
             </button>
         </div>
+        <br>
     </div>
 
 </main>

@@ -6,6 +6,10 @@ hr {
     margin-top: 4em;
 }
 
+.req {
+    color: red;
+}
+
 .justified-text {
     text-align: justify;
 }
