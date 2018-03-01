@@ -25,6 +25,14 @@ var vm = new Vue({
             errors: []
         }
     },
+    computed: {
+        previousPageDisabled: function () {
+            return this.pageIdx <= 1;
+        },
+        nextPageDisabled: function () {
+            return this.pageIdx >= 5;
+        }
+    },
     methods: {
         addElement: function () {
             this.otherPeople.push({

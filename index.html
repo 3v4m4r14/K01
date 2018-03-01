@@ -602,11 +602,11 @@
         <br>
 
         <div class="row d-flex justify-content-around">
-            <button id="previousPage" class="btn btn-primary" @click="previousPage()" type="button">
+            <button id="previousPage" class="btn btn-primary" @click="previousPage()" type="button" :disabled="previousPageDisabled">
                 <span class="fas fa-angle-double-left"></span> Tagasi
             </button>
 
-            <button id="nextPage" class="btn btn-primary" @click="nextPage()" type="button">
+            <button id="nextPage" class="btn btn-primary" @click="nextPage()" type="button" :disabled="nextPageDisabled">
                 Edasi <span class="fas fa-angle-double-right"></span>
             </button>
         </div>
