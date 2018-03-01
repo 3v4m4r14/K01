@@ -1,5 +1,5 @@
 body {
-    background-color: #e4e4e4;
+    background-color: #ffffff;
 }
 
 .half-divider {
@@ -11,18 +11,17 @@ body {
 }
 
 .box-header {
-    background-color: #f6f6f6;
+    background-color: #fcfcfc;
     padding: 1em;
-    margin-left: 0.5em;
-    margin-right: 0.5em;
-    box-shadow: 0 0 0.5em #a8a8a8;
+    margin: 2em 0.5em 2em 0.5em;
+    box-shadow: 0 0 0.5em #e0e0e0;
 }
 
 .box-with-margin {
     background-color: #ffffff;
     padding: 1em;
-    margin: 0.5em;
-    box-shadow: 0 0 0.5em #a8a8a8;
+    margin: 2em 0.5em 2em 0.5em;
+    box-shadow: 0 0 0.5em #e0e0e0;
 }
 
 .justified-text {

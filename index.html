@@ -66,6 +66,7 @@
         </div>
     </div>
 
+
     <div id="applicantPage" v-if="pageIdx === 1">
         <form id="applicantForm" class="needs-validation" novalidate>
 
@@ -551,7 +552,7 @@
 
 
     <div id="confirmationPage" v-if="pageIdx === 5">
-        <div id="signatures" v-if="otherPeople.length > 1">
+        <div id="signatures" class="box-with-margin" v-if="otherPeople.length > 1">
             Allkirju on vaja järgnevatelt isikutelt:
             <ul>
                 <div class="col-sm col-lg" v-for="(person, index) in otherPeople">
@@ -570,12 +571,11 @@
                     :disabled="sentForSigning">
                 <span class="fas fa-envelope"></span> Saada allkirjastamisele
             </button>
-
-            <hr>
         </div>
 
+        <hr v-if="otherPeople.length > 1">
 
-        <div id="confirmation">
+        <div id="confirmation" class="box-with-margin">
             <p>Kinnitan elukohateatel esitatud andmete õigsust ja olen teadlik, et esitatud andmed kantakse
                 rahvastikuregistrisse. Olen teadlik, et vastavalt karistusseadustikule on ametiasutusele
                 valeandmete
@@ -585,10 +585,10 @@
                 <label for="confirmationDate">Kuupäev:</label>
                 <input id="confirmationDate" class="form-control" type="date">
             </div>
+            <button class="btn btn-primary" @click="sign()" type="button" :disabled="signed">
+                <span class="fas fa-pencil-alt"></span> Allkirjasta digitaalselt
+            </button>
         </div>
-        <button class="btn btn-primary" @click="sign()" type="button" :disabled="signed">
-            <span class="fas fa-pencil-alt"></span> Allkirjasta digitaalselt
-        </button>
     </div>
 
     <hr>
