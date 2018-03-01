@@ -556,12 +556,14 @@
             Allkirju on vaja järgnevatelt isikutelt:
             <ul>
                 <div class="col-sm col-lg" v-for="(person, index) in otherPeople">
-                    <div v-if="containsOtherPeople === true || index === 0">
-                        <!--Täisealiste allkirjad siin-->
-                        <li>{{person.name}} {{person.surname}}</li>
-                        <div v-if="person.isUnderaged === true">
-                            <!-- Alaealise eestkostja allkirjad siin-->
-                            <li>{{person.guardian.name}} {{person.guardian.surname}}</li>
+                    <div v-if="containsOtherPeople">
+                        <div v-if="index > 0">
+                            <div v-if="person.isUnderaged">
+                                <li>{{person.guardian.name}} {{person.guardian.surname}}</li>
+                            </div>
+                            <div v-else>
+                                <li>{{person.name}} {{person.surname}}</li>
+                            </div>
                         </div>
                     </div>
                 </div>
