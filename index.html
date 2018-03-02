@@ -578,6 +578,67 @@
         </table>
         -->
 
+        <dl class="row" v-for="(person, index) in otherPeople" v-if="index > 0" v-if="containsOtherPeople">
+            <dt class="col-sm-3">Nimi:</dt>
+            <dd class="col-sm-9">{{person.name}} {{person.surname}}</dd>
+            <dt class="col-sm-3">Isikukood:</dt>
+            <dd class="col-sm-9">{{person.code}}</dd>
+            <dt class="col-sm-3">Emeil:</dt>
+            <dd class="col-sm-9">{{person.email}}</dd>
+            <dt class="col-sm-3">Telefoni number:</dt>
+            <dd class="col-sm-9">{{person.phoneNumber}}</dd>
+            <dt class="col-sm-3">Vanem</dt>
+                <dl class="row">
+                    <dt class="col-sm-4">Nimi:</dt>
+                    <dd class="col-sm-8">{{person.guardian.name}} {{person.guardian.surname}}</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-4">Isikukood:</dt>
+                    <dd class="col-sm-8">{{person.guardian.code}}</dd>
+                </dl>
+            <div v-if="index > 0">
+                <div v-if="containsOtherPeople">
+                    <dt class="col-sm-3">Nimi:</dt>
+                    <dd class="col-sm-9">{{person.name}} {{person.surname}}</dd>
+                    <dt class="col-sm-3">Isikukood:</dt>
+                    <dd class="col-sm-9">{{person.code}}</dd>
+                    <dt class="col-sm-3">Emeil:</dt>
+                    <dd class="col-sm-9">{{person.email}}</dd>
+                    <dt class="col-sm-3">Telefoni number:</dt>
+                    <dd class="col-sm-9">{{person.phoneNumber}}</dd>
+                    <div v-if="person.isUnderaged">
+                        Vanema nimi: {{person.guardian.name}} {{person.guardian.surname}}<br>
+                        Vanema isikukood: {{person.guardian.code}}
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <!--
+            <dt class="col-sm-3">Description lists</dt>
+            <dd class="col-sm-9">A description list is perfect for defining terms.</dd>
+          
+            <dt class="col-sm-3">Euismod</dt>
+            <dd class="col-sm-9">
+              <p>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</p>
+              <p>Donec id elit non mi porta gravida at eget metus.</p>
+            </dd>
+          
+            <dt class="col-sm-3">Malesuada porta</dt>
+            <dd class="col-sm-9">Etiam porta sem malesuada magna mollis euismod.</dd>
+          
+            <dt class="col-sm-3 text-truncate">Truncated term is truncated</dt>
+            <dd class="col-sm-9">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</dd>
+          
+            <dt class="col-sm-3">Nesting</dt>
+            <dd class="col-sm-9">
+              <dl class="row">
+                <dt class="col-sm-4">Nested definition list</dt>
+                <dd class="col-sm-8">Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc.</dd>
+              </dl>
+            </dd>
+            -->
+        </dl>
+
         <div>
             <h5>Esitaja:</h5>
             <div>Nimi: {{otherPeople[0].name}} {{otherPeople[0].surname}}</div>
