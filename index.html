@@ -79,8 +79,9 @@
                         <div class="form-group col-sm">
                             <label for="applicantName">Eesnimi<span class="req"> *</span></label>
                             <input id="applicantName" class="form-control" type="text" v-model="otherPeople[0].name"
-                                   required pattern="^[\p{L}]([ -]*[\p{L}]+)*$">
+                                   required pattern="^[\p{L}]([ -]*[\p{L}]+)*$" v-on:input="validateName('applicantName')">
                             <successful-validation-message></successful-validation-message>
+                            <div class="invalid-tooltip" v-if="errors.hasOwnProperty('applicantName')">{{errors.applicantName}}</div>
                         </div>
 
                         <div class="form-group col-sm">
