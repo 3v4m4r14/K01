@@ -22,7 +22,9 @@ var vm = new Vue({
             containsOtherPeople: false,
             ownershipSelection: "",
             otherPeople: [],
-            errors: []
+            errors: {
+            },
+            nameValidationMsg: "Haige kala"
         }
     },
     computed: {
@@ -73,13 +75,31 @@ var vm = new Vue({
             form.classList.remove('was-validated');
             if (form.checkValidity() !== false) {
                 this.canChange = true;
-                return;
+                return true;
             }
             form.classList.add('was-validated');
+            return false;
+        },
+        validateName: function (id) {
+            this.errors[id] = this.nameValidationMsg;
+            var input = document.getElementById(id);
+            if (input.value === "") {
+                input.setCustomValidity("Palun sisesta nimi")
+            } else if (input.value.trim() === "") {
+                input.setCustomValidity("Nimi ei tohi koosneda ainult tühikutest");
+            } else {
+                input.setCustomValidity("");
+            }
+            this.errors[id] = input.validationMessage;
         },
         nextPage: function () {
             if (this.pageIdx === 1) {
-                this.checkValidityFor('applicantForm');
+                if (!this.checkValidityFor('applicantForm')) {
+                    // if (this.otherPeople[0].name === "Eva") {
+                    //     document.getElementById("applicantName").setCustomValidity("Hahahaha");
+                    //     alert("Yolo");
+                    // }
+                }
             }
             else if (this.pageIdx === 2) {
                 this.checkValidityFor('addressForm');

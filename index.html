@@ -79,33 +79,45 @@
                         <div class="form-group col-sm">
                             <label for="applicantName">Eesnimi<span class="req"> *</span></label>
                             <input id="applicantName" class="form-control" type="text" v-model="otherPeople[0].name"
-                                   required>
+                                   required pattern="^[\p{L}]([ -]{0,1}[\p{L}]+)*$"
+                                   v-on:input="validateName('applicantName')">
                             <successful-validation-message></successful-validation-message>
+                            <div class="invalid-tooltip" v-if="errors.hasOwnProperty('applicantName')">
+                                {{errors.applicantName}}
+                            </div>
                         </div>
 
                         <div class="form-group col-sm">
                             <label for="applicantSurname">Perekonnanimi <span class="req"> *</span></label>
                             <input id="applicantSurname" class="form-control" type="text"
-                                   v-model="otherPeople[0].surname" required>
+                                   v-model="otherPeople[0].surname" required pattern="^[\p{L}]([ -]{0,1}[\p{L}]+)*$"
+                                   v-on:input="validateName('applicantSurname')">
+                            <successful-validation-message></successful-validation-message>
+                            <div class="invalid-tooltip" v-if="errors.hasOwnProperty('applicantSurname')">
+                                {{errors.applicantSurname}}
+                            </div>
+
                         </div>
 
                         <div class="form-group col-sm">
                             <label for="applicantCode">Isikukood <span class="req"> *</span></label>
-                            <input id="applicantCode" class="form-control" type="number" v-model="otherPeople[0].code"
-                                   required>
+                            <input id="applicantCode" class="form-control" type="text" v-model="otherPeople[0].code"
+                                   required pattern="^[1-6][0-9]{2}[01][0-9][0-9]{2}[0-9]{4}$">
+                            <!-- https://ipsec.pl/data-protection/2012/european-personal-data-regexp-patterns.html -->
                         </div>
                     </div>
-                    <br>
+
                     <div class="row align-items-center">
                         <div class="form-group col-sm">
                             <label for="applicantEmail">E-post</label>
-                            <input id="applicantEmail" class="form-control" type="email" v-model="otherPeople[0].email">
+                            <input id="applicantEmail" class="form-control" type="text" v-model="otherPeople[0].email"
+                                   required pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$">
                         </div>
 
                         <div class="form-group col-sm">
                             <label for="applicantPhoneNumber">Telefon</label>
                             <input id="applicantPhoneNumber" class="form-control" type="tel"
-                                   v-model="otherPeople[0].phoneNumber">
+                                   v-model="otherPeople[0].phoneNumber" required>
                         </div>
 
                         <div class="col-sm">
@@ -139,13 +151,21 @@
                             <div class="form-group col-sm">
                                 <label for="personName">Eesnimi <span class="req"> *</span></label>
                                 <input id="personName" class="form-control" type="text" v-model="person.name"
-                                       required>
+                                       required v-on:input="validateName('personName')">
+                                <successful-validation-message></successful-validation-message>
+                                <div class="invalid-tooltip" v-if="errors.hasOwnProperty('personName')">
+                                    {{errors.personName}}
+                                </div>
                             </div>
 
                             <div class="form-group col-sm">
                                 <label for="personSurname">Perekonnanimi <span class="req"> *</span></label>
                                 <input id="personSurname" class="form-control" type="text" v-model="person.surname"
-                                       required>
+                                       required v-on:input="validateName('personSurname')">
+                                <successful-validation-message></successful-validation-message>
+                                <div class="invalid-tooltip" v-if="errors.hasOwnProperty('personSurname')">
+                                    {{errors.personSurname}}
+                                </div>
                             </div>
 
                             <div class="form-group col-sm">
@@ -154,7 +174,7 @@
                                        required>
                             </div>
                         </div>
-                        <br>
+
                         <div class="row align-items-center">
                             <div class="form-group col-sm col-lg-4">
                                 <label for="personEmail">E-post</label>
@@ -177,20 +197,28 @@
                             </div>
                         </div>
 
-                        <br>
+
                         <div id="guardianConsent" v-if="person.isUnderaged">
                             <h5>Alaealise lapse (laste) teise hooldusõigusliku vanema nõusolek</h5>
                             <div class="row">
                                 <div class="form-group col-sm">
                                     <label for="guardianName">Eesnimi <span class="req"> *</span></label>
                                     <input id="guardianName" class="form-control" type="text"
-                                           v-model="person.guardian.name" required>
+                                           v-model="person.guardian.name" required
+                                           v-on:input="validateName('guardianName')">
+                                    <div class="invalid-tooltip" v-if="errors.hasOwnProperty('guardianName')">
+                                        {{errors.guardianName}}
+                                    </div>
                                 </div>
 
                                 <div class="form-group col-sm">
                                     <label for="guardianSurname">Perekonnanimi <span class="req"> *</span></label>
                                     <input id="guardianSurname" class="form-control" type="text"
-                                           v-model="person.guardian.surname" required>
+                                           v-model="person.guardian.surname" required
+                                           v-on:input="validateName('guardianSurname')">
+                                    <div class="invalid-tooltip" v-if="errors.hasOwnProperty('guardianSurname')">
+                                        {{errors.guardianSurname}}
+                                    </div>
                                 </div>
 
                                 <div class="form-group col-sm">
@@ -321,32 +349,31 @@
         <form id="approvalForm" class="needs-validation" novalidate>
             <div id="usageApproval">
                 <div class="box-header">
-                    <h3 style="display: inline-block; padding-right: 10px">Ruumi kasutamise õigus</h3>
+                    <h3 style="display: inline-block; padding-right: 10px;">Ruumi kasutamise õigus</h3>
                     <button class="btn btn-info btn-sm" type="button" data-toggle="collapse"
                             data-target="#collapseExample"
                             aria-expanded="false" aria-controls="collapseExample">
                         <span class="fas fa-info-circle"></span>
                     </button>
-
-                    <div class="collapse" id="collapseExample">
+                    <div id="collapseExample" class="collapse" style="margin-top: 10px;">
                         <div class="card card-body">
-                            <p class="form-text text-muted">- Ruumi kasutusõigust tõendava dokumendi olemasolul (nt
-                                üürileping)
-                                ei pea elukohateatele
-                                täiendavalt lisama ruumi omaniku nõusolekut.<br>
-                                - Kui isik ei ole ise kaasomanik, on kaasomandis oleva ruumi andmete esitamisel vajalik
-                                kõigi
-                                kaasomanike või nende esindajate nõusolek. Kaasomanike vahel sõlmitud ruumi kasutamise
-                                kokkuleppe
-                                korral võib nõusolekute asemel lisada vastavat kokkulepet tõendava dokumendi.<br>
-                                - Ruumi omaniku nõusolekut või ruumi kasutamise õigust tõendavat dokumenti ei ole vaja,
-                                kui
-                                esitatakse perekonnaliikmele (nt abikaasa, alaealine laps) kuuluva ruumi või välisriigi
-                                elukoha
-                                aadress.<br>
-                                - Ruumi kasutamise muuks aluseks võib olla näiteks isiklik kasutusõigus või ruumi
-                                kasutamine
-                                perekonnaliikmena.</p>
+                            <ul class="text-secondary justified-text">
+                                <li>Ruumi kasutusõigust tõendava dokumendi olemasolul (nt üürileping) ei pea
+                                    elukohateatele täiendavalt lisama ruumi omaniku nõusolekut.
+                                </li>
+                                <li>Kui isik ei ole ise kaasomanik, on kaasomandis oleva ruumi andmete esitamisel
+                                    vajalik kõigi kaasomanike või nende esindajate nõusolek. Kaasomanike vahel sõlmitud
+                                    ruumi kasutamise kokkuleppe korral võib nõusolekute asemel lisada vastavat
+                                    kokkulepet tõendava dokumendi.
+                                </li>
+                                <li>Ruumi omaniku nõusolekut või ruumi kasutamise õigust tõendavat dokumenti ei ole
+                                    vaja, kui esitatakse perekonnaliikmele (nt abikaasa, alaealine laps) kuuluva ruumi
+                                    või välisriigi elukoha aadress.
+                                </li>
+                                <li>Ruumi kasutamise muuks aluseks võib olla näiteks isiklik kasutusõigus või ruumi
+                                    kasutamine perekonnaliikmena.
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -401,12 +428,20 @@
                     <div class="row">
                         <div class="form-group col-sm col-lg-4">
                             <label for="ownerName">Eesnimi<span class="req"> *</span></label>
-                            <input id="ownerName" class="form-control" type="text" required>
+                            <input id="ownerName" class="form-control" type="text" required
+                                   v-on:input="validateName('ownerName')">
+                            <div class="invalid-tooltip" v-if="errors.hasOwnProperty('ownerName')">
+                                {{errors.ownerName}}
+                            </div>
                         </div>
 
                         <div class="form-group col-sm col-lg-4">
                             <label for="ownerSurname">Perekonnanimi<span class="req"> *</span></label>
-                            <input id="ownerSurname" class="form-control" type="text" required>
+                            <input id="ownerSurname" class="form-control" type="text" required
+                                   v-on:input="validateName('ownerSurname')">
+                            <div class="invalid-tooltip" v-if="errors.hasOwnProperty('ownerSurname')">
+                                {{errors.ownerSurname}}
+                            </div>
                         </div>
 
                         <div class="form-group col-sm col-lg-4">
@@ -446,11 +481,9 @@
                         <h4>Isik: {{person.name}} {{person.surname}}</h4>
 
                         <div id="additionalDetails-2">
-                            <div class="row">
+                            <div class="row d-flex align-items-end">
                                 <div class="form-group col-sm col-lg-6">
-                                    <label for="lastHome">Eelmine elukoht välismaal (riik ja haldusüksus)
-                                        ja
-                                        Eestist
+                                    <label for="lastHome">Eelmine elukoht välismaal (riik ja haldusüksus) ja Eestist
                                         sinna lahkumise aeg</label>
                                     <input id="lastHome" class="form-control"
                                            aria-describedby="lastHomeHelp"
@@ -481,10 +514,8 @@
                                            aria-describedby="nationalityHelp"
                                            type="text" v-model="person.nationality">
                                     <small id="nationalityHelp" class="form-text text-muted">
-                                        Rahvus, millega isik end kõige tihedamalt etniliselt ja kultuuriliselt
-                                        tunneb
-                                        seotud
-                                        olevat
+                                        Rahvus, millega isik end kõige tihedamalt etniliselt ja kultuuriliselt tunneb
+                                        seotud olevat
                                     </small>
                                 </div>
 
@@ -804,10 +835,10 @@
                 valeandmete
                 esitamine
                 kriminaalkorras karistatav.</p>
-            <div class="form-group col-sm col-lg-2" style="padding-left: 0;">
-                <label for="confirmationDate">Kuupäev:</label>
-                <input id="confirmationDate" class="form-control" type="date">
-            </div>
+            <!--<div class="form-group col-sm col-lg-2" style="padding-left: 0;">-->
+            <!--<label for="confirmationDate">Kuupäev:</label>-->
+            <!--<input id="confirmationDate" class="form-control" type="date">-->
+            <!--</div>-->
             <button class="btn btn-primary" @click="sign()" type="button" :disabled="signed">
                 <span class="fas fa-pencil-alt"></span> Allkirjasta digitaalselt
             </button>
@@ -825,11 +856,13 @@
         <br>
 
         <div class="row d-flex justify-content-around">
-            <button id="previousPage" class="btn btn-primary" @click="previousPage()" type="button" :disabled="previousPageDisabled">
+            <button id="previousPage" class="btn btn-primary" @click="previousPage()" type="button"
+                    :disabled="previousPageDisabled">
                 <span class="fas fa-angle-double-left"></span> Tagasi
             </button>
 
-            <button id="nextPage" class="btn btn-primary" @click="nextPage()" type="button" :disabled="nextPageDisabled">
+            <button id="nextPage" class="btn btn-primary" @click="nextPage()" type="button"
+                    :disabled="nextPageDisabled">
                 Edasi <span class="fas fa-angle-double-right"></span>
             </button>
         </div>
