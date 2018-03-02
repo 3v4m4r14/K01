@@ -27,7 +27,7 @@ var vm = new Vue({
     },
     computed: {
         previousPageDisabled: function () {
-            return this.pageIdx <= 1;
+            return this.pageIdx <= 1 || this.sentForSigning || this.signed;
         },
         nextPageDisabled: function () {
             return this.pageIdx >= 5;
@@ -137,12 +137,18 @@ var vm = new Vue({
                 this.progress = this.pageIdx / 5 * 100;
                 this.canChange = false;
             }
+            this.scrollToTop();
         },
         previousPage: function () {
             if (this.pageIdx > 0) {
                 this.pageIdx -= 1;
                 this.progress = this.pageIdx / 5 * 100;
             }
+            this.scrollToTop();
+        },
+        scrollToTop: function () {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         },
         validEmail: function (email) {
             var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
