@@ -79,7 +79,7 @@
                         <div class="form-group col-sm">
                             <label for="applicantName">Eesnimi<span class="req"> *</span></label>
                             <input id="applicantName" class="form-control" type="text" v-model="otherPeople[0].name"
-                                   required pattern="^[\p{L}]([ -]{0,1}[\p{L}]+)*$"
+                                   required
                                    v-on:input="validateName('applicantName')">
                             <successful-validation-message></successful-validation-message>
                             <div class="invalid-tooltip" v-if="errors.hasOwnProperty('applicantName')">
@@ -90,7 +90,7 @@
                         <div class="form-group col-sm">
                             <label for="applicantSurname">Perekonnanimi <span class="req"> *</span></label>
                             <input id="applicantSurname" class="form-control" type="text"
-                                   v-model="otherPeople[0].surname" required pattern="^[\p{L}]([ -]{0,1}[\p{L}]+)*$"
+                                   v-model="otherPeople[0].surname" required
                                    v-on:input="validateName('applicantSurname')">
                             <successful-validation-message></successful-validation-message>
                             <div class="invalid-tooltip" v-if="errors.hasOwnProperty('applicantSurname')">
@@ -102,8 +102,12 @@
                         <div class="form-group col-sm">
                             <label for="applicantCode">Isikukood <span class="req"> *</span></label>
                             <input id="applicantCode" class="form-control" type="text" v-model="otherPeople[0].code"
-                                   required pattern="^[1-6][0-9]{2}[01][0-9][0-9]{2}[0-9]{4}$">
-                            <!-- https://ipsec.pl/data-protection/2012/european-personal-data-regexp-patterns.html -->
+                                   required pattern="^[1-6][0-9]{2}[01][0-9][0-9]{2}[0-9]{4}$"
+                                   v-on:input="validateCode('applicantCode')">
+                            <successful-validation-message></successful-validation-message>
+                            <div class="invalid-tooltip" v-if="errors.hasOwnProperty('applicantCode')">
+                                {{errors.applicantCode}}
+                            </div>
                         </div>
                     </div>
 
@@ -111,13 +115,23 @@
                         <div class="form-group col-sm">
                             <label for="applicantEmail">E-post</label>
                             <input id="applicantEmail" class="form-control" type="text" v-model="otherPeople[0].email"
-                                   required pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$">
+                                   required
+                                   v-on:input="validateEmail('applicantEmail')">
+                            <successful-validation-message></successful-validation-message>
+                            <div class="invalid-tooltip" v-if="errors.hasOwnProperty('applicantEmail')">
+                                {{errors.applicantEmail}}
+                            </div>
                         </div>
 
                         <div class="form-group col-sm">
                             <label for="applicantPhoneNumber">Telefon</label>
                             <input id="applicantPhoneNumber" class="form-control" type="tel"
-                                   v-model="otherPeople[0].phoneNumber" required>
+                                   v-model="otherPeople[0].phoneNumber" required
+                                   v-on:input="validateName('applicantPhoneNumber')">
+                            <successful-validation-message></successful-validation-message>
+                            <div class="invalid-tooltip" v-if="errors.hasOwnProperty('applicantPhoneNumber')">
+                                {{errors.applicantPhoneNumber}}
+                            </div>
                         </div>
 
                         <div class="col-sm">
