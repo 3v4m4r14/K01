@@ -91,7 +91,6 @@
                             <input id="applicantSurname" class="form-control" type="text"
                                    v-model="otherPeople[0].surname" required
                                    v-on:input="validateName('applicantSurname', 0)">
-                            <successful-validation-message></successful-validation-message>
                             <div class="invalid-tooltip" v-if="hasError('applicantSurname', 0)">
                                 {{errors.applicantSurname[0]}}
                             </div>
@@ -103,7 +102,6 @@
                             <input id="applicantCode" class="form-control" type="text" v-model="otherPeople[0].code"
                                    required pattern="^[1-6][0-9]{2}[01][0-9][0-9]{2}[0-9]{4}$"
                                    v-on:input="validateCode('applicantCode', 0)">
-                            <successful-validation-message></successful-validation-message>
                             <div class="invalid-tooltip" v-if="hasError('applicantCode', 0)">
                                 {{errors.applicantCode[0]}}
                             </div>
@@ -112,22 +110,20 @@
 
                     <div class="row align-items-center">
                         <div class="form-group col-sm">
-                            <label for="applicantEmail">E-post</label>
+                            <label for="applicantEmail">E-post <span class="req"> *</span></label>
                             <input id="applicantEmail" class="form-control" type="text" v-model="otherPeople[0].email"
                                    required
                                    v-on:input="validateEmail('applicantEmail', 0)">
-                            <successful-validation-message></successful-validation-message>
                             <div class="invalid-tooltip" v-if="hasError('applicantEmail', 0)">
                                 {{errors.applicantEmail[0]}}
                             </div>
                         </div>
 
                         <div class="form-group col-sm">
-                            <label for="applicantPhoneNumber">Telefon</label>
+                            <label for="applicantPhoneNumber">Telefon <span class="req"> *</span></label>
                             <input id="applicantPhoneNumber" class="form-control" type="tel"
                                    v-model="otherPeople[0].phoneNumber" required
                                    v-on:input="validatePhoneNumber('applicantPhoneNumber', 0)">
-                            <successful-validation-message></successful-validation-message>
                             <div class="invalid-tooltip" v-if="hasError('applicantPhoneNumber', 0)">
                                 {{errors.applicantPhoneNumber}}
                             </div>
@@ -192,14 +188,21 @@
 
                         <div class="row align-items-center">
                             <div class="form-group col-sm col-lg-4">
-                                <label for="personEmail">E-post</label>
-                                <input id="personEmail" class="form-control" type="email" v-model="person.email">
+                                <label for="personEmail">E-post <span class="req"> *</span></label>
+                                <input id="personEmail" class="form-control personEmail" type="text" v-model="person.email" 
+                                    required v-on:input="validateEmail('personEmail', index)">
+                                <div class="invalid-tooltip" v-if="hasError('personEmail', index)">
+                                    {{errors.personEmail[index]}}
+                                </div>
                             </div>
 
                             <div class="form-group col-sm col-lg-4">
-                                <label for="personPhoneNumber">Telefon</label>
-                                <input id="personPhoneNumber" class="form-control" type="tel"
-                                       v-model="person.phoneNumber">
+                                <label for="personPhoneNumber">Telefon <span class="req"> *</span></label>
+                                <input id="personPhoneNumber" class="form-control personPhoneNumber" type="tel"
+                                       v-model="person.phoneNumber" required v-on:input="validatePhoneNumber('personPhoneNumber', index)">
+                                <div class="invalid-tooltip" v-if="hasError('personPhoneNumber', index)">
+                                    {{errors.personPhoneNumber[index]}}
+                                </div>
                             </div>
 
                             <div class="col-sm col-lg-4">
@@ -218,31 +221,31 @@
                             <div class="row">
                                 <div class="form-group col-sm">
                                     <label for="guardianName">Eesnimi <span class="req"> *</span></label>
-                                    <input id="guardianName" class="form-control" type="text"
+                                    <input id="guardianName" class="form-control guardianName" type="text"
                                            v-model="person.guardian.name" required
                                            v-on:input="validateName('guardianName', index)">
-                                    <div class="invalid-tooltip" v-if="errors.hasOwnProperty('guardianName')">
+                                    <div class="invalid-tooltip" v-if="hasError('guardianName', index)">
                                         {{errors.guardianName[index]}}
                                     </div>
                                 </div>
 
                                 <div class="form-group col-sm">
                                     <label for="guardianSurname">Perekonnanimi <span class="req"> *</span></label>
-                                    <input id="guardianSurname" class="form-control" type="text"
+                                    <input id="guardianSurname" class="form-control guardianSurname" type="text"
                                            v-model="person.guardian.surname" required
                                            v-on:input="validateName('guardianSurname', index)">
-                                    <div class="invalid-tooltip" v-if="errors.hasOwnProperty('guardianSurname')">
+                                    <div class="invalid-tooltip" v-if="hasError('guardianSurname', index)">
                                         {{errors.guardianSurname[index]}}
                                     </div>
                                 </div>
 
                                 <div class="form-group col-sm">
                                     <label for="guardianCode">Isikukood <span class="req"> *</span></label>
-                                    <input id="guardianCode" class="form-control" type="number"
+                                    <input id="guardianCode" class="form-control guardianCode" type="number"
                                            v-model="person.guardian.code" required
-                                           v-on:input="validateCode('guardianCode')">
-                                    <div class="invalid-tooltip" v-if="errors.hasOwnProperty('guardianCode')">
-                                        {{errors.guardianCode}}
+                                           v-on:input="validateCode('guardianCode', index)">
+                                    <div class="invalid-tooltip" v-if="hasError('guardianCode', index)">
+                                        {{errors.guardianCode[index]}}
                                     </div>
                                 </div>
                             </div>
@@ -277,29 +280,49 @@
                     <div class="row">
                         <div class="form-group col-sm col-lg">
                             <label for="newCountry">Riik<span class="req"> *</span></label>
-                            <input id="newCountry" class="form-control" v-model="newCountry" type="text" required>
+                            <input id="newCountry" class="form-control newCountry" v-model="newCountry" type="text" required
+                                v-on:input="validateAddress('newCountry', 0)">
+                            <div class="invalid-tooltip" v-if="hasError('newCountry', 0)">
+                                {{errors.newCountry[0]}}
+                            </div>
                         </div>
 
                         <div class="form-group col-sm col-lg">
                             <label for="newCounty">Maakond<span class="req"> *</span></label>
-                            <input id="newCounty" class="form-control" v-model="newCounty" type="text" required>
+                            <input id="newCounty" class="form-control newCounty" v-model="newCounty" type="text" required
+                                v-on:input="validateAddress('newCounty', 0)">
+                            <div class="invalid-tooltip" v-if="hasError('newCounty', 0)">
+                                {{errors.newCounty[0]}}
+                            </div>
                         </div>
 
                         <div class="form-group col-sm col-lg">
                             <label for="newTown">Vald/linn, alevik, küla<span class="req"> *</span></label>
-                            <input id="newTown" class="form-control" v-model="newTown" type="text" required>
+                            <input id="newTown" class="form-control newTown" v-model="newTown" type="text" required
+                                v-on:input="validateAddress('newTown', 0)">
+                            <div class="invalid-tooltip" v-if="hasError('newTown', 0)">
+                                {{errors.newTown[0]}}
+                            </div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-sm col-lg-4">
                             <label for="newStreet">Tänav/talu, maja nr, korteri nr<span class="req"> *</span></label>
-                            <input id="newStreet" class="form-control" v-model="newStreet" type="text" required>
+                            <input id="newStreet" class="form-control newStreet" v-model="newStreet" type="text" required
+                                v-on:input="validateAddress('newStreet', 0)">
+                            <div class="invalid-tooltip" v-if="hasError('newStreet', 0)">
+                                {{errors.newStreet[0]}}
+                            </div>
                         </div>
 
                         <div class="form-group col-sm col-lg-4">
                             <label for="newZipCode">Postiindeks<span class="req"> *</span></label>
-                            <input id="newZipCode" class="form-control" v-model="newZipCode" type="text" required>
+                            <input id="newZipCode" class="form-control newZipCode" v-model="newZipCode" type="text" required
+                                v-on:input="validateAddress('newZipCode', 0)">
+                            <div class="invalid-tooltip" v-if="hasError('newZipCode', 0)">
+                                {{errors.newZipCode[0]}}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -447,25 +470,29 @@
                     <div class="row">
                         <div class="form-group col-sm col-lg-4">
                             <label for="ownerName">Eesnimi<span class="req"> *</span></label>
-                            <input id="ownerName" class="form-control" type="text" required
-                                   v-on:input="validateName('ownerName')">
-                            <div class="invalid-tooltip" v-if="errors.hasOwnProperty('ownerName')">
-                                {{errors.ownerName}}
+                            <input id="ownerName" class="form-control ownerName" type="text" required
+                                   v-on:input="validateName('ownerName', 0)">
+                            <div class="invalid-tooltip" v-if="hasError('ownerName', 0)">
+                                {{errors.ownerName[0]}}
                             </div>
                         </div>
 
                         <div class="form-group col-sm col-lg-4">
                             <label for="ownerSurname">Perekonnanimi<span class="req"> *</span></label>
-                            <input id="ownerSurname" class="form-control" type="text" required
-                                   v-on:input="validateName('ownerSurname')">
-                            <div class="invalid-tooltip" v-if="errors.hasOwnProperty('ownerSurname')">
-                                {{errors.ownerSurname}}
+                            <input id="ownerSurname" class="form-control ownerSurname" type="text" required
+                                   v-on:input="validateName('ownerSurname', 0)">
+                            <div class="invalid-tooltip" v-if="hasError('ownerSurname', 0)">
+                                {{errors.ownerSurname[0]}}
                             </div>
                         </div>
 
                         <div class="form-group col-sm col-lg-4">
                             <label for="ownerCode">Isikukood<span class="req"> *</span></label>
-                            <input id="ownerCode" class="form-control" type="number" required>
+                            <input id="ownerCode" class="form-control ownerCode" type="number" required
+                                v-on:input="validateName('ownerCode', 0)">
+                            <div class="invalid-tooltip" v-if="hasError('ownerCode', 0)">
+                                {{errors.ownerCode[0]}}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -619,7 +646,10 @@
                     <dd class="col-sm-9">{{person.guardian.code}}</dd>
                 </div>
             </dl>
-
+            <dl class="row">
+                <dt class="col-sm-2">Uus aadress:</dt>
+                <dd class="col-sm-9">{{newCountry}}, {{newCounty}}, {{newTown}}, {{newStreet}}, {{newZipCode}}</dd>
+            </dl>
         </div>
 
         <div id="signatures" class="box-with-margin" v-if="otherPeople.length > 1">
