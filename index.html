@@ -80,10 +80,9 @@
                             <label for="applicantName">Eesnimi<span class="req"> *</span></label>
                             <input id="applicantName" class="form-control" type="text" v-model="otherPeople[0].name"
                                    required
-                                   v-on:input="validateName('applicantName')">
-                            <successful-validation-message></successful-validation-message>
+                                   v-on:input="validateName('applicantName', 0)">
                             <div class="invalid-tooltip" v-if="errors.hasOwnProperty('applicantName')">
-                                {{errors.applicantName}}
+                                {{errors.applicantName[0]}}
                             </div>
                         </div>
 
@@ -91,10 +90,10 @@
                             <label for="applicantSurname">Perekonnanimi <span class="req"> *</span></label>
                             <input id="applicantSurname" class="form-control" type="text"
                                    v-model="otherPeople[0].surname" required
-                                   v-on:input="validateName('applicantSurname')">
+                                   v-on:input="validateName('applicantSurname', 0)">
                             <successful-validation-message></successful-validation-message>
                             <div class="invalid-tooltip" v-if="errors.hasOwnProperty('applicantSurname')">
-                                {{errors.applicantSurname}}
+                                {{errors.applicantSurname[0]}}
                             </div>
 
                         </div>
@@ -159,33 +158,36 @@
                     Elukohateate esitaja ei pea oma andmeid uuesti kirjutama.
                 </div>
 
-                <div v-for="(person, index) in otherPeople">
+                <div v-for="(person, index) in otherPeople" :key="index">
+                    <!-- TODO: FIX THIS!-->
                     <div class="box-with-margin" v-if="index > 0">
                         <div class="row">
                             <div class="form-group col-sm">
                                 <label for="personName">Eesnimi <span class="req"> *</span></label>
-                                <input id="personName" class="form-control" type="text" v-model="person.name"
-                                       required v-on:input="validateName('personName')">
-                                <successful-validation-message></successful-validation-message>
+                                <input id="personName" class="form-control personName" type="text" v-model="person.name"
+                                       required v-on:input="validateName('personName', index)">
+
                                 <div class="invalid-tooltip" v-if="errors.hasOwnProperty('personName')">
-                                    {{errors.personName}}
+                                    {{errors.personName[index]}}
                                 </div>
                             </div>
 
                             <div class="form-group col-sm">
                                 <label for="personSurname">Perekonnanimi <span class="req"> *</span></label>
                                 <input id="personSurname" class="form-control" type="text" v-model="person.surname"
-                                       required v-on:input="validateName('personSurname')">
-                                <successful-validation-message></successful-validation-message>
+                                       required v-on:input="validateName('personSurname', index)">
                                 <div class="invalid-tooltip" v-if="errors.hasOwnProperty('personSurname')">
-                                    {{errors.personSurname}}
+                                    {{errors.personSurname[index]}}
                                 </div>
                             </div>
 
                             <div class="form-group col-sm">
                                 <label for="personCode">Isikukood <span class="req"> *</span></label>
                                 <input id="personCode" class="form-control" type="number" v-model="person.code"
-                                       required>
+                                       required v-on:input="validateCode('personCode')">
+                                <div class="invalid-tooltip" v-if="errors.hasOwnProperty('personCode')">
+                                    {{errors.personCode}}
+                                </div>
                             </div>
                         </div>
 
@@ -219,9 +221,9 @@
                                     <label for="guardianName">Eesnimi <span class="req"> *</span></label>
                                     <input id="guardianName" class="form-control" type="text"
                                            v-model="person.guardian.name" required
-                                           v-on:input="validateName('guardianName')">
+                                           v-on:input="validateName('guardianName', index)">
                                     <div class="invalid-tooltip" v-if="errors.hasOwnProperty('guardianName')">
-                                        {{errors.guardianName}}
+                                        {{errors.guardianName[index]}}
                                     </div>
                                 </div>
 
@@ -229,16 +231,20 @@
                                     <label for="guardianSurname">Perekonnanimi <span class="req"> *</span></label>
                                     <input id="guardianSurname" class="form-control" type="text"
                                            v-model="person.guardian.surname" required
-                                           v-on:input="validateName('guardianSurname')">
+                                           v-on:input="validateName('guardianSurname', index)">
                                     <div class="invalid-tooltip" v-if="errors.hasOwnProperty('guardianSurname')">
-                                        {{errors.guardianSurname}}
+                                        {{errors.guardianSurname[index]}}
                                     </div>
                                 </div>
 
                                 <div class="form-group col-sm">
                                     <label for="guardianCode">Isikukood <span class="req"> *</span></label>
                                     <input id="guardianCode" class="form-control" type="number"
-                                           v-model="person.guardian.code" required>
+                                           v-model="person.guardian.code" required
+                                           v-on:input="validateCode('guardianCode')">
+                                    <div class="invalid-tooltip" v-if="errors.hasOwnProperty('guardianCode')">
+                                        {{errors.guardianCode}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -597,23 +603,25 @@
 
 
     <div id="confirmationPage" v-if="pageIdx === 5">
+        <div class="box-with-margin">
+            <dl class="row" v-for="(person, index) in otherPeople" v-if="index == 0 || containsOtherPeople">
+                <dt class="col-sm-2">Nimi:</dt>
+                <dd class="col-sm-9">{{person.name}} {{person.surname}}</dd>
+                <dt class="col-sm-2">Isikukood:</dt>
+                <dd class="col-sm-9">{{person.code}}</dd>
+                <dt class="col-sm-2">Emeil:</dt>
+                <dd class="col-sm-9">{{person.email}}</dd>
+                <dt class="col-sm-2">Telefoni number:</dt>
+                <dd class="col-sm-9">{{person.phoneNumber}}</dd>
+                <div class="col" v-if="person.isUnderaged">
+                    <dt class="col-sm-2">Vanema nimi:</dt>
+                    <dd class="col-sm-9">{{person.guardian.name}} {{person.guardian.surname}}</dd>
+                    <dt class="col-sm-2">Vanema isikukood:</dt>
+                    <dd class="col-sm-9">{{person.guardian.code}}</dd>
+                </div>
+            </dl>
 
-        <dl class="row" v-for="(person, index) in otherPeople" v-if="index == 0 || containsOtherPeople">
-            <dt class="col-sm-2">Nimi:</dt>
-            <dd class="col-sm-9">{{person.name}} {{person.surname}}</dd>
-            <dt class="col-sm-2">Isikukood:</dt>
-            <dd class="col-sm-9">{{person.code}}</dd>
-            <dt class="col-sm-2">Emeil:</dt>
-            <dd class="col-sm-9">{{person.email}}</dd>
-            <dt class="col-sm-2">Telefoni number:</dt>
-            <dd class="col-sm-9">{{person.phoneNumber}}</dd>
-            <div class="col" v-if="person.isUnderaged">
-                <dt class="col-sm-2">Vanema nimi:</dt>
-                <dd class="col-sm-9">{{person.guardian.name}} {{person.guardian.surname}}</dd>
-                <dt class="col-sm-2">Vanema isikukood:</dt>
-                <dd class="col-sm-9">{{person.guardian.code}}</dd>
-            </div>
-        </dl>
+        </div>
 
         <div id="signatures" class="box-with-margin" v-if="otherPeople.length > 1">
             Allkirju on vaja järgnevatelt isikutelt:
@@ -631,7 +639,10 @@
                     </div>
                 </div>
             </ul>
-
+            <div class="alert alert-success alert-dismissible" v-if="sentForSigning">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                Elukohateade on edukalt allkirjastamisele edastatud!
+            </div>
             <button id="sendForSigning" class="btn btn-primary" @click="sendForSigning()" type="button"
                     :disabled="sentForSigning">
                 <span class="fas fa-envelope"></span> Saada allkirjastamisele
@@ -646,10 +657,10 @@
                 valeandmete
                 esitamine
                 kriminaalkorras karistatav.</p>
-            <!--<div class="form-group col-sm col-lg-2" style="padding-left: 0;">-->
-            <!--<label for="confirmationDate">Kuupäev:</label>-->
-            <!--<input id="confirmationDate" class="form-control" type="date">-->
-            <!--</div>-->
+            <div class="alert alert-success alert-dismissible" v-if="signed">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                Elukohateade on edukalt allkirjastatud!
+            </div>
             <button class="btn btn-primary" @click="sign()" type="button" :disabled="signed">
                 <span class="fas fa-pencil-alt"></span> Allkirjasta digitaalselt
             </button>
@@ -671,7 +682,10 @@
                     :disabled="previousPageDisabled">
                 <span class="fas fa-angle-double-left"></span> Tagasi
             </button>
-
+            <a href="." class="btn btn-primary" @click="finish()" type="button"
+                    v-if="canFinish">
+                Lõpeta
+            </a>
             <button id="nextPage" class="btn btn-primary" @click="nextPage()" type="button"
                     :disabled="nextPageDisabled">
                 Edasi <span class="fas fa-angle-double-right"></span>
