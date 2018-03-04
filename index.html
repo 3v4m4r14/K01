@@ -81,7 +81,7 @@
                             <input id="applicantName" class="form-control" type="text" v-model="otherPeople[0].name"
                                    required
                                    v-on:input="validateName('applicantName', 0)">
-                            <div class="invalid-tooltip" v-if="errors.hasOwnProperty('applicantName')">
+                            <div class="invalid-tooltip" v-if="hasError('applicantName', 0)">
                                 {{errors.applicantName[0]}}
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                                    v-model="otherPeople[0].surname" required
                                    v-on:input="validateName('applicantSurname', 0)">
                             <successful-validation-message></successful-validation-message>
-                            <div class="invalid-tooltip" v-if="errors.hasOwnProperty('applicantSurname')">
+                            <div class="invalid-tooltip" v-if="hasError('applicantSurname', 0)">
                                 {{errors.applicantSurname[0]}}
                             </div>
 
@@ -102,10 +102,10 @@
                             <label for="applicantCode">Isikukood <span class="req"> *</span></label>
                             <input id="applicantCode" class="form-control" type="text" v-model="otherPeople[0].code"
                                    required pattern="^[1-6][0-9]{2}[01][0-9][0-9]{2}[0-9]{4}$"
-                                   v-on:input="validateCode('applicantCode')">
+                                   v-on:input="validateCode('applicantCode', 0)">
                             <successful-validation-message></successful-validation-message>
-                            <div class="invalid-tooltip" v-if="errors.hasOwnProperty('applicantCode')">
-                                {{errors.applicantCode}}
+                            <div class="invalid-tooltip" v-if="hasError('applicantCode', 0)">
+                                {{errors.applicantCode[0]}}
                             </div>
                         </div>
                     </div>
@@ -115,10 +115,10 @@
                             <label for="applicantEmail">E-post</label>
                             <input id="applicantEmail" class="form-control" type="text" v-model="otherPeople[0].email"
                                    required
-                                   v-on:input="validateEmail('applicantEmail')">
+                                   v-on:input="validateEmail('applicantEmail', 0)">
                             <successful-validation-message></successful-validation-message>
-                            <div class="invalid-tooltip" v-if="errors.hasOwnProperty('applicantEmail')">
-                                {{errors.applicantEmail}}
+                            <div class="invalid-tooltip" v-if="hasError('applicantEmail', 0)">
+                                {{errors.applicantEmail[0]}}
                             </div>
                         </div>
 
@@ -126,9 +126,9 @@
                             <label for="applicantPhoneNumber">Telefon</label>
                             <input id="applicantPhoneNumber" class="form-control" type="tel"
                                    v-model="otherPeople[0].phoneNumber" required
-                                   v-on:input="validateName('applicantPhoneNumber')">
+                                   v-on:input="validatePhoneNumber('applicantPhoneNumber', 0)">
                             <successful-validation-message></successful-validation-message>
-                            <div class="invalid-tooltip" v-if="errors.hasOwnProperty('applicantPhoneNumber')">
+                            <div class="invalid-tooltip" v-if="hasError('applicantPhoneNumber', 0)">
                                 {{errors.applicantPhoneNumber}}
                             </div>
                         </div>
@@ -166,27 +166,26 @@
                                 <label for="personName">Eesnimi <span class="req"> *</span></label>
                                 <input id="personName" class="form-control personName" type="text" v-model="person.name"
                                        required v-on:input="validateName('personName', index)">
-
-                                <div class="invalid-tooltip" v-if="errors.hasOwnProperty('personName')">
+                                <div class="invalid-tooltip" v-if="hasError('personName', index)">
                                     {{errors.personName[index]}}
                                 </div>
                             </div>
 
                             <div class="form-group col-sm">
                                 <label for="personSurname">Perekonnanimi <span class="req"> *</span></label>
-                                <input id="personSurname" class="form-control" type="text" v-model="person.surname"
+                                <input id="personSurname" class="form-control personSurname" type="text" v-model="person.surname"
                                        required v-on:input="validateName('personSurname', index)">
-                                <div class="invalid-tooltip" v-if="errors.hasOwnProperty('personSurname')">
+                                <div class="invalid-tooltip" v-if="hasError('personSurname', index)">
                                     {{errors.personSurname[index]}}
                                 </div>
                             </div>
 
                             <div class="form-group col-sm">
                                 <label for="personCode">Isikukood <span class="req"> *</span></label>
-                                <input id="personCode" class="form-control" type="number" v-model="person.code"
-                                       required v-on:input="validateCode('personCode')">
-                                <div class="invalid-tooltip" v-if="errors.hasOwnProperty('personCode')">
-                                    {{errors.personCode}}
+                                <input id="personCode" class="form-control personCode" type="number" v-model="person.code"
+                                       required v-on:input="validateCode('personCode', index)">
+                                <div class="invalid-tooltip" v-if="hasError('personCode', index)">
+                                    {{errors.personCode[index]}}
                                 </div>
                             </div>
                         </div>
