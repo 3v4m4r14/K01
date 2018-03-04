@@ -229,7 +229,8 @@
                                 <div class="form-group col-sm">
                                     <label for="guardianCode">Isikukood <span class="req"> *</span></label>
                                     <input id="guardianCode" class="form-control" type="number"
-                                           v-model="person.guardian.code" required v-on:input="validateCode('guardianCode')">
+                                           v-model="person.guardian.code" required
+                                           v-on:input="validateCode('guardianCode')">
                                     <div class="invalid-tooltip" v-if="errors.hasOwnProperty('guardianCode')">
                                         {{errors.guardianCode}}
                                     </div>
@@ -591,23 +592,25 @@
 
 
     <div id="confirmationPage" v-if="pageIdx === 5">
+        <div class="box-with-margin">
+            <dl class="row" v-for="(person, index) in otherPeople" v-if="index == 0 || containsOtherPeople">
+                <dt class="col-sm-2">Nimi:</dt>
+                <dd class="col-sm-9">{{person.name}} {{person.surname}}</dd>
+                <dt class="col-sm-2">Isikukood:</dt>
+                <dd class="col-sm-9">{{person.code}}</dd>
+                <dt class="col-sm-2">Emeil:</dt>
+                <dd class="col-sm-9">{{person.email}}</dd>
+                <dt class="col-sm-2">Telefoni number:</dt>
+                <dd class="col-sm-9">{{person.phoneNumber}}</dd>
+                <div class="col" v-if="person.isUnderaged">
+                    <dt class="col-sm-2">Vanema nimi:</dt>
+                    <dd class="col-sm-9">{{person.guardian.name}} {{person.guardian.surname}}</dd>
+                    <dt class="col-sm-2">Vanema isikukood:</dt>
+                    <dd class="col-sm-9">{{person.guardian.code}}</dd>
+                </div>
+            </dl>
 
-        <dl class="row" v-for="(person, index) in otherPeople" v-if="index == 0 || containsOtherPeople">
-            <dt class="col-sm-2">Nimi:</dt>
-            <dd class="col-sm-9">{{person.name}} {{person.surname}}</dd>
-            <dt class="col-sm-2">Isikukood:</dt>
-            <dd class="col-sm-9">{{person.code}}</dd>
-            <dt class="col-sm-2">Emeil:</dt>
-            <dd class="col-sm-9">{{person.email}}</dd>
-            <dt class="col-sm-2">Telefoni number:</dt>
-            <dd class="col-sm-9">{{person.phoneNumber}}</dd>
-            <div class="col" v-if="person.isUnderaged">
-                <dt class="col-sm-2">Vanema nimi:</dt>
-                <dd class="col-sm-9">{{person.guardian.name}} {{person.guardian.surname}}</dd>
-                <dt class="col-sm-2">Vanema isikukood:</dt>
-                <dd class="col-sm-9">{{person.guardian.code}}</dd>
-            </div>
-        </dl>
+        </div>
 
         <div id="signatures" class="box-with-margin" v-if="otherPeople.length > 1">
             Allkirju on vaja järgnevatelt isikutelt:
@@ -625,7 +628,10 @@
                     </div>
                 </div>
             </ul>
-
+            <div class="alert alert-success alert-dismissible" v-if="sentForSigning">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                Elukohateade on edukalt allkirjastamisele edastatud!
+            </div>
             <button id="sendForSigning" class="btn btn-primary" @click="sendForSigning()" type="button"
                     :disabled="sentForSigning">
                 <span class="fas fa-envelope"></span> Saada allkirjastamisele
@@ -640,10 +646,10 @@
                 valeandmete
                 esitamine
                 kriminaalkorras karistatav.</p>
-            <!--<div class="form-group col-sm col-lg-2" style="padding-left: 0;">-->
-            <!--<label for="confirmationDate">Kuupäev:</label>-->
-            <!--<input id="confirmationDate" class="form-control" type="date">-->
-            <!--</div>-->
+            <div class="alert alert-success alert-dismissible" v-if="signed">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                Elukohateade on edukalt allkirjastatud!
+            </div>
             <button class="btn btn-primary" @click="sign()" type="button" :disabled="signed">
                 <span class="fas fa-pencil-alt"></span> Allkirjasta digitaalselt
             </button>
@@ -665,7 +671,10 @@
                     :disabled="previousPageDisabled">
                 <span class="fas fa-angle-double-left"></span> Tagasi
             </button>
-
+            <a href="." class="btn btn-primary" @click="finish()" type="button"
+                    v-if="canFinish">
+                Lõpeta
+            </a>
             <button id="nextPage" class="btn btn-primary" @click="nextPage()" type="button"
                     :disabled="nextPageDisabled">
                 Edasi <span class="fas fa-angle-double-right"></span>

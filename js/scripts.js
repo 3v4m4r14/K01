@@ -33,6 +33,9 @@ var vm = new Vue({
             },
             nextPageDisabled: function () {
                 return this.pageIdx >= 5;
+            },
+            canFinish: function () {
+                return this.sentForSigning && this.signed;
             }
         },
         methods: {
@@ -61,13 +64,10 @@ var vm = new Vue({
                 this.otherPeople.splice(index, 1);
             },
             sendForSigning: function () {
-                //TODO:
-                alert("ASENDA MIND ILUSA TEATEGA!");
                 this.sentForSigning = true;
             },
             sign: function () {
-                //TODO:
-                alert("ASENDA MIND");
+                alert("*id-kaardiga allkirjastamise mock*\nKujutame ette, et siin küsitakse PIN-i ja muid toredusi.");
                 this.signed = true;
             },
             checkValidityFor: function (formId) {
