@@ -20,7 +20,8 @@ var vm = new Vue({
                 signed: false,
                 progress: 0,
                 containsOtherPeople: false,
-                ownershipSelection: "",
+                ownershipSelection: "ownership",
+                fileLabel: "Vali fail...",
                 otherPeople: [],
                 errors: {},
                 nameValidationMsg: "Haige kala",
@@ -68,6 +69,10 @@ var vm = new Vue({
             removeElement: function (index) {
                 this.otherPeople.splice(index, 1);
             },
+            handleFileChange: function (e) {
+                this.fileLabel = e.target.files[0].name;
+
+            },
             sendForSigning: function () {
                 this.sentForSigning = true;
             },
@@ -75,17 +80,7 @@ var vm = new Vue({
                 alert("*id-kaardiga allkirjastamise mock*\nKujutame ette, et siin küsitakse PIN-i ja muid toredusi.");
                 this.signed = true;
             },
-            checkValidityFor: function (formId) {
-                var form = document.getElementById(formId);
-                form.classList.remove('was-validated');
-                if (form.checkValidity() !== false) {
-                    this.canChange = true;
-                    return true;
-                }
-                form.classList.add('was-validated');
-                return false;
-            },
-            getInput: function(id, index) {
+            getInput: function (id, index) {
                 var all = document.getElementsByClassName(id);
                 var input;
                 if (all.length === 0) {
@@ -219,14 +214,27 @@ var vm = new Vue({
                 }
                 this.errors[id][index] = input.validationMessage;
             },
+            checkValidityFor: function (formId) {
+                var form = document.getElementById(formId);
+                form.classList.remove('was-validated');
+                if (form.checkValidity() !== false) {
+                    this.canChange = true;
+                    return true;
+                }
+                form.classList.add('was-validated');
+                return false;
+            },
             nextPage: function () {
                 if (this.pageIdx === 1) {
                     this.checkValidityFor('applicantForm');
                 }
                 else if (this.pageIdx === 2) {
                     this.checkValidityFor('addressForm');
-                }
-                else {
+                } else if (this.pageIdx === 3) {
+                    this.checkValidityFor('approvalForm');
+                } else if (this.pageIdx === 4) {
+                    this.checkValidityFor('additionalDetailsForm');
+                } else {
                     this.canChange = true;
                 }
 
@@ -252,13 +260,13 @@ var vm = new Vue({
                 var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 return re.test(email);
             },
-            hasError: function(id, index) {
+            hasError: function (id, index) {
                 if (!this.errors.hasOwnProperty(id)) return false;
                 var error = this.errors[id];
                 if (!error.hasOwnProperty(index)) return false;
                 error = error[index];
-                if (error === "") return false;
-                return true;
+                return error !== "";
+
             },
             idCardLogin: function () {
                 this.otherPeople = [];

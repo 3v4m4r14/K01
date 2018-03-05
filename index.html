@@ -169,7 +169,8 @@
 
                             <div class="form-group col-sm">
                                 <label for="personSurname">Perekonnanimi <span class="req"> *</span></label>
-                                <input id="personSurname" class="form-control personSurname" type="text" v-model="person.surname"
+                                <input id="personSurname" class="form-control personSurname" type="text"
+                                       v-model="person.surname"
                                        required v-on:input="validateName('personSurname', index)">
                                 <div class="invalid-tooltip" v-if="hasError('personSurname', index)">
                                     {{errors.personSurname[index]}}
@@ -178,7 +179,8 @@
 
                             <div class="form-group col-sm">
                                 <label for="personCode">Isikukood <span class="req"> *</span></label>
-                                <input id="personCode" class="form-control personCode" type="number" v-model="person.code"
+                                <input id="personCode" class="form-control personCode" type="number"
+                                       v-model="person.code"
                                        required v-on:input="validateCode('personCode', index)">
                                 <div class="invalid-tooltip" v-if="hasError('personCode', index)">
                                     {{errors.personCode[index]}}
@@ -189,8 +191,9 @@
                         <div class="row align-items-center">
                             <div class="form-group col-sm col-lg-4">
                                 <label for="personEmail">E-post <span class="req"> *</span></label>
-                                <input id="personEmail" class="form-control personEmail" type="text" v-model="person.email" 
-                                    required v-on:input="validateEmail('personEmail', index)">
+                                <input id="personEmail" class="form-control personEmail" type="text"
+                                       v-model="person.email"
+                                       required v-on:input="validateEmail('personEmail', index)">
                                 <div class="invalid-tooltip" v-if="hasError('personEmail', index)">
                                     {{errors.personEmail[index]}}
                                 </div>
@@ -199,7 +202,8 @@
                             <div class="form-group col-sm col-lg-4">
                                 <label for="personPhoneNumber">Telefon <span class="req"> *</span></label>
                                 <input id="personPhoneNumber" class="form-control personPhoneNumber" type="tel"
-                                       v-model="person.phoneNumber" required v-on:input="validatePhoneNumber('personPhoneNumber', index)">
+                                       v-model="person.phoneNumber" required
+                                       v-on:input="validatePhoneNumber('personPhoneNumber', index)">
                                 <div class="invalid-tooltip" v-if="hasError('personPhoneNumber', index)">
                                     {{errors.personPhoneNumber[index]}}
                                 </div>
@@ -280,8 +284,9 @@
                     <div class="row">
                         <div class="form-group col-sm col-lg">
                             <label for="newCountry">Riik<span class="req"> *</span></label>
-                            <input id="newCountry" class="form-control newCountry" v-model="newCountry" type="text" required
-                                v-on:input="validateAddress('newCountry', 0)">
+                            <input id="newCountry" class="form-control newCountry" v-model="newCountry" type="text"
+                                   required
+                                   v-on:input="validateAddress('newCountry', 0)">
                             <div class="invalid-tooltip" v-if="hasError('newCountry', 0)">
                                 {{errors.newCountry[0]}}
                             </div>
@@ -289,8 +294,9 @@
 
                         <div class="form-group col-sm col-lg">
                             <label for="newCounty">Maakond<span class="req"> *</span></label>
-                            <input id="newCounty" class="form-control newCounty" v-model="newCounty" type="text" required
-                                v-on:input="validateAddress('newCounty', 0)">
+                            <input id="newCounty" class="form-control newCounty" v-model="newCounty" type="text"
+                                   required
+                                   v-on:input="validateAddress('newCounty', 0)">
                             <div class="invalid-tooltip" v-if="hasError('newCounty', 0)">
                                 {{errors.newCounty[0]}}
                             </div>
@@ -299,7 +305,7 @@
                         <div class="form-group col-sm col-lg">
                             <label for="newTown">Vald/linn, alevik, küla<span class="req"> *</span></label>
                             <input id="newTown" class="form-control newTown" v-model="newTown" type="text" required
-                                v-on:input="validateAddress('newTown', 0)">
+                                   v-on:input="validateAddress('newTown', 0)">
                             <div class="invalid-tooltip" v-if="hasError('newTown', 0)">
                                 {{errors.newTown[0]}}
                             </div>
@@ -309,8 +315,9 @@
                     <div class="row">
                         <div class="form-group col-sm col-lg-4">
                             <label for="newStreet">Tänav/talu, maja nr, korteri nr<span class="req"> *</span></label>
-                            <input id="newStreet" class="form-control newStreet" v-model="newStreet" type="text" required
-                                v-on:input="validateAddress('newStreet', 0)">
+                            <input id="newStreet" class="form-control newStreet" v-model="newStreet" type="text"
+                                   required
+                                   v-on:input="validateAddress('newStreet', 0)">
                             <div class="invalid-tooltip" v-if="hasError('newStreet', 0)">
                                 {{errors.newStreet[0]}}
                             </div>
@@ -318,8 +325,9 @@
 
                         <div class="form-group col-sm col-lg-4">
                             <label for="newZipCode">Postiindeks<span class="req"> *</span></label>
-                            <input id="newZipCode" class="form-control newZipCode" v-model="newZipCode" type="text" required
-                                v-on:input="validateAddress('newZipCode', 0)">
+                            <input id="newZipCode" class="form-control newZipCode" v-model="newZipCode" type="text"
+                                   required
+                                   v-on:input="validateAddress('newZipCode', 0)">
                             <div class="invalid-tooltip" v-if="hasError('newZipCode', 0)">
                                 {{errors.newZipCode[0]}}
                             </div>
@@ -422,48 +430,51 @@
 
                 <div class="box-with-margin">
                     <div class="form-check">
-                        <input id="ownership" name="kasutamiseOigusRadio" class="form-check-input" value="ownership"
-                               v-model="ownershipSelection" type="radio">
+                        <input id="ownership" name="ownershipSelection" class="form-check-input" value="ownership"
+                               v-model="ownershipSelection" type="radio" required>
                         <label class="form-check-label" for="ownership">Olen ruumi (kaas)omanik</label>
                     </div>
 
                     <div class="form-check">
-                        <input id="contract" name="kasutamiseOigusRadio" class="form-check-input"
-                               value="contract"
-                               v-model="ownershipSelection" type="radio">
+                        <input id="contract" name="ownershipSelection" class="form-check-input"
+                               value="contract" v-model="ownershipSelection" type="radio" required>
                         <label class="form-check-label" for="contract">Lisan üürilepingu</label>
                     </div>
 
                     <div class="form-check">
-                        <input id="ownerApproval" name="kasutamiseOigusRadio" class="form-check-input"
-                               value="ownerApproval" v-model="ownershipSelection" type="radio">
+                        <input id="ownerApproval" name="ownershipSelection" class="form-check-input"
+                               value="ownerApproval" v-model="ownershipSelection" type="radio" required>
                         <label class="form-check-label" for="ownerApproval">Ruumi omanik annab elukohateatele
                             nõusoleku</label>
                     </div>
 
                     <div class="form-check">
-                        <input id="ownerApprovalOnPaper" name="kasutamiseOigusRadio" class="form-check-input"
-                               value="ownerApprovalOnPaper"
-                               v-model="ownershipSelection" type="radio">
+                        <input id="ownerApprovalOnPaper" name="ownershipSelection" class="form-check-input"
+                               value="ownerApprovalOnPaper" v-model="ownershipSelection" type="radio" required>
                         <label class="form-check-label" for="ownerApprovalOnPaper">Lisan omaniku nõusoleku eraldi
                             paberil</label>
                     </div>
 
                     <div class="form-check">
-                        <input id="otherCause" name="kasutamiseOigusRadio" class="form-check-input"
-                               v-model="ownershipSelection"
-                               value="otherCause" type="radio">
+                        <input id="otherCause" name="ownershipSelection" class="form-check-input"
+                               v-model="ownershipSelection" value="otherCause" type="radio" required>
                         <label class="form-check-label" for="otherCause">Ruumi kasutamise muu alus</label>
                     </div>
+
+                    <!-- To avoid confusion as to whether a radio button group is required or not,
+                    authors are encouraged to specify the attribute on all the radio buttons in a group.
+                    Indeed, in general, authors are encouraged to avoid having radio button groups
+                    that do not have any initially checked controls in the first place, as this is a
+                    state that the user cannot return to, and is therefore generally considered
+                    a poor user interface.-->
                 </div>
             </div>
 
             <div id="ownerApproval-2" v-if="ownershipSelection === 'ownerApproval'">
                 <hr>
                 <div class="box-header">
-                    <h3>Ruumi omaniku nõusolek</h3>
-                    <p>Kinnitan, et olen nõus ülalnimetatud isikute elukoha andmete kandmisega
-                        rahvastikuregistrisse.</p>
+                    <h3>Ruumi omaniku andmed</h3>
+                    <p>Elukohateade edastatakse ruumi omanikule kinnitamiseks.</p>
                 </div>
 
                 <div class="box-with-margin">
@@ -489,7 +500,7 @@
                         <div class="form-group col-sm col-lg-4">
                             <label for="ownerCode">Isikukood<span class="req"> *</span></label>
                             <input id="ownerCode" class="form-control ownerCode" type="number" required
-                                v-on:input="validateName('ownerCode', 0)">
+                                   v-on:input="validateCode('ownerCode', 0)">
                             <div class="invalid-tooltip" v-if="hasError('ownerCode', 0)">
                                 {{errors.ownerCode[0]}}
                             </div>
@@ -504,8 +515,9 @@
                 <div class="box-with-margin">
                     <h3>Lisatavad dokumendid</h3>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Vali fail</label>
+                        <input type="file" class="custom-file-input" id="customFile" @change="handleFileChange"
+                               required>
+                        <label id="customFileInfo" class="custom-file-label" for="customFile">{{fileLabel}}</label>
                     </div>
                 </div>
             </div>
@@ -712,7 +724,7 @@
                 <span class="fas fa-angle-double-left"></span> Tagasi
             </button>
             <a href="." class="btn btn-primary" @click="finish()" type="button"
-                    v-if="canFinish">
+               v-if="canFinish">
                 Lõpeta
             </a>
             <button id="nextPage" class="btn btn-primary" @click="nextPage()" type="button"
