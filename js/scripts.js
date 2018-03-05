@@ -40,8 +40,14 @@ var vm = new Vue({
             nextPageDisabled: function () {
                 return this.pageIdx >= 5;
             },
+            allPagesDisabled: function () {
+                return this.sentForSigning || this.signed;
+            },
             canFinish: function () {
                 return this.sentForSigning && this.signed;
+            },
+            progressBarWidth: function () {
+                return this.progress + '%';
             }
         },
         methods: {
@@ -252,6 +258,11 @@ var vm = new Vue({
                 }
                 this.scrollToTop();
             },
+            goToPage: function (page) {
+                this.pageIdx = page;
+                this.progress = this.pageIdx / 5 * 100;
+                this.scrollToTop();
+            },
             scrollToTop: function () {
                 document.body.scrollTop = 0; // For Safari
                 document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
@@ -271,7 +282,9 @@ var vm = new Vue({
             idCardLogin: function () {
                 this.otherPeople = [];
                 this.containsOtherPeople = true;
-                this.addMockupData();
+                this.addMockupDataForApplicant();
+                this.addMockupDataForOthers();
+                this.addNewAddress();
                 this.nextPage();
             },
             blankLogin: function () {
@@ -279,7 +292,7 @@ var vm = new Vue({
                 this.addElement();
                 this.nextPage();
             },
-            addMockupData: function () {
+            addMockupDataForApplicant: function () {
                 this.otherPeople.push({
                     name: "Kana",
                     surname: "Snitsel",
@@ -299,6 +312,15 @@ var vm = new Vue({
                     education: "2",
                     socialStatus: "F"
                 });
+            },
+            addNewAddress: function () {
+                this.newCountry = "Eesti";
+                this.newCounty = "Harjumaa";
+                this.newTown = "Tallinn";
+                this.newStreet = "Ehitajate 5";
+                this.newZipCode = "112911";
+            },
+            addMockupDataForOthers: function () {
                 this.otherPeople.push({
                     name: "Arvuti",
                     surname: "Hiir",

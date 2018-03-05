@@ -644,24 +644,33 @@
         <div class="box-with-margin">
             <dl class="row" v-for="(person, index) in otherPeople" v-if="index == 0 || containsOtherPeople">
                 <dt class="col-sm-2">Nimi:</dt>
-                <dd class="col-sm-9">{{person.name}} {{person.surname}}</dd>
+                <dd class="col-sm-10">{{person.name}} {{person.surname}}</dd>
                 <dt class="col-sm-2">Isikukood:</dt>
-                <dd class="col-sm-9">{{person.code}}</dd>
+                <dd class="col-sm-10">{{person.code}}</dd>
                 <dt class="col-sm-2">Emeil:</dt>
-                <dd class="col-sm-9">{{person.email}}</dd>
+                <dd class="col-sm-10">{{person.email}}</dd>
                 <dt class="col-sm-2">Telefoni number:</dt>
-                <dd class="col-sm-9">{{person.phoneNumber}}</dd>
+                <dd class="col-sm-10">{{person.phoneNumber}}</dd>
                 <div class="col" v-if="person.isUnderaged">
                     <dt class="col-sm-2">Vanema nimi:</dt>
-                    <dd class="col-sm-9">{{person.guardian.name}} {{person.guardian.surname}}</dd>
+                    <dd class="col-sm-10">{{person.guardian.name}} {{person.guardian.surname}}</dd>
                     <dt class="col-sm-2">Vanema isikukood:</dt>
-                    <dd class="col-sm-9">{{person.guardian.code}}</dd>
+                    <dd class="col-sm-10">{{person.guardian.code}}</dd>
                 </div>
             </dl>
+            <button class="btn btn-sm btn-primary" @click="goToPage(1)" type="button"
+                    :disabled="allPagesDisabled">
+                <span class="fas fa-edit" aria-hidden="true"></span> Muuda andmeid
+            </button>
+
             <dl class="row">
                 <dt class="col-sm-2">Uus aadress:</dt>
                 <dd class="col-sm-9">{{newCountry}}, {{newCounty}}, {{newTown}}, {{newStreet}}, {{newZipCode}}</dd>
             </dl>
+            <button class="btn btn-sm btn-primary" @click="goToPage(2)" type="button"
+                    :disabled="allPagesDisabled">
+                <span class="fas fa-edit" aria-hidden="true"></span> Muuda aadressi
+            </button>
         </div>
 
         <div id="signatures" class="box-with-margin" v-if="otherPeople.length > 1">
@@ -713,7 +722,7 @@
     <div id="navigation" v-if="progress > 0">
         <div class="progress">
             <div class="progress-bar progress-bar-striped" role="progressbar"
-                 v-bind:style="{width: progress + '%'}">{{progress}} %
+                 v-bind:style="{width: progressBarWidth}">{{progress}} %
             </div>
         </div>
         <br>
@@ -723,7 +732,7 @@
                     :disabled="previousPageDisabled">
                 <span class="fas fa-angle-double-left"></span> Tagasi
             </button>
-            <a href="." class="btn btn-primary" @click="finish()" type="button"
+            <a href="." class="btn btn-primary" type="button"
                v-if="canFinish">
                 Lõpeta
             </a>
