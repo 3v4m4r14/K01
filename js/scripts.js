@@ -198,6 +198,7 @@ var vm = new Vue({
                 if (input.value === "") {
                     input.setCustomValidity("Palun sisesta telefoni number")
                 } else if (!regexNumbersAndPlus.test(input.value)) {
+                    input.setCustomValidity("Telefoni number koosneb ainult numbritest ja riigikoodist (+)");
                 } else {
                     input.setCustomValidity("");
                 }
