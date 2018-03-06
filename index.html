@@ -159,7 +159,7 @@
                     <div class="box-with-margin" v-if="index > 0">
                         <div class="row">
                             <div class="form-group col-sm">
-                                <label for="personName">Eesnimi <span class="req"> *</span></label>
+                                <label for="personName">Eesnimi {{index}}<span class="req"> *</span></label>
                                 <input id="personName" class="form-control personName" type="text" v-model="person.name"
                                        required v-on:input="validateName('personName', index)">
                                 <div class="invalid-tooltip" v-if="hasError('personName', index)">
@@ -284,7 +284,7 @@
                     <div class="row">
                         <div class="form-group col-sm col-lg">
                             <label for="newCountry">Riik<span class="req"> *</span></label>
-                            <input id="newCountry" class="form-control newCountry" v-model="newCountry" type="text"
+                            <input id="newCountry" class="form-control" v-model="newCountry" type="text"
                                    required
                                    v-on:input="validateAddress('newCountry', 0)">
                             <div class="invalid-tooltip" v-if="hasError('newCountry', 0)">
@@ -294,7 +294,7 @@
 
                         <div class="form-group col-sm col-lg">
                             <label for="newCounty">Maakond<span class="req"> *</span></label>
-                            <input id="newCounty" class="form-control newCounty" v-model="newCounty" type="text"
+                            <input id="newCounty" class="form-control" v-model="newCounty" type="text"
                                    required
                                    v-on:input="validateAddress('newCounty', 0)">
                             <div class="invalid-tooltip" v-if="hasError('newCounty', 0)">
@@ -304,7 +304,7 @@
 
                         <div class="form-group col-sm col-lg">
                             <label for="newTown">Vald/linn, alevik, küla<span class="req"> *</span></label>
-                            <input id="newTown" class="form-control newTown" v-model="newTown" type="text" required
+                            <input id="newTown" class="form-control" v-model="newTown" type="text" required
                                    v-on:input="validateAddress('newTown', 0)">
                             <div class="invalid-tooltip" v-if="hasError('newTown', 0)">
                                 {{errors.newTown[0]}}
@@ -315,7 +315,7 @@
                     <div class="row">
                         <div class="form-group col-sm col-lg-4">
                             <label for="newStreet">Tänav/talu, maja nr, korteri nr<span class="req"> *</span></label>
-                            <input id="newStreet" class="form-control newStreet" v-model="newStreet" type="text"
+                            <input id="newStreet" class="form-control" v-model="newStreet" type="text"
                                    required
                                    v-on:input="validateAddress('newStreet', 0)">
                             <div class="invalid-tooltip" v-if="hasError('newStreet', 0)">
@@ -325,7 +325,7 @@
 
                         <div class="form-group col-sm col-lg-4">
                             <label for="newZipCode">Postiindeks<span class="req"> *</span></label>
-                            <input id="newZipCode" class="form-control newZipCode" v-model="newZipCode" type="text"
+                            <input id="newZipCode" class="form-control" v-model="newZipCode" type="text"
                                    required
                                    v-on:input="validateAddress('newZipCode', 0)">
                             <div class="invalid-tooltip" v-if="hasError('newZipCode', 0)">
@@ -481,7 +481,7 @@
                     <div class="row">
                         <div class="form-group col-sm col-lg-4">
                             <label for="ownerName">Eesnimi<span class="req"> *</span></label>
-                            <input id="ownerName" class="form-control ownerName" type="text" required
+                            <input id="ownerName" class="form-control" v-model="ownerName" type="text" required
                                    v-on:input="validateName('ownerName', 0)">
                             <div class="invalid-tooltip" v-if="hasError('ownerName', 0)">
                                 {{errors.ownerName[0]}}
@@ -490,7 +490,7 @@
 
                         <div class="form-group col-sm col-lg-4">
                             <label for="ownerSurname">Perekonnanimi<span class="req"> *</span></label>
-                            <input id="ownerSurname" class="form-control ownerSurname" type="text" required
+                            <input id="ownerSurname" class="form-control" v-model="ownerSurname" type="text" required
                                    v-on:input="validateName('ownerSurname', 0)">
                             <div class="invalid-tooltip" v-if="hasError('ownerSurname', 0)">
                                 {{errors.ownerSurname[0]}}
@@ -499,7 +499,7 @@
 
                         <div class="form-group col-sm col-lg-4">
                             <label for="ownerCode">Isikukood<span class="req"> *</span></label>
-                            <input id="ownerCode" class="form-control ownerCode" type="number" required
+                            <input id="ownerCode" class="form-control" v-model="ownerCode" type="number" required
                                    v-on:input="validateCode('ownerCode', 0)">
                             <div class="invalid-tooltip" v-if="hasError('ownerCode', 0)">
                                 {{errors.ownerCode[0]}}
@@ -671,6 +671,12 @@
                     :disabled="allPagesDisabled">
                 <span class="fas fa-edit" aria-hidden="true"></span> Muuda aadressi
             </button>
+            <dl class="row" v-if="ownershipSelection === 'ownerApproval'">
+                <dt class="col-sm-2">Omaniku nimi:</dt>
+                <dd class="col-sm-10">{{ownerName}} {{ownerSurname}}</dd>
+                <dt class="col-sm-2">Omaniku isikukood:</dt>
+                <dd class="col-sm-10">{{ownerCode}}</dd>
+            </dl>
         </div>
 
         <div id="signatures" class="box-with-margin" v-if="otherPeople.length > 1">
