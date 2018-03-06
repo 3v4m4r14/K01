@@ -125,7 +125,7 @@
                                    v-model="otherPeople[0].phoneNumber" required
                                    v-on:input="validatePhoneNumber('applicantPhoneNumber', 0)">
                             <div class="invalid-tooltip" v-if="hasError('applicantPhoneNumber', 0)">
-                                {{errors.applicantPhoneNumber}}
+                                {{errors.applicantPhoneNumber[0]}}
                             </div>
                         </div>
 
