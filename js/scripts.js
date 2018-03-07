@@ -33,7 +33,8 @@ var vm = new Vue({
                 newZipCode: "",
                 ownerName: "",
                 ownerSurname: "",
-                ownerCode: ""
+                ownerCode: "",
+                contactAddressCheck: false
             }
         },
         computed: {
@@ -284,10 +285,10 @@ var vm = new Vue({
             idCardLogin: function () {
                 alert("**ID-kaardiga sisse logimise mock**\nKujutame ette, et siin toimub koodide küsimine ja autentimine. Aitäh.");
                 this.otherPeople = [];
-                // this.containsOtherPeople = true;
+                this.containsOtherPeople = true;
                 this.addMockupDataForApplicant();
-                // this.addMockupDataForOthers();
-                // this.addNewAddress();
+                this.addMockupDataForOthers();
+                this.addNewAddress();
                 this.nextPage();
             },
             blankLogin: function () {
@@ -300,20 +301,20 @@ var vm = new Vue({
                     name: "Kana",
                     surname: "Snitsel",
                     code: "33303031234",
-                    // email: "kana.snitsel@gmail.ee",
-                    // phoneNumber: "5555123564",
-                    // isUnderaged: false,
-                    // guardian: {
-                    //     name: "",
-                    //     surname: "",
-                    //     code: ""
-                    // },
-                    // lastForeignHome: "",
-                    // foreignCode: "",
-                    // nationality: "eestlane",
-                    // nativeLanguage: "eesti keel",
-                    // education: "2",
-                    // socialStatus: "F"
+                    email: "kana.snitsel@gmail.ee",
+                    phoneNumber: "5555123564",
+                    isUnderaged: false,
+                    guardian: {
+                        name: "",
+                        surname: "",
+                        code: ""
+                    },
+                    lastForeignHome: "",
+                    foreignCode: "",
+                    nationality: "eestlane",
+                    nativeLanguage: "eesti keel",
+                    education: "2",
+                    socialStatus: "F"
                 });
             },
             addNewAddress: function () {
@@ -346,7 +347,7 @@ var vm = new Vue({
                 this.otherPeople.push({
                     name: "UFO",
                     surname: "Alien",
-                    code: "00000001234",
+                    code: "11111111111",
                     email: "ufo.alien@solar.system",
                     phoneNumber: "45454355342",
                     isUnderaged: false,

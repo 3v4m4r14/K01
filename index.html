@@ -163,7 +163,7 @@
                     <div class="box-with-margin" v-if="index > 0">
                         <div class="row">
                             <div class="form-group col-sm">
-                                <label for="personName">Eesnimi {{index}}<span class="req"> *</span></label>
+                                <label for="personName">Eesnimi<span class="req"> *</span></label>
                                 <input id="personName" class="form-control personName" type="text" v-model="person.name"
                                        required v-on:input="validateName('personName', index)">
                                 <div class="invalid-tooltip" v-if="hasError('personName', index)">
@@ -316,7 +316,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row align-items-center">
                         <div class="form-group col-sm col-lg-4">
                             <label for="newStreet">Tänav/talu, maja nr, korteri nr<span class="req"> *</span></label>
                             <input id="newStreet" class="form-control" v-model="newStreet" type="text"
@@ -336,15 +336,24 @@
                                 {{errors.newZipCode[0]}}
                             </div>
                         </div>
+
+                        <div class="col-sm col-lg-4">
+                            <div class="form-check">
+                                <input id="contactAddressCheck" class="form-check-input" v-model="contactAddressCheck"
+                                       type="checkbox">
+                                <label class="form-check-label" for="contactAddressCheck">Sideaadress erineb uue elukoha
+                                    aadressist.</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <hr>
 
-            <div id="contactAddress">
+            <div id="contactAddress" v-if="contactAddressCheck">
                 <div class="box-header">
-                    <h3>Sideaadress (kui erineb uue elukoha aadressist)</h3>
+                    <h3>Sideaadress</h3>
                 </div>
 
                 <div class="box-with-margin">
@@ -387,10 +396,7 @@
                             <input id="contactAddressToDate" class="form-control" type="date">
                         </div>
                         <small class="form-text text-muted col-sm col-lg">Täita juhul, kui aadressi kehtivuse alguse
-                            kuupäev on tulevikus
-                            või kui on teada, millal
-                            kehtivus
-                            lõpeb.
+                            kuupäev on tulevikus või kui on teada, millal kehtivus lõpeb.
                         </small>
                     </div>
                 </div>
@@ -719,7 +725,8 @@
         <hr v-if="otherPeople.length > 1">
 
         <div id="confirmation" class="box-with-margin">
-            <p class="justified-text">Kinnitan elukohateatel esitatud andmete õigsust ja olen teadlik, et esitatud andmed kantakse
+            <p class="justified-text">Kinnitan elukohateatel esitatud andmete õigsust ja olen teadlik, et esitatud
+                andmed kantakse
                 rahvastikuregistrisse. Olen teadlik, et vastavalt karistusseadustikule on ametiasutusele
                 valeandmete
                 esitamine
@@ -749,7 +756,7 @@
                     :disabled="previousPageDisabled">
                 <span class="fas fa-angle-double-left"></span> Tagasi
             </button>
-            <a href="." class="btn btn-primary" type="button"
+            <a href="." class="btn btn-success" type="button"
                v-if="canFinish">
                 Lõpeta
             </a>

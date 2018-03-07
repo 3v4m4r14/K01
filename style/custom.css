@@ -19,6 +19,13 @@ body {
     margin-top: 1em;
 }
 
+.invalid-tooltip {
+    background-color: transparent;
+    color: #d9534f;
+    font-weight: bold;
+    padding-left: 0;
+}
+
 .box-header {
     background-color: #fefefe;
     padding: 1em;
