@@ -650,19 +650,20 @@
                 <dt class="col-sm-2">Emeil:</dt>
                 <dd class="col-sm-10">{{person.email}}</dd>
                 <dt class="col-sm-2">Telefoni number:</dt>
-                <dd class="col-sm-10">{{person.phoneNumber}}</dd>
+                <dd class="col-sm-10">{{person.phoneNumber}}<br><br></dd>
                 <div class="col" v-if="person.isUnderaged">
                     <dt class="col-sm-2">Vanema nimi:</dt>
                     <dd class="col-sm-10">{{person.guardian.name}} {{person.guardian.surname}}</dd>
                     <dt class="col-sm-2">Vanema isikukood:</dt>
-                    <dd class="col-sm-10">{{person.guardian.code}}</dd>
+                    <dd class="col-sm-10">{{person.guardian.code}}<br><br></dd>
                 </div>
             </dl>
             <button class="btn btn-sm btn-primary" @click="goToPage(1)" type="button"
                     :disabled="allPagesDisabled">
-                <span class="fas fa-edit" aria-hidden="true"></span> Muuda andmeid
+                <span class="fas fa-edit" aria-hidden="true"></span> Muuda isikuandmeid
             </button>
-
+        </div>
+        <div class="box-with-margin">
             <dl class="row">
                 <dt class="col-sm-2">Uus aadress:</dt>
                 <dd class="col-sm-9">{{newCountry}}, {{newCounty}}, {{newTown}}, {{newStreet}}, {{newZipCode}}</dd>
@@ -671,12 +672,18 @@
                     :disabled="allPagesDisabled">
                 <span class="fas fa-edit" aria-hidden="true"></span> Muuda aadressi
             </button>
-            <dl class="row" v-if="ownershipSelection === 'ownerApproval'">
+        </div>
+        <div class="box-with-margin" v-if="ownershipSelection === 'ownerApproval'">
+            <dl class="row">
                 <dt class="col-sm-2">Omaniku nimi:</dt>
                 <dd class="col-sm-10">{{ownerName}} {{ownerSurname}}</dd>
                 <dt class="col-sm-2">Omaniku isikukood:</dt>
                 <dd class="col-sm-10">{{ownerCode}}</dd>
             </dl>
+            <button class="btn btn-sm btn-primary" @click="goToPage(3)" type="button"
+                    :disabled="allPagesDisabled">
+                <span class="fas fa-edit" aria-hidden="true"></span> Muuda omaniku andmeid
+            </button>
         </div>
 
         <div id="signatures" class="box-with-margin" v-if="otherPeople.length > 1">
